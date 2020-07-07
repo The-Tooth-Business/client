@@ -1,10 +1,18 @@
 import React from 'react'
-import AdminDashboard from 'components/AdminDashboard.js'
+import {BrowserRouter, Route, Switch} from 'react-router-dom' 
+import Login from './components/Login'
+import NotFound from './components/NotFound'
 
 const App = () => {
   return (
     <div >
-          The basic empty template
+    <h1>Welcome to Tooth Inc.</h1>
+      <BrowserRouter>
+        <Switch>
+        <Route exact path="/" component={Login} />
+        <Route component={NotFound} />
+        </Switch>
+      </BrowserRouter>
     </div>
   )
 }

@@ -1,9 +1,11 @@
 import React from 'react'
-import Bookings from "./Bookings"
 
-const Bookings = ({postData}) => {
+
+const UserDashboard = () => {
     return (
-        
+        <div>
+            <h1>I am the User Dashboard</h1>
+        </div>
     )
 }
 
