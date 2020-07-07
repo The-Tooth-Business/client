@@ -1,7 +1,7 @@
 import React from 'react'
 
-const BlogPost = () => {
-
+const AdminDashboard = () => {
+    console.log(AdminDashboard);
 }
 
-export default BlogPost
+export default AdminDashboard
