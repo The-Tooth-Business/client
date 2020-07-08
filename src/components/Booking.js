@@ -1,14 +1,22 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 const Booking = ({post}) => {
     // If we don't have a post, return null.
     if (!post) return null
 
+    const linkStyles = {
+        textDecoration : 'none',
+        color: 'black'
+    }
+
     const {modified_date, name, surname, email, number_teeth, address_line_1, city, postcode, country, continent, currency } = post
     return (
         <div>
+        <Link style={linkStyles} to={`/posts/${post._id}d`}>
+            <h1>{name}</h1>
+            </Link>
             <p>{modified_date.toLocaleString()}</p>
-            <p>{name}</p>
             <p>{surname}</p>
             <p>{email}</p>
             <p>{number_teeth}</p>
