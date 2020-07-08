@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Form = (props) => {
+const NewBooking = (props) => {
     const {name, surname, email, phone, address} = props
     const sectionStyles = {
         display: "grid",
@@ -134,4 +134,4 @@ const Form = (props) => {
     )
 }
 
-export default Form;
+export default NewBooking;
