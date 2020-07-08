@@ -1,11 +1,13 @@
 import React from 'react'
 
+
 const Booking = ({post}) => {
     // If we don't have a post, return null.
     if (!post) return null
 
     const {modified_date, name, surname, email, number_teeth, address_line_1, city, postcode, country, continent, currency } = post
     return (
+
         <div>
             <p>{modified_date.toLocaleString()}</p>
             <p>{name}</p>
