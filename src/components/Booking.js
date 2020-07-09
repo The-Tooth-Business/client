@@ -9,12 +9,17 @@ const Booking = ({history, post, showControls, deleteBooking}) => {
         textDecoration : 'none',
         color: 'black'
     }
+    const buttonStyles = {
+        margin: '.5em',
+        fontSize: '1em'
+    }
 
     // console.log('showcontrols', showControls)
     function handleDelete (){
         deleteBooking(post._id)
         history.push('/')
     }
+
 
     const {modified_date, name, surname, email, number_teeth, address_line_1, city, postcode, country, continent, currency } = post
     return (
@@ -32,7 +37,12 @@ const Booking = ({history, post, showControls, deleteBooking}) => {
             <p>{country}</p>
             <p>{continent}</p>
             <p>{currency}</p>
-            {showControls && <button onClick={handleDelete}>Delete</button>}
+            {showControls && (
+                    <div>
+                        <Link to={`/booking/edit/${post._id}`}><button>Edit</button></Link>
+                        <button style={buttonStyles} onClick={handleDelete}>Delete</button>
+                    </div>
+             )}
         </div>
     )
 }

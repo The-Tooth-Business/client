@@ -1,7 +1,7 @@
-import React, { useState }from 'react'
-import {withRouter} from 'react-router-dom'
+import React, { useState, useEffect }from 'react'
+// import {withRouter} from 'react-router-dom'
 
-const NewBooking = ({history, addBooking, nextId}) => {
+const EditBooking = ({history, updateBooking, post}) => {
 
     const divStyles = {
         display: 'grid',
@@ -33,6 +33,20 @@ const initialFormState = {
     currency: ''
 }
 const [formState, setFormState] = useState(initialFormState)
+useEffect(() =>{
+    post && setFormState({
+        name: post.name,
+        surname: post.surname,
+        email : post.email,
+        number_teeth: post.number_teeth,
+        address: post.address,
+        city : post.city,
+        postcode: post.city,
+        country: post.country,
+        continent: post.continent,
+        currency: post.currency
+    })
+}, [post])
 
 function handleChange(event){
     const name = event.target.name
@@ -42,8 +56,8 @@ function handleChange(event){
 
 function handleSubmit(event){
     event.preventDefault()
-    const newPost = {
-        _id: nextId,
+    const updatedBooking = {
+        _id: post._id,
         name: formState.name,
         surname: formState.surname,
         email : formState.email,
@@ -56,9 +70,9 @@ function handleSubmit(event){
         currency: formState.currency,
         modified_date: new Date()
     }
-    addBooking(newPost) 
+    updateBooking(updatedBooking) 
     // history.push(`/posts/${nextId}`)
-    history.push('/success')
+    history.push('/bookings')
     
 }
     
@@ -66,46 +80,46 @@ function handleSubmit(event){
         <form onSubmit={handleSubmit}>
         <div style={divStyles}>
                 <label style={labelStyles}>name</label>
-                <input style={inputStyles} required type='text' name='name' placeholder='name' onChange={handleChange}></input>
+                <input style={inputStyles} required type='text' name='name' value={formState.name} onChange={handleChange}></input>
             </div>
             <div style={divStyles}>
                 <label style={labelStyles}>surname</label>
-                <input style={inputStyles} required type='text' name='surname' placeholder='surname' onChange={handleChange}></input>
+                <input style={inputStyles} required type='text' name='surname' value={formState.surname} onChange={handleChange}></input>
             </div>
             <div style={divStyles}>
                 <label style={labelStyles}>email</label>
-                <input style={inputStyles} required type='text' name='eamil' placeholder='email' onChange={handleChange}></input>
+                <input style={inputStyles} required type='text' name='eamil' value={formState.email} onChange={handleChange}></input>
             </div>
             <div style={divStyles}>
                 <label style={labelStyles}>number_teeth</label>
-                <input style={inputStyles} required type='text' name='number_teeth' placeholder='number of teeth' onChange={handleChange}></input>
+                <input style={inputStyles} required type='text' name='number_teeth' value={formState.number_teeth} onChange={handleChange}></input>
             </div>
             <div style={divStyles}>
                 <label style={labelStyles}>address</label>
-                <input style={inputStyles} required type='text' name='address' placeholder='address' onChange={handleChange}></input>
+                <input style={inputStyles} required type='text' name='address' value={formState.address} onChange={handleChange}></input>
             </div>
             <div style={divStyles}>
                 <label style={labelStyles}>city</label>
-                <input style={inputStyles} required type='text' name='city' placeholder='city' onChange={handleChange}></input>
+                <input style={inputStyles} required type='text' name='city' value={formState.city} onChange={handleChange}></input>
             </div>
             <div style={divStyles}>
                 <label style={labelStyles}>postcode</label>
-                <input style={inputStyles} required type='text' name='postcode' placeholder='postcode' onChange={handleChange}></input>
+                <input style={inputStyles} required type='text' name='postcode' value={formState.postcode} onChange={handleChange}></input>
             </div>
             <div style={divStyles}>
                 <label style={labelStyles}>country</label>
-                <input style={inputStyles} required type='text' name='country' placeholder='country' onChange={handleChange}></input>
+                <input style={inputStyles} required type='text' name='country' value={formState.country} onChange={handleChange}></input>
             </div>
             <div style={divStyles}>
                 <label style={labelStyles}>continent</label>
-                <input style={inputStyles} required type='text' name='continent' placeholder='continent' onChange={handleChange}></input>
+                <input style={inputStyles} required type='text' name='continent' value={formState.continent} onChange={handleChange}></input>
             </div>
             <div style={divStyles}>
                 <label style={labelStyles}>currency</label>
-                <input style={inputStyles} required type='text' name='currency' placeholder='currency' onChange={handleChange}></input>
+                <input style={inputStyles} required type='text' name='currency' value={formState.currency} onChange={handleChange}></input>
             </div>
-                <input style={inputStyles} type='submit' value='book now'></input>
+                <input style={inputStyles} type='submit' value='update booking'></input>
         </form>
     )
 }
-export default withRouter (NewBooking)
+export default EditBooking

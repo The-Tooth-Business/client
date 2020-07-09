@@ -6,6 +6,7 @@ import Nav from './components/Nav'
 import Bookings from './components/Bookings'
 import Booking from './components/Booking'
 import NewBooking from './components/NewBooking'
+import EditBooking from './components/EditBooking'
 import Login from './components/Login'
 import Logout from './components/Logout'
 import Success from './components/Success'
@@ -37,6 +38,10 @@ function deleteBooking(id){
   setBookings(otherBookings)
 }
 
+function updateBooking(updatedBooking){
+  const otherBookings = bookings.filter((post)=> post._id !== parseInt(updatedBooking._id))
+  setBookings(...otherBookings, updatedBooking)
+}
   return (
 <div>
 
@@ -51,6 +56,8 @@ function deleteBooking(id){
           <Booking {...props} post={getBookingFromId(props.match.params.id)} showControls deleteBooking={deleteBooking} />}/>
           <Route exact path='/booking/new' render={(props)=> 
           <NewBooking {...props} addBooking={addBooking} nextId={getNextId()} /> } />
+          <Route exact path='/booking/edit/:id' render={(props) =>  
+          <EditBooking {...props} post={getBookingFromId(props.match.params.id)} updateBooking={updateBooking}/> }  />
           <Route component={NotFound} />
         </Switch>
       </BrowserRouter>
