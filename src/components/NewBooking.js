@@ -3,14 +3,24 @@ import {withRouter} from 'react-router-dom'
 
 const NewBooking = ({history, addBooking, nextId}) => {
 
+    const formStyles ={
+        display: 'flex',
+        justifyContent: 'center',
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        border : '1px solid lightgrey',
+        padding: '10px'
+        
+    }
+
     const divStyles = {
         display: 'grid',
         width: '100vw',
-        padding: '1em'
+    
     }
 
     const inputStyles = {
-        width: '50vw',
+        width: '40vw',
         height: '2em',
         margin: '1em',
     }
@@ -63,7 +73,7 @@ function handleSubmit(event){
 }
     
     return(
-        <form onSubmit={handleSubmit}>
+        <form styles={formStyles} onSubmit={handleSubmit}>
         <div style={divStyles}>
                 <label style={labelStyles}>name</label>
                 <input style={inputStyles} required type='text' name='name' placeholder='name' onChange={handleChange}></input>
@@ -105,6 +115,7 @@ function handleSubmit(event){
                 <input style={inputStyles} required type='text' name='currency' placeholder='currency' onChange={handleChange}></input>
             </div>
                 <input style={inputStyles} type='submit' value='book now'></input>
+                
         </form>
     )
 }
