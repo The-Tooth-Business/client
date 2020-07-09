@@ -2,10 +2,10 @@ import React,{useState, useEffect} from 'react'
 import {BrowserRouter, Route, Switch } from 'react-router-dom' 
 import parentData from './data/parent_data'
 import Nav from './components/Nav'
-// import NewBooking from './components/NewBooking'
 import Bookings from './components/Bookings'
 import Booking from './components/Booking'
 import NewBooking from './components/NewBooking'
+import EditBooking from './components/EditBooking'
 import Login from './components/Login'
 import Logout from './components/Logout'
 import Success from './components/Success'
@@ -20,7 +20,9 @@ const App = () => {
   }, [])
 
 function getBookingFromId (id) {
-  return bookings.find((post) => post._id === parseInt(id))
+  const post = bookings.find((post) => post._id === parseInt(id))
+  return post
+ // return bookings.find((post) => post._id === parseInt(id))
 }
 
 function addBooking(post) {
@@ -37,6 +39,10 @@ function deleteBooking(id){
   setBookings(otherBookings)
 }
 
+function updateBooking(updatedBooking){
+  const otherBookings = bookings.filter((post) => post._id !==  updatedBooking._id)
+  setBookings([...otherBookings, updatedBooking])
+}
   return (
 <div>
 
@@ -51,6 +57,7 @@ function deleteBooking(id){
           <Booking {...props} post={getBookingFromId(props.match.params.id)} showControls deleteBooking={deleteBooking} />}/>
           <Route exact path='/booking/new' render={(props)=> 
           <NewBooking {...props} addBooking={addBooking} nextId={getNextId()} /> } />
+          <Route exact path='/booking/edit/:id' render={(props) => <EditBooking {...props} updateBooking={updateBooking} post={getBookingFromId(props.match.params.id)}/> } />
           <Route component={NotFound} />
         </Switch>
       </BrowserRouter>
