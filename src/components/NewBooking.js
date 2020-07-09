@@ -2,28 +2,36 @@ import React from 'react'
 
 const NewBooking = () => {
 
+    const formStyles ={
+        display: 'flex',
+        justifyContent: 'center',
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        border : '1px solid lightgrey',
+        padding: '10px'
+        
+    }
+
     const divStyles = {
         display: 'grid',
         width: '100vw',
-        // height: '2em',
-        border: '1px solid red',
-        padding: '1em'
+    
     }
 
     const inputStyles = {
-        width: '50vw',
+        width: '40vw',
         height: '2em',
         margin: '1em',
-        border: '1px solid blue'
+        
     }
 
     const labelStyles = {
-        fontSize: '1.5em',
-        border: '1px solid green'
+        fontSize: '1.2em',
+        
     }
     
     return(
-        <form>
+        <form style={formStyles}>
         <div style={divStyles}>
                 <label style={labelStyles}>name</label>
                 <input style={inputStyles} required type='text' name='name' placeholder='name'></input>
