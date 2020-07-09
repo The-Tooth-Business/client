@@ -13,7 +13,7 @@ const Booking = ({post}) => {
     const {modified_date, name, surname, email, number_teeth, address_line_1, city, postcode, country, continent, currency } = post
     return (
         <div>
-        <Link style={linkStyles} to={`/posts/${post._id}d`}>
+        <Link style={linkStyles} to={`/posts/${post._id}`}>
             <h1>{name}</h1>
             </Link>
             <p>{modified_date.toLocaleString()}</p>
