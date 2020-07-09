@@ -4,7 +4,8 @@ import {Link} from 'react-router-dom'
 
 const Nav = () => {
 const divStyles = {
-    display: 'flex'
+    display: 'flex',
+    flexDirection: 'column'
 }
 
 const linkStyles={
@@ -14,8 +15,9 @@ const linkStyles={
     color: 'black'
 }
 
-    return (
+    return (   
     <div styles={divStyles}>
+    <h1>Welcome to Tooth Inc.</h1>
         <Link style={linkStyles} to='/'>Home</Link>
         <Link style={linkStyles} to="/logout">Logout</Link>
         <Link style={linkStyles} to='/booking/new'>Add a booking</Link>
