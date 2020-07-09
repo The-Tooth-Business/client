@@ -57,8 +57,8 @@ function handleSubmit(event){
         modified_date: new Date()
     }
     addBooking(newPost) 
-    history.push(`/posts/${nextId}`)
-    // history.push('/success')
+    // history.push(`/posts/${nextId}`)
+    history.push('/success')
     
 }
     

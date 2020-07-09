@@ -32,6 +32,11 @@ function getNextId(){
   return ids.sort()[ids.length - 1] +1 
 }
 
+function deleteBooking(id){
+  const otherBookings = bookings.filter((post) => post._id !== parseInt(id))
+  setBookings(otherBookings)
+}
+
   return (
 <div>
 
@@ -43,7 +48,7 @@ function getNextId(){
           <Route exact path='/success' render={Success} />
           <Route exact path='/bookings' render={(props) => <Bookings {...props} parentData={bookings} />}/>
           <Route exact path='/posts/:id' render={(props) => 
-          <Booking {...props} post={getBookingFromId(props.match.params.id)} />}/>
+          <Booking {...props} post={getBookingFromId(props.match.params.id)} showControls deleteBooking={deleteBooking} />}/>
           <Route exact path='/booking/new' render={(props)=> 
           <NewBooking {...props} addBooking={addBooking} nextId={getNextId()} /> } />
           <Route component={NotFound} />

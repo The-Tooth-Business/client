@@ -7,7 +7,7 @@ const Bookings = ({parentData}) => {
         <div>
         
             {parentData.sort((a,b) => b.modified_date - a.modified_date)
-            .map((post)=> <Booking key={post._id} post={post}/> )}
+            .map((post)=> <Booking key={post._id} post={post} /> )}
         </div>
 
     )
