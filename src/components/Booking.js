@@ -20,8 +20,13 @@ const Booking = ({history, post, showControls, deleteBooking}) => {
         history.push('/')
     }
 
+    function handleEdit(event) {
+        event.preventDefault()
+        history.push(`/booking/edit/${post._id}`)
+    }
 
-    const {modified_date, name, surname, email, number_teeth, address_line_1, city, postcode, country, continent, currency } = post
+
+    const {modified_date, name, surname, email, number_teeth, address, city, postcode, country, continent, currency } = post
     return (
         <div>
         <Link style={linkStyles} to={`/posts/${post._id}`}>
@@ -31,7 +36,7 @@ const Booking = ({history, post, showControls, deleteBooking}) => {
             <p>{surname}</p>
             <p>{email}</p>
             <p>{number_teeth}</p>
-            <p>{address_line_1}</p>
+            <p>{address}</p>
             <p>{city}</p>
             <p>{postcode}</p>
             <p>{country}</p>
@@ -39,7 +44,7 @@ const Booking = ({history, post, showControls, deleteBooking}) => {
             <p>{currency}</p>
             {showControls && (
                     <div>
-                        <Link to={`/booking/edit/${post._id}`}><button>Edit</button></Link>
+                        <button style={buttonStyles} onClick={handleEdit}>Edit</button>
                         <button style={buttonStyles} onClick={handleDelete}>Delete</button>
                     </div>
              )}

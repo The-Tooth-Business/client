@@ -1,5 +1,6 @@
 // blog data for development
-export default [
+export default 
+[
     {
         _id: 1,
         modified_date: new Date("2019-09-20"),
@@ -11,7 +12,7 @@ export default [
         postcode: "9087",
         country: "Germany",
         continent: "Europe",
-        Currency: "Euro",
+        currency: "Euro",
         number_teeth: "1"
         
     },
@@ -26,7 +27,7 @@ export default [
         postcode: "E12 23G",
         country: "UK",
         continent: "Europe",
-        Currency: "Pound",
+        currency: "Pound",
         number_teeth: "2"
         
     },
@@ -41,7 +42,7 @@ export default [
         postcode: "20987",
         country: "USA",
         continent: "North America",
-        Currency: "USD",
+        currency: "USD",
         number_teeth: "1"
         
     },
@@ -56,7 +57,7 @@ export default [
         postcode: "2987",
         country: "Australia",
         continent: "Oceana",
-        Currency: "AusD",
+        currency: "AusD",
         number_teeth: "1"
         
     },
@@ -71,7 +72,7 @@ export default [
         postcode: "9087",
         country: "Japan",
         continent: "Asia",
-        Currency: "Yen",
+        currency: "Yen",
         number_teeth: "2"
         
     },
@@ -86,8 +87,8 @@ export default [
         postcode: "4001",
         country: "South Africa",
         continent: "Africa",
-        Currency: "Rand",
+        currency: "Rand",
         number_teeth: "1"
         
-    },
+    }
 ]

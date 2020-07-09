@@ -1,5 +1,5 @@
 import React, { useState, useEffect }from 'react'
-// import {withRouter} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 
 const EditBooking = ({history, updateBooking, post}) => {
 
@@ -18,40 +18,13 @@ const EditBooking = ({history, updateBooking, post}) => {
     const labelStyles = {
         fontSize: '1.5em',
     }
-
-    //state
-const initialFormState = {
-    name: '',
-    surname: '',
-    email :'',
-    number_teeth: '',
-    address: '',
-    city : '',
-    postcode: '',
-    country: '',
-    continent: '',
-    currency: ''
-}
-const [formState, setFormState] = useState(initialFormState)
-useEffect(() =>{
-    post && setFormState({
-        name: post.name,
-        surname: post.surname,
-        email : post.email,
-        number_teeth: post.number_teeth,
-        address: post.address,
-        city : post.city,
-        postcode: post.city,
-        country: post.country,
-        continent: post.continent,
-        currency: post.currency
-    })
-}, [post])
-
 function handleChange(event){
     const name = event.target.name
     const value = event.target.value
-    setFormState({...formState, [name]: value })
+    setFormState({
+        ...formState,
+         [name]: value 
+        })
 }
 
 function handleSubmit(event){
@@ -71,10 +44,39 @@ function handleSubmit(event){
         modified_date: new Date()
     }
     updateBooking(updatedBooking) 
-    // history.push(`/posts/${nextId}`)
-    history.push('/bookings')
-    
+    history.push(`/posts/${post._id}`)
+    // history.push('/bookings')
 }
+    //state
+const initialFormState = {
+    name: '',
+    surname: '',
+    email :'',
+    number_teeth: '',
+    address: '',
+    city : '',
+    postcode: '',
+    country: '',
+    continent: '',
+    currency: ''
+}
+
+const [formState, setFormState] = useState(initialFormState)
+
+useEffect(() =>{
+    post && setFormState({
+        name: post.name,
+        surname: post.surname,
+        email : post.email,
+        number_teeth: post.number_teeth,
+        address: post.address,
+        city : post.city,
+        postcode: post.city,
+        country: post.country,
+        continent: post.continent,
+        currency: post.currency
+    })
+}, [post])
     
     return(
         <form onSubmit={handleSubmit}>
@@ -88,7 +90,7 @@ function handleSubmit(event){
             </div>
             <div style={divStyles}>
                 <label style={labelStyles}>email</label>
-                <input style={inputStyles} required type='text' name='eamil' value={formState.email} onChange={handleChange}></input>
+                <input style={inputStyles} required type='text' name='email' value={formState.email} onChange={handleChange}></input>
             </div>
             <div style={divStyles}>
                 <label style={labelStyles}>number_teeth</label>
@@ -122,4 +124,4 @@ function handleSubmit(event){
         </form>
     )
 }
-export default EditBooking
+export default withRouter (EditBooking)
