@@ -24,8 +24,6 @@ function getBookingFromId (id) {
 
   return (
 <div>
-<h1>Welcome to Tooth Inc.</h1>
-
 
     <BrowserRouter>
       <Nav />
