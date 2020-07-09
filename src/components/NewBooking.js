@@ -25,7 +25,7 @@ const initialFormState = {
     surname: '',
     email :'',
     number_teeth: '',
-    address_line_1: '',
+    address: '',
     city : '',
     postcode: '',
     country: '',
@@ -48,7 +48,7 @@ function handleSubmit(event){
         surname: formState.surname,
         email : formState.email,
         number_teeth: formState.number_teeth,
-        address_line_1: formState.address_line_1,
+        address: formState.address,
         city : formState.city,
         postcode: formState.postcode,
         country: formState.country,
@@ -81,7 +81,7 @@ function handleSubmit(event){
                 <input style={inputStyles} required type='text' name='number_teeth' placeholder='number of teeth' onChange={handleChange}></input>
             </div>
             <div style={divStyles}>
-                <label style={labelStyles}>address_line_1</label>
+                <label style={labelStyles}>address</label>
                 <input style={inputStyles} required type='text' name='address' placeholder='address' onChange={handleChange}></input>
             </div>
             <div style={divStyles}>
