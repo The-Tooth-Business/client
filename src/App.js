@@ -8,6 +8,7 @@ import Booking from './components/Booking'
 import NewBooking from './components/NewBooking'
 import Login from './components/Login'
 import Logout from './components/Logout'
+import Success from './components/Success'
 import NotFound from './components/NotFound'
 
 
@@ -22,6 +23,20 @@ function getBookingFromId (id) {
   return bookings.find((post) => post._id === parseInt(id))
 }
 
+function addBooking(post) {
+  setBookings([...bookings,post])
+}
+
+function getNextId(){
+  const ids = bookings.map((post) => post._id)
+  return ids.sort()[ids.length - 1] +1 
+}
+
+function deleteBooking(id){
+  const otherBookings = bookings.filter((post) => post._id !== parseInt(id))
+  setBookings(otherBookings)
+}
+
   return (
 <div>
 
@@ -30,10 +45,12 @@ function getBookingFromId (id) {
         <Switch>
           <Route exact path='/' render={Login} />
           <Route exact path='/logout' render={Logout} />
+          <Route exact path='/success' render={Success} />
           <Route exact path='/bookings' render={(props) => <Bookings {...props} parentData={bookings} />}/>
           <Route exact path='/posts/:id' render={(props) => 
-          <Booking {...props} post={getBookingFromId(props.match.params.id)} />}/>
-          <Route exact path='/booking/new' render={()=> <NewBooking /> } />
+          <Booking {...props} post={getBookingFromId(props.match.params.id)} showControls deleteBooking={deleteBooking} />}/>
+          <Route exact path='/booking/new' render={(props)=> 
+          <NewBooking {...props} addBooking={addBooking} nextId={getNextId()} /> } />
           <Route component={NotFound} />
         </Switch>
       </BrowserRouter>
