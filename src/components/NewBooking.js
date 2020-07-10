@@ -78,8 +78,8 @@ function handleSubmit(event){
     
     return(
 
-        <form style={formStyles}>
-        <form onSubmit={handleSubmit}>
+        
+        <form style={formStyles} onSubmit={handleSubmit}>
 
         <div style={divStyles}>
                 <label style={labelStyles}>name</label>
