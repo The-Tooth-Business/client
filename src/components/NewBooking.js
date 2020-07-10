@@ -77,14 +77,10 @@ function handleSubmit(event){
 }
     
     return(
-<<<<<<< HEAD
-        <form styles={formStyles} onSubmit={handleSubmit}>
-=======
 
         
         <form style={formStyles} onSubmit={handleSubmit}>
 
->>>>>>> master
         <div style={divStyles}>
                 <label style={labelStyles}>name</label>
                 <input style={inputStyles} required type='text' name='name' placeholder='name' onChange={handleChange}></input>
