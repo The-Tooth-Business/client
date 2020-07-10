@@ -16,7 +16,7 @@ const App = () => {
   // const [bookings, setBookings] = useState([]);
   
 const initialState = {
-  bookings: []
+  bookings: [],
 }
 
 const [store, dispatch] = useReducer(stateReducer,initialState)
@@ -31,12 +31,12 @@ const [store, dispatch] = useReducer(stateReducer,initialState)
 	}, []);
 
 	function getBookingFromId(id) {
-		// const booking = bookings.find((booking) => booking._id === parseInt(id));
-    // return booking; 
-    dispatch({
-      type: 'getBookingFromId',
-      data: id
-    })
+		const booking = bookings.find((booking) => booking._id === parseInt(id));
+    return booking; 
+    // dispatch({
+    //   type: 'getBookingFromId',
+    //   data: id
+    // })
 	}
 
 	function addBooking(booking) {

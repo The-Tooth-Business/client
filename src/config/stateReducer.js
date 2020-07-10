@@ -3,32 +3,33 @@ function stateReducer(state, action) {
         case 'setBookings':
             return {
                 ...state,
-                Bookings: action.data
+                bookings: action.data
             }
+        
         case 'addBooking':
             return {
                 ...state,
-                Bookings: [action.data, ...state.Bookings]
+                bookings: [action.data, ...state.bookings]
                 //setBookings([...bookings, booking]);
             }
         case 'updateBooking':
-            const otherBooking = state.Bookings.filter((booking) => booking._id !== action.data._id)
+            const otherBooking = state.bookings.filter((booking) => booking._id !== action.data._id)
             return {
                 ...state,
-                Bookings: [...otherBooking, action.data]
+                bookings: [...otherBooking, action.data]
             }
         case 'deleteBooking':
-            const otherBookings = state.Bookings.filter((booking) => booking._id !== parseInt(action.data))
+            const otherBookings = state.bookings.filter((booking) => booking._id !== parseInt(action.data))
             return {
                 ...state,
-                Bookings: otherBookings
+                bookings: otherBookings
             }
 
-        // case 'getBookingsFromId':
-        //     const booking = bookings.find((booking) => booking._id === action.data)
+        // case 'getBookingFromId':
+        //     const booking = state.bookings.find((booking) => booking._id === parseInt(action.data))
         //     return {
         //         ...state,
-        //         Bookings: booking
+        //         bookings: booking
         //     }
        
             default:
