@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import parentData from './data/parent_data';
 import Nav from './components/Nav';
@@ -10,21 +10,40 @@ import Login from './components/Login';
 import Logout from './components/Logout';
 import Success from './components/Success';
 import NotFound from './components/NotFound';
+import stateReducer from './config/stateReducer'
 
 const App = () => {
-	const [bookings, setBookings] = useState([]);
+  // const [bookings, setBookings] = useState([]);
+  
+const initialState = {
+  bookings: []
+}
+
+const [store, dispatch] = useReducer(stateReducer,initialState)
+ const {bookings} = store
+
 	useEffect(() => {
-		setBookings(parentData);
+    // setBookings(parentData);
+    dispatch({
+      type: 'setBookings',
+      data: parentData
+    })
 	}, []);
 
 	function getBookingFromId(id) {
-		const booking = bookings.find((booking) => booking._id === parseInt(id));
-		return booking;
-		// return bookings.find((booking) => booking._id === parseInt(id))
+		// const booking = bookings.find((booking) => booking._id === parseInt(id));
+    // return booking; 
+    dispatch({
+      type: 'getBookingFromId',
+      data: id
+    })
 	}
 
 	function addBooking(booking) {
-		setBookings([...bookings, booking]);
+    dispatch({
+      type: 'addBooking',
+      data: booking
+    })
 	}
 
 	function getNextId() {
@@ -33,18 +52,19 @@ const App = () => {
 	}
 
 	function deleteBooking(id) {
-		const otherBookings = bookings.filter(
-			(booking) => booking._id !== parseInt(id)
-		);
-		setBookings(otherBookings);
+		dispatch({
+      type: 'deleteBooking',
+      data: id
+    })
 	}
 
 	function updateBooking(updatedBooking) {
-		const otherBookings = bookings.filter(
-			(booking) => booking._id !== updatedBooking._id
-		);
-		setBookings([...otherBookings, updatedBooking]);
-	}
+		dispatch({
+      type: 'updateBooking',
+      data: updatedBooking
+    })
+  }
+  
 	return (
 		<div>
 			<BrowserRouter>
