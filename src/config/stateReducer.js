@@ -25,12 +25,12 @@ function stateReducer(state, action) {
                 bookings: otherBookings
             }
 
-        // case 'getBookingFromId':
-        //     const booking = state.bookings.find((booking) => booking._id === parseInt(action.data))
-        //     return {
-        //         ...state,
-        //         bookings: booking
-        //     }
+        case 'getBookingFromId':
+            const booking = state.bookings.find((booking) => booking._id === parseInt(action.data))
+            return {
+                ...state,
+                bookings: booking
+            }
        
             default:
                 return state
