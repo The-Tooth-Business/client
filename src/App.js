@@ -60,7 +60,7 @@ const App = () => {
 	return (
 		<div>
 			<BrowserRouter>
-				<Nav />
+				<Nav loggedInUser={loggedInUser} />
 				<Switch>
 					<Route exact path="/" render={UserDashboard} />
 					<Route
