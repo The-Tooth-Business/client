@@ -59,7 +59,7 @@ const App = () => {
 				<Switch>
 					<Route
 						exact
-						path="/"
+						path="/auth/login"
 						render={(props) => <Login {...props} loginUser={loginUser} />}
 					/>
 					<Route exact path="/logout" render={Logout} />

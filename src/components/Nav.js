@@ -20,6 +20,12 @@ const Nav = () => {
 			<Link style={linkStyles} to="/">
 				Home
 			</Link>
+			<Link style={linkStyles} to="/auth/login">
+				Login
+			</Link>
+			<Link style={linkStyles} to="/auth/register">
+				Register
+			</Link>
 			<Link style={linkStyles} to="/logout">
 				Logout
 			</Link>
