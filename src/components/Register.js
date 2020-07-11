@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useGlobalState } from '../config/globalState';
 
 const Register = ({ history, registerUser }) => {
+	const { dispatch } = useGlobalState();
 	const initialFormState = {
 		username: '',
 		email: '',
@@ -18,9 +20,13 @@ const Register = ({ history, registerUser }) => {
 	}
 	function handleSubmit(event) {
 		event.preventDefault();
-		registerUser(userDetails);
+		dispatch({
+			type: 'setLoggedInUser',
+			data: userDetails.username,
+		});
 		history.push('/');
 	}
+
 	return (
 		<form onSubmit={handleSubmit}>
 			<div>
