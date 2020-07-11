@@ -37,6 +37,11 @@ function stateReducer(state, action) {
 				...state,
 				bookings: booking,
 			};
+		case 'setLoggedInUser':
+			return {
+				...state,
+				loggedInUser: action.data,
+			};
 
 		default:
 			return state;

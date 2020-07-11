@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useGlobalState } from '../config/globalState';
 
-const Login = ({ history }) => {
+const Register = ({ history, registerUser }) => {
 	const { dispatch } = useGlobalState();
 	const initialFormState = {
 		username: '',
+		email: '',
 		password: '',
 	};
 	const [userDetails, setUserDetails] = useState(initialFormState);
@@ -19,16 +20,13 @@ const Login = ({ history }) => {
 	}
 	function handleSubmit(event) {
 		event.preventDefault();
-		loginUser();
-		history.push('/');
-	}
-	// Login user
-	function loginUser() {
 		dispatch({
 			type: 'setLoggedInUser',
 			data: userDetails.username,
 		});
+		history.push('/');
 	}
+
 	return (
 		<form onSubmit={handleSubmit}>
 			<div>
@@ -42,6 +40,16 @@ const Login = ({ history }) => {
 				></input>
 			</div>
 			<div>
+				<label>Email</label>
+				<input
+					required
+					type="email"
+					name="email"
+					placeholder="Enter an email"
+					onChange={handleChange}
+				></input>
+			</div>
+			<div>
 				<label>Password</label>
 				<input
 					required
@@ -51,9 +59,9 @@ const Login = ({ history }) => {
 					onChange={handleChange}
 				></input>
 			</div>
-			<input type="submit" value="Login"></input>
+			<input type="submit" value="Register"></input>
 		</form>
 	);
 };
 
-export default Login;
+export default Register;

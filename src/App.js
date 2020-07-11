@@ -2,22 +2,24 @@ import React, { useEffect, useReducer } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import parentData from './data/parent_data';
 import Nav from './components/Nav';
+import UserDashboard from './components/UserDashboard';
 import Bookings from './components/Bookings';
 import Booking from './components/Booking';
 import NewBooking from './components/NewBooking';
 import EditBooking from './components/EditBooking';
 import Login from './components/Login';
-import Logout from './components/Logout';
+import Register from './components/Register';
 import Success from './components/Success';
 import NotFound from './components/NotFound';
 import stateReducer from './config/stateReducer';
-import { StateContext} from './config/globalState';
+import { StateContext } from './config/globalState';
 
 const App = () => {
 	// const [bookings, setBookings] = useState([]);
 
 	const initialState = {
 		bookings: [],
+		loggedInUser: null,
 	};
 
 	const [store, dispatch] = useReducer(stateReducer, initialState);
@@ -47,48 +49,40 @@ const App = () => {
 
 	return (
 		<div>
-		<StateContext.Provider value={{store, dispatch}} >
-			<BrowserRouter>
-				<Nav />
-				<Switch>
-					<Route exact path="/" render={Login} />
-					<Route exact path="/logout" render={Logout} />
-					<Route exact path="/success" render={Success} />
-					<Route
-						exact
-						path="/bookings" component={ Bookings } />
-					<Route
-						exact
-						path="/bookings/:id"
-						render={(props) => (
-							<Booking
-								{...props}
-								booking={getBookingFromId(props.match.params.id)}
-								showControls
-							/>
-						)}
-					/>
-					<Route
-						exact
-						path="/booking/new"
-						render={(props) => (
-							<NewBooking
-								{...props}
-								nextId={getNextId()}
-							/>
-						)}
-					/>
-					<Route
-						exact
-						path="/booking/edit/:id"
-						component={EditBooking}
-
-							/>
-						)}
-					/>
-					<Route component={NotFound} />
-				</Switch>
-			</BrowserRouter>
+			<StateContext.Provider value={{ store, dispatch }}>
+				<BrowserRouter>
+					<Nav />
+					<Switch>
+						<Route exact path="/auth/register" component={Register} />
+						<Route exact path="/" render={UserDashboard} />
+						<Route
+							exact
+							path="/auth/login"
+							render={(props) => <Login {...props} />}
+						/>
+						<Route exact path="/auth/logout" render={Login} />
+						<Route exact path="/success" render={Success} />
+						<Route exact path="/bookings" component={Bookings} />
+						<Route
+							exact
+							path="/bookings/:id"
+							render={(props) => (
+								<Booking
+									{...props}
+									booking={getBookingFromId(props.match.params.id)}
+									showControls
+								/>
+							)}
+						/>
+						<Route
+							exact
+							path="/booking/new"
+							render={(props) => <NewBooking {...props} nextId={getNextId()} />}
+						/>
+						<Route exact path="/booking/edit/:id" component={EditBooking} />
+						<Route component={NotFound} />
+					</Switch>
+				</BrowserRouter>
 			</StateContext.Provider>
 		</div>
 	);
