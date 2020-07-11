@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import parentData from './data/parent_data';
 import Nav from './components/Nav';
@@ -10,21 +10,34 @@ import Login from './components/Login';
 import Logout from './components/Logout';
 import Success from './components/Success';
 import NotFound from './components/NotFound';
+import stateReducer from './config/stateReducer';
+import { StateContext} from './config/globalState';
 
 const App = () => {
-	const [bookings, setBookings] = useState([]);
+	// const [bookings, setBookings] = useState([]);
+
+	const initialState = {
+		bookings: [],
+	};
+
+	const [store, dispatch] = useReducer(stateReducer, initialState);
+	const { bookings } = store;
+
 	useEffect(() => {
-		setBookings(parentData);
+		// setBookings(parentData);
+		dispatch({
+			type: 'setBookings',
+			data: parentData,
+		});
 	}, []);
 
 	function getBookingFromId(id) {
 		const booking = bookings.find((booking) => booking._id === parseInt(id));
 		return booking;
-		// return bookings.find((booking) => booking._id === parseInt(id))
-	}
-
-	function addBooking(booking) {
-		setBookings([...bookings, booking]);
+		// dispatch({
+		//   type: 'getBookingFromId',
+		//   data: id
+		// })
 	}
 
 	function getNextId() {
@@ -32,21 +45,9 @@ const App = () => {
 		return ids.sort()[ids.length - 1] + 1;
 	}
 
-	function deleteBooking(id) {
-		const otherBookings = bookings.filter(
-			(booking) => booking._id !== parseInt(id)
-		);
-		setBookings(otherBookings);
-	}
-
-	function updateBooking(updatedBooking) {
-		const otherBookings = bookings.filter(
-			(booking) => booking._id !== updatedBooking._id
-		);
-		setBookings([...otherBookings, updatedBooking]);
-	}
 	return (
 		<div>
+		<StateContext.Provider value={{store, dispatch}} >
 			<BrowserRouter>
 				<Nav />
 				<Switch>
@@ -55,9 +56,7 @@ const App = () => {
 					<Route exact path="/success" render={Success} />
 					<Route
 						exact
-						path="/bookings"
-						render={(props) => <Bookings {...props} parentData={bookings} />}
-					/>
+						path="/bookings" component={ Bookings } />
 					<Route
 						exact
 						path="/bookings/:id"
@@ -66,7 +65,6 @@ const App = () => {
 								{...props}
 								booking={getBookingFromId(props.match.params.id)}
 								showControls
-								deleteBooking={deleteBooking}
 							/>
 						)}
 					/>
@@ -76,7 +74,6 @@ const App = () => {
 						render={(props) => (
 							<NewBooking
 								{...props}
-								addBooking={addBooking}
 								nextId={getNextId()}
 							/>
 						)}
@@ -84,17 +81,15 @@ const App = () => {
 					<Route
 						exact
 						path="/booking/edit/:id"
-						render={(props) => (
-							<EditBooking
-								{...props}
-								updateBooking={updateBooking}
-								booking={getBookingFromId(props.match.params.id)}
+						component={EditBooking}
+
 							/>
 						)}
 					/>
 					<Route component={NotFound} />
 				</Switch>
 			</BrowserRouter>
+			</StateContext.Provider>
 		</div>
 	);
 };

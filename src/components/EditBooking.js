@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
+import { useGlobalState } from '../config/globalState'
 
-const EditBooking = ({ history, updateBooking, booking }) => {
+const EditBooking = ({ history, match }) => {
+	const { store, dispatch } = useGlobalState()
+	const { bookings } = store
+	const bookingId = match.params.id
+
+	const booking = bookings.find((booking) => booking._id === parseInt(bookingId));
+
 	const divStyles = {
 		display: 'grid',
 		width: '100vw',
@@ -41,7 +48,11 @@ const EditBooking = ({ history, updateBooking, booking }) => {
 			currency: formState.currency,
 			modified_date: new Date(),
 		};
-		updateBooking(updatedBooking);
+
+		dispatch({
+			type: 'updateBooking',
+			data: updatedBooking
+		})
 		history.push(`/bookings/${booking._id}`);
 		// history.push('/bookings')
 	}
