@@ -2,5 +2,6 @@
 	"singleQuote": true,
 	"tabWidth": 2,
 	"useTabs": true,
-	"bracketSpacing": true
+	"bracketSpacing": true,
+	"editor.formatOnSave": true
 }
