@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
+import { useGlobalState } from '../config/globalState'
 
-const NewBooking = ({ history, addBooking, nextId }) => {
+const NewBooking = ({ history, nextId }) => {
+
+	const { dispatch } = useGlobalState()
+	
 	const formStyles = {
 		display: 'flex',
 		justifyContent: 'center',
@@ -61,7 +65,11 @@ const NewBooking = ({ history, addBooking, nextId }) => {
 			currency: formState.currency,
 			modified_date: new Date(),
 		};
-		addBooking(newBooking);
+		dispatch ({
+			type: 'addBooking',
+			data: newBooking
+		})
+		
 		// history.push(`/bookings/${nextId}`)
 		history.push('/success');
 	}
