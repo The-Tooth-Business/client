@@ -1,7 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useGlobalState } from '../config/globalState';
 
-const Nav = ({ loggedInUser, logoutUser }) => {
+const Nav = () => {
+	const { dispatch, store } = useGlobalState();
+	const { loggedInUser } = store;
 	const divStyles = {
 		display: 'flex',
 		flexDirection: 'column',
@@ -14,13 +17,20 @@ const Nav = ({ loggedInUser, logoutUser }) => {
 		color: 'black',
 	};
 
+	const logoutUser = () => {
+		dispatch({
+			type: 'setLoggedInUser',
+			data: null,
+		});
+	};
+
 	return (
 		<div styles={divStyles}>
 			{loggedInUser ? (
 				<div>
 					<h1>Welcome to Tooth Inc.</h1>
 					<Link style={linkStyles} to="/">
-						Home
+						{loggedInUser}
 					</Link>
 					<Link style={linkStyles} to="/auth/login" onClick={logoutUser}>
 						Logout

@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useGlobalState } from '../config/globalState'
 
-const Booking = ({ history, booking, showControls, deleteBooking }) => {
+
+
+const Booking = ({ history, booking, showControls }) => {
+	const { dispatch } = useGlobalState()
 	// If we don't have a booking, return null.
 	if (!booking) return null;
 
@@ -15,8 +19,13 @@ const Booking = ({ history, booking, showControls, deleteBooking }) => {
 	};
 
 	// console.log('showcontrols', showControls)
-	function handleDelete() {
-		deleteBooking(booking._id);
+	function handleDelete(event) {
+		event.preventDefault()
+		// deleteBooking(booking._id);
+		dispatch({
+			type: 'deleteBooking',
+			data: booking._id
+		})
 		history.push('/');
 	}
 
