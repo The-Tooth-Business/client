@@ -8,7 +8,6 @@ import Booking from './components/Booking';
 import NewBooking from './components/NewBooking';
 import EditBooking from './components/EditBooking';
 import Login from './components/Login';
-import Logout from './components/Logout';
 import Register from './components/Register';
 import Success from './components/Success';
 import NotFound from './components/NotFound';
@@ -57,10 +56,14 @@ const App = () => {
 		setLoggedInUser(user.username);
 	}
 
+	function logoutUser() {
+		setLoggedInUser(null);
+	}
+
 	return (
 		<div>
 			<BrowserRouter>
-				<Nav loggedInUser={loggedInUser} />
+				<Nav loggedInUser={loggedInUser} logOutUser={logoutUser} />
 				<Switch>
 					<Route exact path="/" render={UserDashboard} />
 					<Route
@@ -68,7 +71,7 @@ const App = () => {
 						path="/auth/login"
 						render={(props) => <Login {...props} loginUser={loginUser} />}
 					/>
-					<Route exact path="/logout" render={Logout} />
+					<Route exact path="/auth/logout" render={Login} />
 					<Route exact path="/success" render={Success} />
 					<Route
 						exact

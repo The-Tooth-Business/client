@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Nav = ({ loggedInUser }) => {
+const Nav = ({ loggedInUser, logoutUser }) => {
 	const divStyles = {
 		display: 'flex',
 		flexDirection: 'column',
@@ -22,7 +22,7 @@ const Nav = ({ loggedInUser }) => {
 					<Link style={linkStyles} to="/">
 						Home
 					</Link>
-					<Link style={linkStyles} to="/logout">
+					<Link style={linkStyles} to="/auth/login" onClick={logoutUser}>
 						Logout
 					</Link>
 					<Link style={linkStyles} to="/booking/new">
