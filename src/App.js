@@ -14,6 +14,7 @@ import NotFound from './components/NotFound';
 
 const App = () => {
 	const [bookings, setBookings] = useState([]);
+	const [loggedInUser, setLoggedInUser] = useState(null);
 	useEffect(() => {
 		setBookings(parentData);
 	}, []);
@@ -46,12 +47,21 @@ const App = () => {
 		);
 		setBookings([...otherBookings, updatedBooking]);
 	}
+
+	function loginUser(user) {
+		setLoggedInUser(user.username);
+	}
+
 	return (
 		<div>
 			<BrowserRouter>
 				<Nav />
 				<Switch>
-					<Route exact path="/" render={Login} />
+					<Route
+						exact
+						path="/"
+						render={(props) => <Login {...props} loginUser={loginUser} />}
+					/>
 					<Route exact path="/logout" render={Logout} />
 					<Route exact path="/success" render={Success} />
 					<Route exact path="/register" render={Register} />
