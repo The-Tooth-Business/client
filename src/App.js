@@ -8,6 +8,7 @@ import NewBooking from './components/NewBooking';
 import EditBooking from './components/EditBooking';
 import Login from './components/Login';
 import Logout from './components/Logout';
+import Register from './components/Register';
 import Success from './components/Success';
 import NotFound from './components/NotFound';
 
@@ -53,6 +54,7 @@ const App = () => {
 					<Route exact path="/" render={Login} />
 					<Route exact path="/logout" render={Logout} />
 					<Route exact path="/success" render={Success} />
+					<Route exact path="/register" render={Register} />
 					<Route
 						exact
 						path="/bookings"
