@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import parentData from './data/parent_data';
 import Nav from './components/Nav';
+import UserDashboard from './components/UserDashboard';
 import Bookings from './components/Bookings';
 import Booking from './components/Booking';
 import NewBooking from './components/NewBooking';
@@ -48,6 +49,10 @@ const App = () => {
 		setBookings([...otherBookings, updatedBooking]);
 	}
 
+	function registerUser(user) {
+		setLoggedInUser(user.username);
+	}
+
 	function loginUser(user) {
 		setLoggedInUser(user.username);
 	}
@@ -57,6 +62,7 @@ const App = () => {
 			<BrowserRouter>
 				<Nav />
 				<Switch>
+					<Route exact path="/" render={UserDashboard} />
 					<Route
 						exact
 						path="/auth/login"
@@ -64,7 +70,13 @@ const App = () => {
 					/>
 					<Route exact path="/logout" render={Logout} />
 					<Route exact path="/success" render={Success} />
-					<Route exact path="/register" render={Register} />
+					<Route
+						exact
+						path="/auth/register"
+						render={(props) => (
+							<Register {...props} registerUser={registerUser} />
+						)}
+					/>
 					<Route
 						exact
 						path="/bookings"
