@@ -1,6 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useGlobalState } from '../config/globalState'
+import { useGlobalState } from '../config/globalState';
+import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import { makeStyles } from '@material-ui/core/styles';
+
 
 
 
@@ -13,10 +17,21 @@ const Booking = ({ history, booking, showControls }) => {
 		textDecoration: 'none',
 		color: 'black',
 	};
-	const buttonStyles = {
-		margin: '.5em',
-		fontSize: '1em',
-	};
+	// const classes = useStyles();
+	// const useStyles = makeStyles((theme) => ({
+	// 	root: {
+	// 	  display: 'flex',
+	// 	  flexDirection: 'column',
+	// 	  alignItems: 'center',
+	// 	  '& > *': {
+	// 		margin: theme.spacing(1),
+	// 	  },
+	// 	},
+	//   }));
+	// const buttonStyles = {
+	// 	margin: '.5em',
+	// 	fontSize: '1em',
+	// };
 
 	// console.log('showcontrols', showControls)
 	function handleDelete(event) {
@@ -60,15 +75,15 @@ const Booking = ({ history, booking, showControls }) => {
 			<p>{country}</p>
 			<p>{continent}</p>
 			<p>{currency}</p>
-			{showControls && (
-				<div>
-					<button style={buttonStyles} onClick={handleEdit}>
-						Edit
-					</button>
-					<button style={buttonStyles} onClick={handleDelete}>
-						Delete
-					</button>
-				</div>
+			
+				{showControls && (
+					<ButtonGroup size="large" color="primary" aria-label="large outlined primary button group">
+						<Button onClick={handleEdit}>
+							Edit</Button>
+						<Button onClick={handleDelete}>
+							Delete</Button>
+					</ButtonGroup>
+			
 			)}
 		</div>
 	);
