@@ -1,10 +1,12 @@
 import React from 'react';
 import Booking from './Booking';
-import { useGlobalState } from '../config/globalState'
+import { useGlobalState } from '../config/globalState';
 
 const Bookings = () => {
-	const { store} = useGlobalState()
-	const { bookings } = store
+	const { store } = useGlobalState();
+	const { bookings } = store;
+	if (!bookings) return null;
+	console.log('from booking comp: ', bookings);
 	return (
 		<div>
 			{bookings

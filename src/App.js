@@ -15,23 +15,28 @@ import stateReducer from './config/stateReducer';
 import { StateContext } from './config/globalState';
 
 const App = () => {
-	// const [bookings, setBookings] = useState([]);
-
 	const initialState = {
 		bookings: [],
 		loggedInUser: null,
 	};
 
 	const [store, dispatch] = useReducer(stateReducer, initialState);
-	const { bookings } = store;
+	const { bookings, loggedInUser, adminUser } = store;
 
 	useEffect(() => {
-		// setBookings(parentData);
+		function getUserBookings() {
+			if (adminUser) return parentData;
+			const userBookings = parentData.filter(
+				(booking) => booking.username === loggedInUser
+			);
+			console.log('from app: ', userBookings);
+			return userBookings;
+		}
 		dispatch({
 			type: 'setBookings',
-			data: parentData,
+			data: getUserBookings(),
 		});
-	}, []);
+	}, [loggedInUser, adminUser]);
 
 	function getBookingFromId(id) {
 		const booking = bookings.find((booking) => booking._id === parseInt(id));
@@ -50,14 +55,10 @@ const App = () => {
 					<Nav />
 					<Switch>
 						<Route exact path="/auth/register" component={Register} />
-						<Route exact path="/dashboard" render={UserDashboard} />
-						<Route
-							exact
-							path="/auth/login"
-							render={(props) => <Login {...props} />}
-						/>
+						<Route exact path="/dashboard" component={UserDashboard} />
+						<Route exact path="/auth/login" component={Login} />
 						<Route exact path="/auth/logout" render={Login} />
-						<Route exact path="/success" render={Success} />
+						<Route exact path="/success" component={Success} />
 						<Route exact path="/bookings" component={Bookings} />
 						<Route
 							exact

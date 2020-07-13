@@ -28,6 +28,10 @@ const Login = ({ history }) => {
 			type: 'setLoggedInUser',
 			data: userDetails.username,
 		});
+		dispatch({
+			type: 'setAdminUser',
+			data: userDetails.username,
+		});
 	}
 	return (
 		<form onSubmit={handleSubmit}>
