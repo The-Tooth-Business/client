@@ -21,7 +21,7 @@ const App = () => {
 	};
 
 	const [store, dispatch] = useReducer(stateReducer, initialState);
-	const { bookings, loggedInUser } = store;
+	const { bookings, adminUser } = store;
 
 	useEffect(() => {
 		dispatch({
@@ -47,7 +47,13 @@ const App = () => {
 					<Nav />
 					<Switch>
 						<Route exact path="/auth/register" component={Register} />
-						<Route exact path="/dashboard" render={UserDashboard} />
+						<Route
+							exact
+							path="/dashboard"
+							render={(props) => (
+								<UserDashboard {...props} adminUser={adminUser} />
+							)}
+						/>
 						<Route
 							exact
 							path="/auth/login"
