@@ -24,7 +24,7 @@ const Register = ({ history, registerUser }) => {
 			type: 'setLoggedInUser',
 			data: userDetails.username,
 		});
-		history.push('/');
+		history.push('/dashboard');
 	}
 
 	return (

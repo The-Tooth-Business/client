@@ -20,7 +20,7 @@ const Login = ({ history }) => {
 	function handleSubmit(event) {
 		event.preventDefault();
 		loginUser();
-		history.push('/');
+		history.push('/dashboard');
 	}
 	// Login user
 	function loginUser() {

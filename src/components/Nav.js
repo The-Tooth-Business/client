@@ -29,7 +29,7 @@ const Nav = () => {
 			{loggedInUser ? (
 				<div>
 					<h1>Welcome to Tooth Inc.</h1>
-					<Link style={linkStyles} to="/">
+					<Link style={linkStyles} to="/dashboard">
 						{loggedInUser}
 					</Link>
 					<Link style={linkStyles} to="/auth/login" onClick={logoutUser}>
