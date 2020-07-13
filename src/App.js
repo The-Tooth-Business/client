@@ -13,6 +13,7 @@ import Success from './components/Success';
 import NotFound from './components/NotFound';
 import stateReducer from './config/stateReducer';
 import { StateContext } from './config/globalState';
+import PrivateRoute from './components/PrivateRoute';
 
 const App = () => {
 	const initialState = {
@@ -55,11 +56,11 @@ const App = () => {
 					<Nav />
 					<Switch>
 						<Route exact path="/auth/register" component={Register} />
-						<Route exact path="/dashboard" component={UserDashboard} />
+						<PrivateRoute exact path="/dashboard" component={UserDashboard} />
 						<Route exact path="/auth/login" component={Login} />
 						<Route exact path="/auth/logout" render={Login} />
-						<Route exact path="/success" component={Success} />
-						<Route exact path="/bookings" component={Bookings} />
+						<PrivateRoute exact path="/success" component={Success} />
+						<PrivateRoute exact path="/bookings" component={Bookings} />
 						<Route
 							exact
 							path="/bookings/:id"
@@ -71,10 +72,11 @@ const App = () => {
 								/>
 							)}
 						/>
-						<Route
+						<PrivateRoute
 							exact
 							path="/booking/new"
-							render={(props) => <NewBooking {...props} nextId={getNextId()} />}
+							component={NewBooking}
+							options={{ nextId: getNextId() }}
 						/>
 						<Route exact path="/booking/edit/:id" component={EditBooking} />
 						<Route component={NotFound} />

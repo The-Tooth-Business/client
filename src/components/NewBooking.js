@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
-import { useGlobalState } from '../config/globalState'
+import { useGlobalState } from '../config/globalState';
+import currencies from '../supported-currencies.json';
 
 const NewBooking = ({ history, nextId }) => {
+	const { dispatch } = useGlobalState();
 
-	const { dispatch } = useGlobalState()
-	
 	const formStyles = {
 		display: 'flex',
 		justifyContent: 'center',
@@ -65,12 +65,11 @@ const NewBooking = ({ history, nextId }) => {
 			currency: formState.currency,
 			modified_date: new Date(),
 		};
-		dispatch ({
+		dispatch({
 			type: 'addBooking',
-			data: newBooking
-		})
-		
-		// history.push(`/bookings/${nextId}`)
+			data: newBooking,
+		});
+
 		history.push('/success');
 	}
 
@@ -166,14 +165,14 @@ const NewBooking = ({ history, nextId }) => {
 			</div>
 			<div style={divStyles}>
 				<label style={labelStyles}>currency</label>
-				<input
-					style={inputStyles}
-					required
-					type="text"
-					name="currency"
-					placeholder="currency"
-					onChange={handleChange}
-				></input>
+				<select name="currency" onChange={handleChange}>
+					{currencies.map((obj, index) => (
+						<option key={`${index}-${obj.country}`} value={obj.currency}>
+							{' '}
+							{obj.country}{' '}
+						</option>
+					))}
+				</select>
 			</div>
 			<input style={inputStyles} type="submit" value="book now"></input>
 		</form>
