@@ -1,11 +1,11 @@
 import React from 'react';
 import Bookings from './Bookings';
 import Balance from './Balance';
-// import { useGlobalState } from '../config/globalState';
+import { useGlobalState } from '../config/globalState';
 
-const UserDashboard = ({ adminUser }) => {
-	// const { store } = useGlobalState();
-	// const { loggedInUser } = store;
+const UserDashboard = () => {
+	const { store } = useGlobalState();
+	const { adminUser } = store;
 
 	return (
 		<div>

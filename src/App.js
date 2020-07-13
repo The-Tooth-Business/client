@@ -47,20 +47,10 @@ const App = () => {
 					<Nav />
 					<Switch>
 						<Route exact path="/auth/register" component={Register} />
-						<Route
-							exact
-							path="/dashboard"
-							render={(props) => (
-								<UserDashboard {...props} adminUser={adminUser} />
-							)}
-						/>
-						<Route
-							exact
-							path="/auth/login"
-							render={(props) => <Login {...props} />}
-						/>
+						<Route exact path="/dashboard" component={UserDashboard} />
+						<Route exact path="/auth/login" component={Login} />
 						<Route exact path="/auth/logout" render={Login} />
-						<Route exact path="/success" render={Success} />
+						<Route exact path="/success" component={Success} />
 						<Route exact path="/bookings" component={Bookings} />
 						<Route
 							exact
