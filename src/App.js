@@ -15,18 +15,15 @@ import stateReducer from './config/stateReducer';
 import { StateContext } from './config/globalState';
 
 const App = () => {
-	// const [bookings, setBookings] = useState([]);
-
 	const initialState = {
 		bookings: [],
 		loggedInUser: null,
 	};
 
 	const [store, dispatch] = useReducer(stateReducer, initialState);
-	const { bookings } = store;
+	const { bookings, loggedInUser } = store;
 
 	useEffect(() => {
-		// setBookings(parentData);
 		dispatch({
 			type: 'setBookings',
 			data: parentData,
@@ -36,10 +33,6 @@ const App = () => {
 	function getBookingFromId(id) {
 		const booking = bookings.find((booking) => booking._id === parseInt(id));
 		return booking;
-		// dispatch({
-		//   type: 'getBookingFromId',
-		//   data: id
-		// })
 	}
 
 	function getNextId() {

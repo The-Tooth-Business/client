@@ -42,6 +42,12 @@ function stateReducer(state, action) {
 				...state,
 				loggedInUser: action.data,
 			};
+		case 'setAdminUser':
+			const admin = action.data === 'admin' ? action.data : null;
+			return {
+				...state,
+				adminUser: admin,
+			};
 
 		default:
 			return state;
