@@ -13,6 +13,7 @@ export default [
 		continent: 'Europe',
 		currency: 'Euro',
 		teeth: '1',
+		username: 'user1',
 	},
 	{
 		_id: 2,
@@ -27,6 +28,7 @@ export default [
 		continent: 'Europe',
 		currency: 'Pound',
 		teeth: '2',
+		username: 'user1',
 	},
 	{
 		_id: 3,
@@ -41,6 +43,7 @@ export default [
 		continent: 'North America',
 		currency: 'USD',
 		teeth: '1',
+		username: 'user2',
 	},
 	{
 		_id: 4,
@@ -55,6 +58,7 @@ export default [
 		continent: 'Oceana',
 		currency: 'AusD',
 		teeth: '1',
+		username: 'user2',
 	},
 	{
 		_id: 5,
@@ -69,6 +73,7 @@ export default [
 		continent: 'Asia',
 		currency: 'Yen',
 		teeth: '2',
+		username: 'user1',
 	},
 	{
 		_id: 6,
@@ -83,5 +88,6 @@ export default [
 		continent: 'Africa',
 		currency: 'Rand',
 		teeth: '1',
+		username: 'user2',
 	},
 ];
