@@ -34,7 +34,7 @@ const Login = ({ history }) => {
 		});
 	}
 	return (
-		<form onSubmit={handleSubmit}>
+		<form data-cy='loginForm' onSubmit={handleSubmit}>
 			<div>
 				<label>Username</label>
 				<input
