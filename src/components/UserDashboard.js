@@ -1,12 +1,12 @@
 import React from 'react';
 import Bookings from './Bookings';
-import Booking from './Booking';
+import Balance from './Balance';
 
 const UserDashboard = () => {
 	return (
 		<div>
+			<Balance />
 			<Bookings />
-			<Booking />
 		</div>
 	);
 };
