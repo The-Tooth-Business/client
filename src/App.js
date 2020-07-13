@@ -36,10 +36,6 @@ const App = () => {
 	function getBookingFromId(id) {
 		const booking = bookings.find((booking) => booking._id === parseInt(id));
 		return booking;
-		// dispatch({
-		//   type: 'getBookingFromId',
-		//   data: id
-		// })
 	}
 
 	function getNextId() {
