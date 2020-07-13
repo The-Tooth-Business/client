@@ -54,7 +54,7 @@ const App = () => {
 					<Nav />
 					<Switch>
 						<Route exact path="/auth/register" component={Register} />
-						<Route exact path="/" render={UserDashboard} />
+						<Route exact path="/dashboard" render={UserDashboard} />
 						<Route
 							exact
 							path="/auth/login"
