@@ -32,7 +32,7 @@ const Nav = () => {
 					<Link style={linkStyles} to="/dashboard">
 						{loggedInUser}
 					</Link>
-					<Link style={linkStyles} to="/auth/login" data-cy='logout'onClick={logoutUser}>
+					<Link style={linkStyles} to="/auth/login" onClick={logoutUser}>
 						Logout
 					</Link>
 					<Link style={linkStyles} to="/booking/new">
@@ -44,7 +44,7 @@ const Nav = () => {
 				</div>
 			) : (
 				<div>
-					<Link style={linkStyles} to="/auth/login" >
+					<Link style={linkStyles} to="/auth/login" data-cy='login' >
 						Login
 					</Link>
 					<Link style={linkStyles} to="/auth/register" data-cy='register'>
