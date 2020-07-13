@@ -21,14 +21,22 @@ const App = () => {
 	};
 
 	const [store, dispatch] = useReducer(stateReducer, initialState);
-	const { bookings, adminUser } = store;
+	const { bookings, loggedInUser, adminUser } = store;
 
 	useEffect(() => {
+		function getUserBookings() {
+			if (adminUser) return parentData;
+			const userBookings = parentData.filter(
+				(booking) => booking.username === loggedInUser
+			);
+			console.log('from app: ', userBookings);
+			return userBookings;
+		}
 		dispatch({
 			type: 'setBookings',
-			data: parentData,
+			data: getUserBookings(),
 		});
-	}, []);
+	}, [loggedInUser, adminUser]);
 
 	function getBookingFromId(id) {
 		const booking = bookings.find((booking) => booking._id === parseInt(id));
