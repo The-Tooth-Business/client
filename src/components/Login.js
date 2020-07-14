@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { loginUser } from '../services/authServices';
 import { useGlobalState } from '../config/globalState';
 
 const Login = ({ history }) => {
@@ -17,24 +18,31 @@ const Login = ({ history }) => {
 			[name]: value,
 		});
 	}
+
 	function handleSubmit(event) {
 		event.preventDefault();
-		loginUser();
-		history.push('/dashboard');
-	}
-	// Login user
-	function loginUser() {
-		dispatch({
-			type: 'setLoggedInUser',
-			data: userDetails.username,
-		});
-		dispatch({
-			type: 'setAdminUser',
-			data: userDetails.username,
-		});
+		console.log('submit');
+		loginUser(userDetails)
+			.then(() => {
+				dispatch({
+					type: 'setLoggedInUser',
+					data: userDetails.username,
+				});
+				dispatch({
+					type: 'setAdminUser',
+					data: userDetails.username,
+				});
+				history.push('/dashboard');
+			})
+			.catch((error) => {
+				if (error.response && error.response.status === 401)
+					console.log(
+						'Authentication failed. Please check your username and password.'
+					);
+			});
 	}
 	return (
-		<form data-cy='loginForm' onSubmit={handleSubmit}>
+		<form data-cy="loginForm" onSubmit={handleSubmit}>
 			<div>
 				<label>Username</label>
 				<input
