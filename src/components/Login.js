@@ -47,15 +47,12 @@ const Login = ({ history }) => {
 			});
 	}
 	return (
-<<<<<<< HEAD
-		<form data-cy="loginForm" onSubmit={handleSubmit}>
+		<form data-cy="login-form" onSubmit={handleSubmit}>
 			{errorMessage && <p>{errorMessage}</p>}
-=======
-		<form data-cy='login-form' onSubmit={handleSubmit}>
->>>>>>> development
 			<div>
 				<label>Username</label>
-				<input data-cy='username'
+				<input
+					data-cy="username"
 					required
 					type="text"
 					name="username"
@@ -65,7 +62,8 @@ const Login = ({ history }) => {
 			</div>
 			<div>
 				<label>Password</label>
-				<input data-cy='password'
+				<input
+					data-cy="password"
 					required
 					type="password"
 					name="password"
@@ -73,7 +71,7 @@ const Login = ({ history }) => {
 					onChange={handleChange}
 				></input>
 			</div>
-			<input data-cy='login-button' type="submit" value="Login"></input>
+			<input data-cy="login-button" type="submit" value="Login"></input>
 		</form>
 	);
 };

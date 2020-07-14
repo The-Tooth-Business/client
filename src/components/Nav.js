@@ -36,18 +36,19 @@ const Nav = () => {
 	}
 
 	return (
-		<div data-c='navbar' styles={divStyles}>
+		<div data-cy="navbar" styles={divStyles}>
 			{loggedInUser ? (
 				<div>
 					<h1>Welcome to Tooth Inc.</h1>
 					<Link style={linkStyles} to="/dashboard">
 						{loggedInUser}
 					</Link>
-<<<<<<< HEAD
-					<Link style={linkStyles} to="/auth/login" onClick={handleLogout}>
-=======
-					<Link data-cy='logout' style={linkStyles} to="/auth/login" onClick={logoutUser}>
->>>>>>> development
+					<Link
+						data-cy="logout"
+						style={linkStyles}
+						to="/auth/login"
+						onClick={handleLogout}
+					>
 						Logout
 					</Link>
 					<Link style={linkStyles} to="/booking/new">
