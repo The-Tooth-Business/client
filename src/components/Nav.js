@@ -15,9 +15,9 @@ const Nav = () => {
 	};
 
 	return (
-		<div styles={divStyles}>
+		<div data-cy="navbar" styles={divStyles}>
 			<div>
-				<Link style={linkStyles} to="/auth/login">
+				<Link data-cy="login" style={linkStyles} to="/auth/login">
 					Login
 				</Link>
 				<Link style={linkStyles} to="/auth/register">

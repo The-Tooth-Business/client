@@ -18,6 +18,7 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useGlobalState } from '../config/globalState';
 import { Link } from 'react-router-dom';
+import { logoutUser } from '../services/authServices';
 
 const drawerWidth = 240;
 
@@ -69,15 +70,25 @@ export default function SideNav(props) {
 	const container =
 		window !== undefined ? () => window().document.body : undefined;
 
-	const logoutUser = () => {
+	function handleLogout() {
+		logoutUser()
+			.then((response) => {
+				console.log('Got back response on logout', response.status);
+			})
+			.catch((error) => {
+				console.log(
+					'The server may be down - caught an exception on logout:',
+					error
+				);
+			});
 		dispatch({
 			type: 'setLoggedInUser',
 			data: null,
 		});
-	};
+	}
 
 	const drawer = (
-		<div>
+		<div data-cy="side-navbar">
 			<div className={classes.toolbar} />
 			<Divider />
 			<List>
@@ -108,7 +119,7 @@ export default function SideNav(props) {
 			</List>
 			<Divider />
 			<List>
-				<Link to="/auth/login" onClick={logoutUser}>
+				<Link data-cy="logout" to="/auth/login" onClick={handleLogout}>
 					<ListItem>
 						<ListItemIcon>
 							<AppsIcon />

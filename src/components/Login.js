@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { loginUser } from '../services/authServices';
 import { useGlobalState } from '../config/globalState';
 
 const Login = ({ history }) => {
@@ -8,6 +9,7 @@ const Login = ({ history }) => {
 		password: '',
 	};
 	const [userDetails, setUserDetails] = useState(initialFormState);
+	const [errorMessage, setErrorMessage] = useState(null);
 
 	function handleChange(event) {
 		const name = event.target.name;
@@ -17,27 +19,40 @@ const Login = ({ history }) => {
 			[name]: value,
 		});
 	}
+
 	function handleSubmit(event) {
 		event.preventDefault();
-		loginUser();
-		history.push('/dashboard');
-	}
-	// Login user
-	function loginUser() {
-		dispatch({
-			type: 'setLoggedInUser',
-			data: userDetails.username,
-		});
-		dispatch({
-			type: 'setAdminUser',
-			data: userDetails.username,
-		});
+		console.log('submit');
+		loginUser(userDetails)
+			.then(() => {
+				dispatch({
+					type: 'setLoggedInUser',
+					data: userDetails.username,
+				});
+				dispatch({
+					type: 'setAdminUser',
+					data: userDetails.username,
+				});
+				history.push('/dashboard');
+			})
+			.catch((error) => {
+				if (error.response && error.response.status === 401)
+					setErrorMessage(
+						'Authentication failed. Please check your username and password.'
+					);
+				else
+					setErrorMessage(
+						'There may be a problem with the server. Please try again after a few moments.'
+					);
+			});
 	}
 	return (
-		<form onSubmit={handleSubmit}>
+		<form data-cy="login-form" onSubmit={handleSubmit}>
+			{errorMessage && <p>{errorMessage}</p>}
 			<div>
 				<label>Username</label>
 				<input
+					data-cy="username"
 					required
 					type="text"
 					name="username"
@@ -48,6 +63,7 @@ const Login = ({ history }) => {
 			<div>
 				<label>Password</label>
 				<input
+					data-cy="password"
 					required
 					type="password"
 					name="password"
@@ -55,7 +71,7 @@ const Login = ({ history }) => {
 					onChange={handleChange}
 				></input>
 			</div>
-			<input type="submit" value="Login"></input>
+			<input data-cy="login-button" type="submit" value="Login"></input>
 		</form>
 	);
 };
