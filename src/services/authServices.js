@@ -6,4 +6,6 @@ export async function loginUser(userData) {
 	return response.data;
 }
 
-export async function logoutUser() {}
+export async function logoutUser() {
+	return api.get('/auth/logout');
+}

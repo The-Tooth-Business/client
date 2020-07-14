@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useGlobalState } from '../config/globalState';
+import { logoutUser } from '../services/authServices';
 
 const Nav = () => {
 	const { dispatch, store } = useGlobalState();
@@ -17,12 +18,22 @@ const Nav = () => {
 		color: 'black',
 	};
 
-	const logoutUser = () => {
+	function handleLogout() {
+		logoutUser()
+			.then((response) => {
+				console.log('Got back response on logout', response.status);
+			})
+			.catch((error) => {
+				console.log(
+					'The server may be down - caught an exception on logout:',
+					error
+				);
+			});
 		dispatch({
 			type: 'setLoggedInUser',
 			data: null,
 		});
-	};
+	}
 
 	return (
 		<div styles={divStyles}>
@@ -32,7 +43,7 @@ const Nav = () => {
 					<Link style={linkStyles} to="/dashboard">
 						{loggedInUser}
 					</Link>
-					<Link style={linkStyles} to="/auth/login" onClick={logoutUser}>
+					<Link style={linkStyles} to="/auth/login" onClick={handleLogout}>
 						Logout
 					</Link>
 					<Link style={linkStyles} to="/booking/new">
@@ -44,10 +55,10 @@ const Nav = () => {
 				</div>
 			) : (
 				<div>
-					<Link style={linkStyles} to="/auth/login" data-cy='login' >
+					<Link style={linkStyles} to="/auth/login" data-cy="login">
 						Login
 					</Link>
-					<Link style={linkStyles} to="/auth/register" data-cy='register'>
+					<Link style={linkStyles} to="/auth/register" data-cy="register">
 						Register
 					</Link>
 				</div>
