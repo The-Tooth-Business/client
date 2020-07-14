@@ -25,7 +25,7 @@ const Nav = () => {
 	};
 
 	return (
-		<div styles={divStyles}>
+		<div data-c='navbar' styles={divStyles}>
 			{loggedInUser ? (
 				<div>
 					<h1>Welcome to Tooth Inc.</h1>
