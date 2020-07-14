@@ -8,7 +8,7 @@ before(() => {
 
 beforeEach(() => {
 	cy.viewport(1024, 768);
-	// cy.visit('/')
+	cy.visit('/');
 	cy.get('[data-cy=navbar]').then((nav) => {
 		if (nav.find('[data-cy=logout]').length > 0) {
 			cy.get('[data-cy=logout]').click();
@@ -28,16 +28,17 @@ describe('Test Login', () => {
 	});
 	it('can login', () => {
 		cy.get('[data-cy=login]').click();
-		cy.get('[data-cy=username]').type('Tester');
+		cy.get('[data-cy=username]').type('admin');
 		cy.get('[data-cy=password]').type('123456');
 		cy.get('[data-cy=login-button]').click();
 		cy.get('[data-cy=logout]').should('be.visible');
+		cy.get('[data-cy=logout]').click();
 	});
 });
 describe('Logout', () => {
 	it('should logout user', () => {
 		cy.get('[data-cy=login]').click();
-		cy.get('[data-cy=username]').type('Tester');
+		cy.get('[data-cy=username]').type('admin');
 		cy.get('[data-cy=password]').type('123456');
 		cy.get('[data-cy=login-button]').click();
 		cy.get('[data-cy=logout]').click();
