@@ -26,32 +26,14 @@ const Nav = () => {
 
 	return (
 		<div styles={divStyles}>
-			{loggedInUser ? (
-				<div>
-					<h1>Welcome to Tooth Inc.</h1>
-					<Link style={linkStyles} to="/dashboard">
-						{loggedInUser}
-					</Link>
-					<Link style={linkStyles} to="/auth/login" onClick={logoutUser}>
-						Logout
-					</Link>
-					<Link style={linkStyles} to="/booking/new">
-						Add a booking
-					</Link>
-					<Link style={linkStyles} to="/bookings">
-						Bookings
-					</Link>
-				</div>
-			) : (
-				<div>
-					<Link style={linkStyles} to="/auth/login">
-						Login
-					</Link>
-					<Link style={linkStyles} to="/auth/register">
-						Register
-					</Link>
-				</div>
-			)}
+			<div>
+				<Link style={linkStyles} to="/auth/login">
+					Login
+				</Link>
+				<Link style={linkStyles} to="/auth/register">
+					Register
+				</Link>
+			</div>
 		</div>
 	);
 };
