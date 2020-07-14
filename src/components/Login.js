@@ -34,10 +34,10 @@ const Login = ({ history }) => {
 		});
 	}
 	return (
-		<form data-cy='loginForm' onSubmit={handleSubmit}>
+		<form data-cy='login-form' onSubmit={handleSubmit}>
 			<div>
 				<label>Username</label>
-				<input
+				<input data-cy='username'
 					required
 					type="text"
 					name="username"
@@ -47,7 +47,7 @@ const Login = ({ history }) => {
 			</div>
 			<div>
 				<label>Password</label>
-				<input
+				<input data-cy='password'
 					required
 					type="password"
 					name="password"
@@ -55,7 +55,7 @@ const Login = ({ history }) => {
 					onChange={handleChange}
 				></input>
 			</div>
-			<input type="submit" value="Login"></input>
+			<input data-cy='login-button' type="submit" value="Login"></input>
 		</form>
 	);
 };
