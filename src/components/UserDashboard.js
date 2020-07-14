@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { useGlobalState } from '../config/globalState';
 import Bookings from './Bookings';
 import Balance from './Balance';
 
@@ -17,12 +18,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function UserDashboard() {
+	const { store } = useGlobalState();
+	const { adminUser } = store;
 	const classes = useStyles();
 
 	return (
 		<main className={classes.content}>
 			<div className={classes.toolbar} />
-			<Balance />
+			{adminUser && <Balance />}
 			<Bookings />
 		</main>
 	);
