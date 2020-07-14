@@ -1,33 +1,34 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import { useGlobalState } from '../config/globalState';
 import Bookings from './Bookings';
 import Balance from './Balance';
-import { useGlobalState } from '../config/globalState';
-import Continent from './Continent';
-import continentData from '../data/continents';
 
-const UserDashboard = () => {
+const drawerWidth = 240;
+
+const useStyles = makeStyles((theme) => ({
+	toolbar: theme.mixins.toolbar,
+	drawerPaper: {
+		width: drawerWidth,
+	},
+	content: {
+		flexGrow: 1,
+		padding: theme.spacing(3),
+	},
+}));
+
+function UserDashboard() {
 	const { store } = useGlobalState();
-	const { adminUser, bookings } = store;
+	const { adminUser } = store;
+	const classes = useStyles();
 
 	return (
-		<div>
-			{adminUser && (
-				<div>
-					<Balance />
-					{continentData.map((continent) => (
-						<Continent key={continent} name={continent} />
-					))}
-				</div>
-			)}
+		<main className={classes.content}>
+			<div className={classes.toolbar} />
+			{adminUser && <Balance />}
 			<Bookings />
-			{bookings.length === 0 && (
-				<p>
-					Looks like you haven't made any bookings yet. Click on add a booking
-					to get started
-				</p>
-			)}
-		</div>
+		</main>
 	);
-};
+}
 
 export default UserDashboard;

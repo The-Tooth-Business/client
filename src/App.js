@@ -14,6 +14,8 @@ import NotFound from './components/NotFound';
 import stateReducer from './config/stateReducer';
 import { StateContext } from './config/globalState';
 import PrivateRoute from './components/PrivateRoute';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import SideNav from './components/SideNav';
 
 const App = () => {
 	const initialState = {
@@ -49,11 +51,17 @@ const App = () => {
 		return ids.sort()[ids.length - 1] + 1;
 	}
 
+	const flexDiv = {
+		display: 'flex',
+	};
+
 	return (
-		<div>
+		<div style={flexDiv}>
 			<StateContext.Provider value={{ store, dispatch }}>
 				<BrowserRouter>
-					<Nav />
+					<CssBaseline />
+					{loggedInUser && <SideNav />}
+					{!loggedInUser && <Nav />}
 					<Switch>
 						<Route exact path="/auth/register" component={Register} />
 						<PrivateRoute exact path="/dashboard" component={UserDashboard} />
