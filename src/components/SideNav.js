@@ -139,7 +139,6 @@ export default function SideNav(props) {
 				</Toolbar>
 			</AppBar>
 			<nav className={classes.drawer} aria-label="mailbox folders">
-				{/* The implementation can be swapped with js to avoid SEO duplication of links. */}
 				<Hidden smUp implementation="css">
 					<Drawer
 						container={container}
@@ -151,7 +150,7 @@ export default function SideNav(props) {
 							paper: classes.drawerPaper,
 						}}
 						ModalProps={{
-							keepMounted: true, // Better open performance on mobile.
+							keepMounted: true,
 						}}
 					>
 						{drawer}
