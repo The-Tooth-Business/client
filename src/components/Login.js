@@ -9,6 +9,7 @@ const Login = ({ history }) => {
 		password: '',
 	};
 	const [userDetails, setUserDetails] = useState(initialFormState);
+	const [errorMessage, setErrorMessage] = useState(null);
 
 	function handleChange(event) {
 		const name = event.target.name;
@@ -36,13 +37,18 @@ const Login = ({ history }) => {
 			})
 			.catch((error) => {
 				if (error.response && error.response.status === 401)
-					console.log(
+					setErrorMessage(
 						'Authentication failed. Please check your username and password.'
+					);
+				else
+					setErrorMessage(
+						'There may be a problem with the server. Please try again after a few moments.'
 					);
 			});
 	}
 	return (
 		<form data-cy="loginForm" onSubmit={handleSubmit}>
+			{errorMessage && <p>{errorMessage}</p>}
 			<div>
 				<label>Username</label>
 				<input
