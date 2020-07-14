@@ -44,10 +44,10 @@ const Nav = () => {
 				</div>
 			) : (
 				<div>
-					<Link style={linkStyles} to="/auth/login">
+					<Link style={linkStyles} to="/auth/login" data-cy='login' >
 						Login
 					</Link>
-					<Link style={linkStyles} to="/auth/register">
+					<Link style={linkStyles} to="/auth/register" data-cy='register'>
 						Register
 					</Link>
 				</div>
