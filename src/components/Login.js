@@ -24,14 +24,14 @@ const Login = ({ history }) => {
 		event.preventDefault();
 		console.log('submit');
 		loginUser(userDetails)
-			.then(() => {
+			.then((response) => {
 				dispatch({
 					type: 'setLoggedInUser',
-					data: userDetails.username,
+					data: response.username,
 				});
 				dispatch({
 					type: 'setAdminUser',
-					data: userDetails.username,
+					data: response.admin,
 				});
 				history.push('/dashboard');
 			})
