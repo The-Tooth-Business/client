@@ -47,7 +47,7 @@ const App = () => {
 
 	useEffect(() => {
 		fetchBookings();
-	}, [loggedInUser, bookings]);
+	}, [loggedInUser]);
 
 	// useEffect(() => {
 	// 	function getUserBookings() {
