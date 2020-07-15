@@ -15,20 +15,15 @@ const Nav = () => {
 	};
 
 	return (
-		<div styles={divStyles}>
-			<h1>Welcome to Tooth Inc.</h1>
-			<Link style={linkStyles} to="/">
-				Home
-			</Link>
-			<Link style={linkStyles} to="/logout">
-				Logout
-			</Link>
-			<Link style={linkStyles} to="/booking/new">
-				Add a booking
-			</Link>
-			<Link style={linkStyles} to="/bookings">
-				Bookings
-			</Link>
+		<div data-cy="navbar" styles={divStyles}>
+			<div>
+				<Link data-cy="login" style={linkStyles} to="/auth/login">
+					Login
+				</Link>
+				<Link style={linkStyles} to="/auth/register">
+					Register
+				</Link>
+			</div>
 		</div>
 	);
 };

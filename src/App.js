@@ -1,30 +1,49 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import parentData from './data/parent_data';
 import Nav from './components/Nav';
+import UserDashboard from './components/UserDashboard';
 import Bookings from './components/Bookings';
 import Booking from './components/Booking';
 import NewBooking from './components/NewBooking';
 import EditBooking from './components/EditBooking';
 import Login from './components/Login';
-import Logout from './components/Logout';
+import Register from './components/Register';
 import Success from './components/Success';
 import NotFound from './components/NotFound';
+import stateReducer from './config/stateReducer';
+import { StateContext } from './config/globalState';
+import PrivateRoute from './components/PrivateRoute';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import SideNav from './components/SideNav';
 
 const App = () => {
-	const [bookings, setBookings] = useState([]);
+	const initialState = {
+		bookings: [],
+		loggedInUser: null,
+	};
+
+	const [store, dispatch] = useReducer(stateReducer, initialState);
+	const { bookings, loggedInUser, adminUser } = store;
+
 	useEffect(() => {
-		setBookings(parentData);
-	}, []);
+		function getUserBookings() {
+			if (adminUser) return parentData;
+			const userBookings = parentData.filter(
+				(booking) => booking.username === loggedInUser
+			);
+			console.log('from app: ', userBookings);
+			return userBookings;
+		}
+		dispatch({
+			type: 'setBookings',
+			data: getUserBookings(),
+		});
+	}, [loggedInUser, adminUser]);
 
 	function getBookingFromId(id) {
 		const booking = bookings.find((booking) => booking._id === parseInt(id));
 		return booking;
-		// return bookings.find((booking) => booking._id === parseInt(id))
-	}
-
-	function addBooking(booking) {
-		setBookings([...bookings, booking]);
 	}
 
 	function getNextId() {
@@ -32,69 +51,46 @@ const App = () => {
 		return ids.sort()[ids.length - 1] + 1;
 	}
 
-	function deleteBooking(id) {
-		const otherBookings = bookings.filter(
-			(booking) => booking._id !== parseInt(id)
-		);
-		setBookings(otherBookings);
-	}
+	const flexDiv = {
+		display: 'flex',
+	};
 
-	function updateBooking(updatedBooking) {
-		const otherBookings = bookings.filter(
-			(booking) => booking._id !== updatedBooking._id
-		);
-		setBookings([...otherBookings, updatedBooking]);
-	}
 	return (
-		<div>
-			<BrowserRouter>
-				<Nav />
-				<Switch>
-					<Route exact path="/" render={Login} />
-					<Route exact path="/logout" render={Logout} />
-					<Route exact path="/success" render={Success} />
-					<Route
-						exact
-						path="/bookings"
-						render={(props) => <Bookings {...props} parentData={bookings} />}
-					/>
-					<Route
-						exact
-						path="/bookings/:id"
-						render={(props) => (
-							<Booking
-								{...props}
-								booking={getBookingFromId(props.match.params.id)}
-								showControls
-								deleteBooking={deleteBooking}
-							/>
-						)}
-					/>
-					<Route
-						exact
-						path="/booking/new"
-						render={(props) => (
-							<NewBooking
-								{...props}
-								addBooking={addBooking}
-								nextId={getNextId()}
-							/>
-						)}
-					/>
-					<Route
-						exact
-						path="/booking/edit/:id"
-						render={(props) => (
-							<EditBooking
-								{...props}
-								updateBooking={updateBooking}
-								booking={getBookingFromId(props.match.params.id)}
-							/>
-						)}
-					/>
-					<Route component={NotFound} />
-				</Switch>
-			</BrowserRouter>
+		<div style={flexDiv}>
+			<StateContext.Provider value={{ store, dispatch }}>
+				<BrowserRouter>
+					<CssBaseline />
+					{loggedInUser && <SideNav />}
+					{!loggedInUser && <Nav />}
+					<Switch>
+						<Route exact path="/auth/register" component={Register} />
+						<PrivateRoute exact path="/dashboard" component={UserDashboard} />
+						<Route exact path="/auth/login" component={Login} />
+						<Route exact path="/auth/logout" render={Login} />
+						<PrivateRoute exact path="/success" component={Success} />
+						<PrivateRoute exact path="/bookings" component={Bookings} />
+						<Route
+							exact
+							path="/bookings/:id"
+							render={(props) => (
+								<Booking
+									{...props}
+									booking={getBookingFromId(props.match.params.id)}
+									showControls
+								/>
+							)}
+						/>
+						<PrivateRoute
+							exact
+							path="/booking/new"
+							component={NewBooking}
+							options={{ nextId: getNextId() }}
+						/>
+						<Route exact path="/booking/edit/:id" component={EditBooking} />
+						<Route component={NotFound} />
+					</Switch>
+				</BrowserRouter>
+			</StateContext.Provider>
 		</div>
 	);
 };
