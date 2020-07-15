@@ -1,34 +1,15 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
-import { useGlobalState } from '../config/globalState';
 import currencies from '../supported-currencies.json';
+import { useGlobalState } from '../config/globalState'
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 
 const NewBooking = ({ history, nextId }) => {
 	const { dispatch } = useGlobalState();
-
-	const formStyles = {
-		display: 'flex',
-		justifyContent: 'center',
-		flexWrap: 'wrap',
-		alignItems: 'center',
-		border: '1px solid lightgrey',
-		padding: '10px',
-	};
-
-	const divStyles = {
-		display: 'grid',
-		width: '100vw',
-	};
-
-	const inputStyles = {
-		width: '40vw',
-		height: '2em',
-		margin: '1em',
-	};
-
-	const labelStyles = {
-		fontSize: '1.5em',
-	};
 
 	//state
 	const initialFormState = {
@@ -73,109 +54,119 @@ const NewBooking = ({ history, nextId }) => {
 		history.push('/success');
 	}
 
-	return (
-		<form styles={formStyles} onSubmit={handleSubmit}>
-			<div style={divStyles}>
-				<label style={labelStyles}>name</label>
-				<input
-					style={inputStyles}
-					required
-					type="text"
-					name="name"
-					placeholder="name"
-					onChange={handleChange}
-				></input>
-			</div>
-			<div style={divStyles}>
-				<label style={labelStyles}>surname</label>
-				<input
-					style={inputStyles}
-					required
-					type="text"
-					name="surname"
-					placeholder="surname"
-					onChange={handleChange}
-				></input>
-			</div>
-			<div style={divStyles}>
-				<label style={labelStyles}>teeth</label>
-				<input
-					style={inputStyles}
-					required
-					type="text"
-					name="teeth"
-					placeholder="number of teeth"
-					onChange={handleChange}
-				></input>
-			</div>
-			<div style={divStyles}>
-				<label style={labelStyles}>address</label>
-				<input
-					style={inputStyles}
-					required
-					type="text"
-					name="address"
-					placeholder="address"
-					onChange={handleChange}
-				></input>
-			</div>
-			<div style={divStyles}>
-				<label style={labelStyles}>city</label>
-				<input
-					style={inputStyles}
-					required
-					type="text"
-					name="city"
-					placeholder="city"
-					onChange={handleChange}
-				></input>
-			</div>
-			<div style={divStyles}>
-				<label style={labelStyles}>postcode</label>
-				<input
-					style={inputStyles}
-					required
-					type="text"
-					name="postcode"
-					placeholder="postcode"
-					onChange={handleChange}
-				></input>
-			</div>
-			<div style={divStyles}>
-				<label style={labelStyles}>country</label>
-				<input
-					style={inputStyles}
-					required
-					type="text"
-					name="country"
-					placeholder="country"
-					onChange={handleChange}
-				></input>
-			</div>
-			<div style={divStyles}>
-				<label style={labelStyles}>continent</label>
-				<input
-					style={inputStyles}
-					required
-					type="text"
-					name="continent"
-					placeholder="continent"
-					onChange={handleChange}
-				></input>
-			</div>
-			<div style={divStyles}>
-				<label style={labelStyles}>currency</label>
-				<select name="currency" onChange={handleChange}>
-					{currencies.map((obj, index) => (
-						<option key={`${index}-${obj.country}`} value={obj.currency}>
-							{' '}
-							{obj.country}{' '}
-						</option>
-					))}
-				</select>
-			</div>
-			<input style={inputStyles} type="submit" value="book now"></input>
-		</form>
-	);
-};
+return (
+		<React.Fragment>
+      <Typography variant="h6" gutterBottom>
+        Booking
+      </Typography>
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="name"
+            name="name"
+            label="Name"
+            fullWidth
+            autoComplete="given-name"
+			onChange={handleChange}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="surname"
+            name="surname"
+            label="surname"
+            fullWidth
+            autoComplete="surname"
+			onchange={handleChange}
+          />
+
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            required
+            id="teeth"
+            name="teeth"
+            label="number of teeth"
+            fullWidth
+            autoComplete="number of teeth"
+			onChange={handleChange}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            id="address"
+            name="address"
+            label="Address "
+            fullWidth
+            autoComplete="address"
+			onChange={handleChange}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="city"
+            name="city"
+            label="city"
+            fullWidth
+            autoComplete="shipping address-level2"
+			onChange={handleChange}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField id="postcode" fullWidth />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="zip"
+            name="zip"
+            label="Zip / Postal code"
+            fullWidth
+            autoComplete="shipping postal-code"
+			onChange={handleChange}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="country"
+            name="country"
+            label="Country"
+            fullWidth
+            autoComplete="shipping country"
+			onChange={handleChange}
+          />
+        </Grid>
+		<Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="continent"
+            name="continent"
+            label="contenent"
+            fullWidth
+            autoComplete="continent"
+			onChange={handleChange}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <FormControlLabel
+            control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
+            label="Use this address for payment details"
+          />
+        </Grid>
+      </Grid>
+	  <input type="submit" value="book now"></input>
+    </React.Fragment>
+  );
+}
+			
+			
+			
+			
+			
+					
+			
 export default withRouter(NewBooking);
