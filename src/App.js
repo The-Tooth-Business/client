@@ -13,33 +13,37 @@ import Success from './components/Success';
 import NotFound from './components/NotFound';
 import stateReducer from './config/stateReducer';
 import { StateContext } from './config/globalState';
+import PrivateRoute from './components/PrivateRoute';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import SideNav from './components/SideNav';
 
 const App = () => {
-	// const [bookings, setBookings] = useState([]);
-
 	const initialState = {
 		bookings: [],
 		loggedInUser: null,
 	};
 
 	const [store, dispatch] = useReducer(stateReducer, initialState);
-	const { bookings } = store;
+	const { bookings, loggedInUser, adminUser } = store;
 
 	useEffect(() => {
-		// setBookings(parentData);
+		function getUserBookings() {
+			if (adminUser) return parentData;
+			const userBookings = parentData.filter(
+				(booking) => booking.username === loggedInUser
+			);
+			console.log('from app: ', userBookings);
+			return userBookings;
+		}
 		dispatch({
 			type: 'setBookings',
-			data: parentData,
+			data: getUserBookings(),
 		});
-	}, []);
+	}, [loggedInUser, adminUser]);
 
 	function getBookingFromId(id) {
 		const booking = bookings.find((booking) => booking._id === parseInt(id));
 		return booking;
-		// dispatch({
-		//   type: 'getBookingFromId',
-		//   data: id
-		// })
 	}
 
 	function getNextId() {
@@ -47,22 +51,24 @@ const App = () => {
 		return ids.sort()[ids.length - 1] + 1;
 	}
 
+	const flexDiv = {
+		display: 'flex',
+	};
+
 	return (
-		<div>
+		<div style={flexDiv}>
 			<StateContext.Provider value={{ store, dispatch }}>
 				<BrowserRouter>
-					<Nav />
+					<CssBaseline />
+					{loggedInUser && <SideNav />}
+					{!loggedInUser && <Nav />}
 					<Switch>
 						<Route exact path="/auth/register" component={Register} />
-						<Route exact path="/" render={UserDashboard} />
-						<Route
-							exact
-							path="/auth/login"
-							render={(props) => <Login {...props} />}
-						/>
+						<PrivateRoute exact path="/dashboard" component={UserDashboard} />
+						<Route exact path="/auth/login" component={Login} />
 						<Route exact path="/auth/logout" render={Login} />
-						<Route exact path="/success" render={Success} />
-						<Route exact path="/bookings" component={Bookings} />
+						<PrivateRoute exact path="/success" component={Success} />
+						<PrivateRoute exact path="/bookings" component={Bookings} />
 						<Route
 							exact
 							path="/bookings/:id"
@@ -74,10 +80,11 @@ const App = () => {
 								/>
 							)}
 						/>
-						<Route
+						<PrivateRoute
 							exact
 							path="/booking/new"
-							render={(props) => <NewBooking {...props} nextId={getNextId()} />}
+							component={NewBooking}
+							options={{ nextId: getNextId() }}
 						/>
 						<Route exact path="/booking/edit/:id" component={EditBooking} />
 						<Route component={NotFound} />

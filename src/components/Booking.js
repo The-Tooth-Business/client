@@ -5,9 +5,8 @@ import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 
-
 const Booking = ({ history, booking, showControls }) => {
-	const { dispatch } = useGlobalState()
+	const { dispatch } = useGlobalState();
 	// If we don't have a booking, return null.
 	if (!booking) return null;
 
@@ -31,15 +30,13 @@ const Booking = ({ history, booking, showControls }) => {
 	// 	fontSize: '1em',
 	// };
 
-	// console.log('showcontrols', showControls)
 	function handleDelete(event) {
-		event.preventDefault()
-		// deleteBooking(booking._id);
+		event.preventDefault();
 		dispatch({
 			type: 'deleteBooking',
-			data: booking._id
-		})
-		history.push('/');
+			data: booking._id,
+		});
+		history.push('/dashboard');
 	}
 
 	function handleEdit(event) {

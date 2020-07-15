@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
+import currencies from '../supported-currencies.json';
 import { useGlobalState } from '../config/globalState'
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -7,11 +8,8 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-
 const NewBooking = ({ history, nextId }) => {
-
-	const { dispatch } = useGlobalState()
-	
+	const { dispatch } = useGlobalState();
 
 	//state
 	const initialFormState = {
@@ -48,16 +46,15 @@ const NewBooking = ({ history, nextId }) => {
 			currency: formState.currency,
 			modified_date: new Date(),
 		};
-		dispatch ({
+		dispatch({
 			type: 'addBooking',
-			data: newBooking
-		})
-		
-		// history.push(`/bookings/${nextId}`)
+			data: newBooking,
+		});
+
 		history.push('/success');
 	}
 
-	return (
+return (
 		<React.Fragment>
       <Typography variant="h6" gutterBottom>
         Booking
@@ -172,5 +169,4 @@ const NewBooking = ({ history, nextId }) => {
 			
 					
 			
-	
 export default withRouter(NewBooking);
