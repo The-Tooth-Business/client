@@ -47,7 +47,7 @@ const Booking = ({ history, booking, showControls }) => {
 			<Link style={linkStyles} to={`/bookings/${booking._id}`}>
 				<h1>{child_name}</h1>
 			</Link>
-			<p>{modified_date.toLocaleString()}</p>
+			<p>{modified_date}</p>
 			<p>{surname}</p>
 			<p>{teeth}</p>
 			<p>{address}</p>

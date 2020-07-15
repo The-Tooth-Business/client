@@ -54,11 +54,6 @@ const App = () => {
 		return booking;
 	}
 
-	function getNextId() {
-		const ids = bookings.map((booking) => booking._id);
-		return ids.sort()[ids.length - 1] + 1;
-	}
-
 	const flexDiv = {
 		display: 'flex',
 	};
@@ -88,12 +83,7 @@ const App = () => {
 								/>
 							)}
 						/>
-						<PrivateRoute
-							exact
-							path="/booking/new"
-							component={NewBooking}
-							options={{ nextId: getNextId() }}
-						/>
+						<PrivateRoute exact path="/booking/new" component={NewBooking} />
 						<Route exact path="/booking/edit/:id" component={EditBooking} />
 						<Route component={NotFound} />
 					</Switch>

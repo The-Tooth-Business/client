@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { useGlobalState } from '../config/globalState';
 import currencies from '../supported-currencies.json';
+import { addBooking } from '../services/bookingsServices';
 
-const NewBooking = ({ history, nextId }) => {
-	const { dispatch } = useGlobalState();
+const NewBooking = ({ history }) => {
+	const { dispatch, store } = useGlobalState();
+	const { bookings } = store;
 
 	const formStyles = {
 		display: 'flex',
@@ -53,9 +55,7 @@ const NewBooking = ({ history, nextId }) => {
 	function handleSubmit(event) {
 		event.preventDefault();
 		const newBooking = {
-			_id: nextId,
-			name: formState.name,
-			surname: formState.surname,
+			child_name: formState.name,
 			teeth: formState.teeth,
 			address: formState.address,
 			city: formState.city,
@@ -63,14 +63,18 @@ const NewBooking = ({ history, nextId }) => {
 			country: formState.country,
 			continent: formState.continent,
 			currency: formState.currency,
-			modified_date: new Date(),
 		};
-		dispatch({
-			type: 'addBooking',
-			data: newBooking,
-		});
-
-		history.push('/success');
+		addBooking(newBooking)
+			.then((response) => {
+				dispatch({
+					type: 'addBooking',
+					data: response,
+				});
+				history.push('/dashboard');
+			})
+			.catch((error) => {
+				console.log('There was an error adding your booking', error);
+			});
 	}
 
 	return (
