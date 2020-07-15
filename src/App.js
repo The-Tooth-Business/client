@@ -29,7 +29,7 @@ const App = () => {
 	console.log('user: ', loggedInUser);
 	console.log('admin: ', adminUser);
 
-	function fetchBookings() {
+	useEffect(() => {
 		getBookings(loggedInUser, adminUser)
 			.then((bookings) => {
 				dispatch({
@@ -43,10 +43,6 @@ const App = () => {
 					error
 				);
 			});
-	}
-
-	useEffect(() => {
-		fetchBookings();
 	}, [loggedInUser, adminUser]);
 
 	function getBookingFromId(id) {
