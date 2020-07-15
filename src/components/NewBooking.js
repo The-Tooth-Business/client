@@ -2,15 +2,51 @@ import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import currencies from '../supported-currencies.json';
 import { useGlobalState } from '../config/globalState'
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
+
+const useStyles = makeStyles((theme) => ({
+	
+	layout: {
+	  width: 'auto',
+	  marginLeft: theme.spacing(2),
+	  marginRight: theme.spacing(2),
+	  [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
+		width: 600,
+		marginLeft: 'auto',
+		marginRight: 'auto',
+	  },
+	},
+	paper: {
+	  marginTop: 8,
+	  marginBottom: theme.spacing(3),
+	  padding: 8,
+	  [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
+		marginTop: theme.spacing(6),
+		marginBottom: theme.spacing(6),
+		padding: theme.spacing(3),
+	  },
+	},
+	buttons: {
+	  display: 'flex',
+	  justifyContent: 'flex-end',
+	},
+	button: {
+	  marginTop: theme.spacing(3),
+	  marginLeft: theme.spacing(1),
+	},
+  }));
 
 const NewBooking = ({ history, nextId }) => {
 	const { dispatch } = useGlobalState();
-
+	const classes = useStyles();
+	const theme = useTheme();
 	//state
 	const initialFormState = {
 		name: '',
@@ -55,7 +91,10 @@ const NewBooking = ({ history, nextId }) => {
 	}
 
 return (
-		<React.Fragment>
+	<React.Fragment>
+	<main className={classes.layout}>
+        <Paper className={classes.paper}>
+		
       <Typography variant="h6" gutterBottom>
         Booking
       </Typography>
@@ -98,7 +137,7 @@ return (
           <TextField
             id="address"
             name="address"
-            label="Address "
+            label="Address"
             fullWidth
             autoComplete="address"
 			onChange={handleChange}
@@ -114,9 +153,6 @@ return (
             autoComplete="shipping address-level2"
 			onChange={handleChange}
           />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField id="postcode" fullWidth />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
@@ -145,7 +181,7 @@ return (
             required
             id="continent"
             name="continent"
-            label="contenent"
+            label="continent"
             fullWidth
             autoComplete="continent"
 			onChange={handleChange}
@@ -153,20 +189,24 @@ return (
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
-            label="Use this address for payment details"
+            control={<Checkbox color="secondary" name="saveAddress" value="yes" />} 
+			label="Save this address?"
           />
         </Grid>
       </Grid>
-	  <input type="submit" value="book now"></input>
+	  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleSubmit}
+                    className={classes.button}
+                  >
+				  Book now
+        </Button>           
+</Paper>
+</main>
     </React.Fragment>
   );
 }
-			
-			
-			
-			
-			
-					
+							
 			
 export default withRouter(NewBooking);
