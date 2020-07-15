@@ -10,6 +10,11 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import NativeSelect from '@material-ui/core/NativeSelect';
+
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -26,6 +31,16 @@ const useStyles = makeStyles((theme) => ({
 		marginLeft: 'auto',
 		marginRight: 'auto',
 		},
+		formControl: {
+			margin: theme.spacing(8),
+			marginLeft: theme.spacing(2),
+			minWidth: 120,
+		  },
+		  selectEmpty: {
+			marginTop: theme.spacing(8),
+			marginLeft: theme.spacing(2),
+			minWidth: 120,
+		  },
 	},
 	paper: {
 	  marginTop: 40,
@@ -195,6 +210,25 @@ return (
 			onChange={handleChange}
           />
         </Grid>
+	
+		<FormControl required className={classes.formControl}>
+			<InputLabel htmlFor="uncontrolled-native">Currency</InputLabel>
+			<NativeSelect
+          onChange={handleChange}
+          inputProps={{
+            name: 'currency',
+            id: 'uncontrolled-native',
+          }}
+        >
+						{currencies.map((obj, index) => (
+							<option key={`${index}-${obj.country}`} value={obj.currency}>
+								{' '}
+								{obj.country}{' '}
+							</option>
+						))}
+			</NativeSelect>
+			<FormHelperText>Required</FormHelperText>
+		</FormControl>
         <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="saveAddress" value="yes" />} 
