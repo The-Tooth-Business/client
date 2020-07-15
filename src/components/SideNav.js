@@ -85,6 +85,10 @@ export default function SideNav(props) {
 			type: 'setLoggedInUser',
 			data: null,
 		});
+		dispatch({
+			type: 'setAdminUser',
+			data: false,
+		});
 	}
 
 	const drawer = (

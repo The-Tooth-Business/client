@@ -30,7 +30,7 @@ const App = () => {
 	console.log('admin: ', adminUser);
 
 	function fetchBookings() {
-		getBookings()
+		getBookings(loggedInUser, adminUser)
 			.then((bookings) => {
 				dispatch({
 					type: 'setBookings',
@@ -47,22 +47,7 @@ const App = () => {
 
 	useEffect(() => {
 		fetchBookings();
-	}, [loggedInUser]);
-
-	// useEffect(() => {
-	// 	function getUserBookings() {
-	// 		if (adminUser) return parentData;
-	// 		const userBookings = parentData.filter(
-	// 			(booking) => booking.username === loggedInUser
-	// 		);
-	// 		console.log('from app: ', userBookings);
-	// 		return userBookings;
-	// 	}
-	// 	dispatch({
-	// 		type: 'setBookings',
-	// 		data: getUserBookings(),
-	// 	});
-	// }, [loggedInUser, adminUser]);
+	}, [loggedInUser, adminUser]);
 
 	function getBookingFromId(id) {
 		const booking = bookings.find((booking) => booking._id === parseInt(id));
