@@ -1,34 +1,74 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
-import { useGlobalState } from '../config/globalState';
 import currencies from '../supported-currencies.json';
+import { useGlobalState } from '../config/globalState'
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
+import Checkbox from '@material-ui/core/Checkbox';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import NativeSelect from '@material-ui/core/NativeSelect';
+
+
+const drawerWidth = 240;
+const useStyles = makeStyles((theme) => ({
+	toolbar: theme.mixins.toolbar,
+	drawerPaper: {
+		width: drawerWidth,
+	},
+	layout: {
+	  width: 'auto',
+	  marginLeft: theme.spacing(2),
+	  marginRight: theme.spacing(2),
+	  [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
+		width: 600,
+		marginLeft: 'auto',
+		marginRight: 'auto',
+		},
+		formControl: {
+			margin: theme.spacing(8),
+			marginLeft: theme.spacing(2),
+			minWidth: 120,
+		  },
+		  selectEmpty: {
+			marginTop: theme.spacing(8),
+			marginLeft: theme.spacing(2),
+			minWidth: 120,
+		  },
+	},
+	paper: {
+	  marginTop: 40,
+	  marginBottom: theme.spacing(3),
+	  padding: 8,
+	  [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
+		marginTop: theme.spacing(20),
+		marginBottom: theme.spacing(6),
+		padding: theme.spacing(3),
+	  },
+	},
+	buttons: {
+	  display: 'flex',
+	  justifyContent: 'flex-end',
+	},
+	button: {
+	  marginTop: theme.spacing(3),
+	  marginLeft: theme.spacing(1),
+	},
+	content: {
+		flexGrow: 1,
+		padding: theme.spacing(3),
+	},
+  }));
 
 const NewBooking = ({ history, nextId }) => {
 	const { dispatch } = useGlobalState();
-
-	const formStyles = {
-		display: 'flex',
-		justifyContent: 'center',
-		flexWrap: 'wrap',
-		alignItems: 'center',
-		border: '1px solid lightgrey',
-		padding: '10px',
-	};
-
-	const divStyles = {
-		display: 'grid',
-		width: '100vw',
-	};
-
-	const inputStyles = {
-		width: '40vw',
-		height: '2em',
-		margin: '1em',
-	};
-
-	const labelStyles = {
-		fontSize: '1.5em',
-	};
+	const classes = useStyles();
 
 	//state
 	const initialFormState = {
@@ -73,109 +113,142 @@ const NewBooking = ({ history, nextId }) => {
 		history.push('/success');
 	}
 
-	return (
-		<form styles={formStyles} onSubmit={handleSubmit}>
-			<div style={divStyles}>
-				<label style={labelStyles}>name</label>
-				<input
-					style={inputStyles}
-					required
-					type="text"
-					name="name"
-					placeholder="name"
-					onChange={handleChange}
-				></input>
-			</div>
-			<div style={divStyles}>
-				<label style={labelStyles}>surname</label>
-				<input
-					style={inputStyles}
-					required
-					type="text"
-					name="surname"
-					placeholder="surname"
-					onChange={handleChange}
-				></input>
-			</div>
-			<div style={divStyles}>
-				<label style={labelStyles}>teeth</label>
-				<input
-					style={inputStyles}
-					required
-					type="text"
-					name="teeth"
-					placeholder="number of teeth"
-					onChange={handleChange}
-				></input>
-			</div>
-			<div style={divStyles}>
-				<label style={labelStyles}>address</label>
-				<input
-					style={inputStyles}
-					required
-					type="text"
-					name="address"
-					placeholder="address"
-					onChange={handleChange}
-				></input>
-			</div>
-			<div style={divStyles}>
-				<label style={labelStyles}>city</label>
-				<input
-					style={inputStyles}
-					required
-					type="text"
-					name="city"
-					placeholder="city"
-					onChange={handleChange}
-				></input>
-			</div>
-			<div style={divStyles}>
-				<label style={labelStyles}>postcode</label>
-				<input
-					style={inputStyles}
-					required
-					type="text"
-					name="postcode"
-					placeholder="postcode"
-					onChange={handleChange}
-				></input>
-			</div>
-			<div style={divStyles}>
-				<label style={labelStyles}>country</label>
-				<input
-					style={inputStyles}
-					required
-					type="text"
-					name="country"
-					placeholder="country"
-					onChange={handleChange}
-				></input>
-			</div>
-			<div style={divStyles}>
-				<label style={labelStyles}>continent</label>
-				<input
-					style={inputStyles}
-					required
-					type="text"
-					name="continent"
-					placeholder="continent"
-					onChange={handleChange}
-				></input>
-			</div>
-			<div style={divStyles}>
-				<label style={labelStyles}>currency</label>
-				<select name="currency" onChange={handleChange}>
-					{currencies.map((obj, index) => (
-						<option key={`${index}-${obj.country}`} value={obj.currency}>
-							{' '}
-							{obj.country}{' '}
-						</option>
-					))}
-				</select>
-			</div>
-			<input style={inputStyles} type="submit" value="book now"></input>
-		</form>
-	);
-};
+return (
+	<React.Fragment>
+	<main className={classes.content}>
+        <Paper className={classes.paper}>
+		
+      <Typography variant="h6" gutterBottom>
+        Booking
+      </Typography>
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="name"
+            name="name"
+            label="Name"
+            fullWidth
+            autoComplete="given-name"
+			onChange={handleChange}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="surname"
+            name="surname"
+            label="surname"
+            fullWidth
+            autoComplete="surname"
+			onchange={handleChange}
+          />
+
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            required
+            id="teeth"
+            name="teeth"
+            label="number of teeth"
+            fullWidth
+            autoComplete="number of teeth"
+			onChange={handleChange}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            id="address"
+            name="address"
+            label="Address"
+            fullWidth
+            autoComplete="address"
+			onChange={handleChange}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="city"
+            name="city"
+            label="city"
+            fullWidth
+            autoComplete="shipping address-level2"
+			onChange={handleChange}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="zip"
+            name="zip"
+            label="Zip / Postal code"
+            fullWidth
+            autoComplete="shipping postal-code"
+			onChange={handleChange}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="country"
+            name="country"
+            label="Country"
+            fullWidth
+            autoComplete="shipping country"
+			onChange={handleChange}
+          />
+        </Grid>
+		<Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="continent"
+            name="continent"
+            label="continent"
+            fullWidth
+            autoComplete="continent"
+			onChange={handleChange}
+          />
+        </Grid>
+	
+		<FormControl required className={classes.formControl}>
+			<InputLabel htmlFor="uncontrolled-native">Currency</InputLabel>
+			<NativeSelect
+          onChange={handleChange}
+          inputProps={{
+            name: 'currency',
+            id: 'uncontrolled-native',
+          }}
+        >
+						{currencies.map((obj, index) => (
+							<option key={`${index}-${obj.country}`} value={obj.currency}>
+								{' '}
+								{obj.country}{' '}
+							</option>
+						))}
+			</NativeSelect>
+			<FormHelperText>Required</FormHelperText>
+		</FormControl>
+        <Grid item xs={12}>
+          <FormControlLabel
+            control={<Checkbox color="secondary" name="saveAddress" value="yes" />} 
+			label="Save this address?"
+          />
+        </Grid>
+      </Grid>
+	  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleSubmit}
+                    className={classes.button}
+                  >
+				  Book now
+        </Button>           
+</Paper>
+</main>
+    </React.Fragment>
+  );
+}
+							
+			
 export default withRouter(NewBooking);
