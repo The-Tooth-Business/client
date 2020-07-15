@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import currencies from '../supported-currencies.json';
 import { useGlobalState } from '../config/globalState'
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
@@ -11,8 +11,12 @@ import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
 
+const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
-	
+	toolbar: theme.mixins.toolbar,
+	drawerPaper: {
+		width: drawerWidth,
+	},
 	layout: {
 	  width: 'auto',
 	  marginLeft: theme.spacing(2),
@@ -21,14 +25,14 @@ const useStyles = makeStyles((theme) => ({
 		width: 600,
 		marginLeft: 'auto',
 		marginRight: 'auto',
-	  },
+		},
 	},
 	paper: {
-	  marginTop: 8,
+	  marginTop: 40,
 	  marginBottom: theme.spacing(3),
 	  padding: 8,
 	  [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
-		marginTop: theme.spacing(6),
+		marginTop: theme.spacing(20),
 		marginBottom: theme.spacing(6),
 		padding: theme.spacing(3),
 	  },
@@ -41,12 +45,16 @@ const useStyles = makeStyles((theme) => ({
 	  marginTop: theme.spacing(3),
 	  marginLeft: theme.spacing(1),
 	},
+	content: {
+		flexGrow: 1,
+		padding: theme.spacing(3),
+	},
   }));
 
 const NewBooking = ({ history, nextId }) => {
 	const { dispatch } = useGlobalState();
 	const classes = useStyles();
-	const theme = useTheme();
+
 	//state
 	const initialFormState = {
 		name: '',
@@ -92,7 +100,7 @@ const NewBooking = ({ history, nextId }) => {
 
 return (
 	<React.Fragment>
-	<main className={classes.layout}>
+	<main className={classes.content}>
         <Paper className={classes.paper}>
 		
       <Typography variant="h6" gutterBottom>
