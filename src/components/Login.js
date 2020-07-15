@@ -107,8 +107,8 @@ const Login = ({ history }) => {
 	}
 
 	return (
-		<Grid data-cy="login-form" onSubmit={handleSubmit}>
-			{errorMessage && <p>{errorMessage}</p>}container component="main" className={classes.root}>
+		<Grid data-cy="login-form" container component="main" className={classes.root} onSubmit={handleSubmit}>
+			{errorMessage && <p>{errorMessage}</p>}
 		  <CssBaseline />
 		  <Grid item xs={false} sm={4} md={7} className={classes.image} />
 		  <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
