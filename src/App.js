@@ -1,7 +1,5 @@
 import React, { useEffect, useReducer } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import parentData from './data/parent_data';
-import Nav from './components/Nav';
 import UserDashboard from './components/UserDashboard';
 import Bookings from './components/Bookings';
 import Booking from './components/Booking';
@@ -16,6 +14,7 @@ import { StateContext } from './config/globalState';
 import PrivateRoute from './components/PrivateRoute';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import SideNav from './components/SideNav';
+import { getBookings } from './services/bookingsServices';
 
 const App = () => {
 	const initialState = {
@@ -26,29 +25,28 @@ const App = () => {
 	const [store, dispatch] = useReducer(stateReducer, initialState);
 	const { bookings, loggedInUser, adminUser } = store;
 
+	console.log('user: ', loggedInUser);
+	console.log('admin: ', adminUser);
+
 	useEffect(() => {
-		function getUserBookings() {
-			if (adminUser) return parentData;
-			const userBookings = parentData.filter(
-				(booking) => booking.username === loggedInUser
-			);
-			console.log('from app: ', userBookings);
-			return userBookings;
-		}
-		dispatch({
-			type: 'setBookings',
-			data: getUserBookings(),
-		});
+		getBookings(loggedInUser, adminUser)
+			.then((bookings) => {
+				dispatch({
+					type: 'setBookings',
+					data: bookings,
+				});
+			})
+			.catch((error) => {
+				console.log(
+					'An error occurred fetching bookings from the server:',
+					error
+				);
+			});
 	}, [loggedInUser, adminUser]);
 
 	function getBookingFromId(id) {
-		const booking = bookings.find((booking) => booking._id === parseInt(id));
+		const booking = bookings.find((booking) => booking._id === id);
 		return booking;
-	}
-
-	function getNextId() {
-		const ids = bookings.map((booking) => booking._id);
-		return ids.sort()[ids.length - 1] + 1;
 	}
 
 	const flexDiv = {
@@ -61,7 +59,7 @@ const App = () => {
 				<BrowserRouter>
 					<CssBaseline />
 					{loggedInUser && <SideNav />}
-					{!loggedInUser && <Nav />}
+					{/* {!loggedInUser && <Nav />} */}
 					<Switch>
 						<Route exact path="/auth/register" component={Register} />
 						<PrivateRoute exact path="/dashboard" component={UserDashboard} />
@@ -80,12 +78,7 @@ const App = () => {
 								/>
 							)}
 						/>
-						<PrivateRoute
-							exact
-							path="/booking/new"
-							component={NewBooking}
-							options={{ nextId: getNextId() }}
-						/>
+						<PrivateRoute exact path="/booking/new" component={NewBooking} />
 						<Route exact path="/booking/edit/:id" component={EditBooking} />
 						<Route component={NotFound} />
 					</Switch>

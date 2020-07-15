@@ -7,9 +7,6 @@ export default function PrivateRoute(props) {
 	const { store } = useGlobalState();
 	const { loggedInUser } = store;
 	const { component: Component, options, ...rest } = props;
-	console.log('component: ', Component);
-	console.log('options: ', options);
-	console.log('rest: ', rest);
 	return (
 		<Route
 			{...rest}
