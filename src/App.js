@@ -50,7 +50,7 @@ const App = () => {
 	}, [loggedInUser, adminUser]);
 
 	function getBookingFromId(id) {
-		const booking = bookings.find((booking) => booking._id === parseInt(id));
+		const booking = bookings.find((booking) => booking._id === id);
 		return booking;
 	}
 
