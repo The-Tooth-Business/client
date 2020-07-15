@@ -64,7 +64,7 @@ const App = () => {
 				<BrowserRouter>
 					<CssBaseline />
 					{loggedInUser && <SideNav />}
-					{!loggedInUser && <Nav />}
+					{/* {!loggedInUser && <Nav />} */}
 					<Switch>
 						<Route exact path="/auth/register" component={Register} />
 						<PrivateRoute exact path="/dashboard" component={UserDashboard} />
