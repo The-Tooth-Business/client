@@ -18,7 +18,7 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useGlobalState } from '../config/globalState';
 import { Link } from 'react-router-dom';
-import { logoutUser } from '../services/authServices';
+import { logoutUser, setLoggedInUser } from '../services/authServices';
 
 const drawerWidth = 240;
 
@@ -71,6 +71,7 @@ export default function SideNav(props) {
 		window !== undefined ? () => window().document.body : undefined;
 
 	function handleLogout() {
+		setLoggedInUser(null);
 		logoutUser()
 			.then((response) => {
 				console.log('Got back response on logout', response.status);
