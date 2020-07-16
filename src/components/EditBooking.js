@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { useGlobalState } from '../config/globalState';
+import { updateBooking } from '../services/bookingsServices'
 
 const EditBooking = ({ history, match }) => {
 	const { store, dispatch } = useGlobalState();
 	const { bookings } = store;
 	const bookingId = match.params.id;
-
-	const booking = bookings.find(
-		(booking) => booking._id === parseInt(bookingId)
-	);
+console.log(bookingId)
+const booking = bookings.find((booking) => booking._id === bookingId);
 
 	const divStyles = {
 		display: 'grid',
@@ -36,32 +35,36 @@ const EditBooking = ({ history, match }) => {
 	}
 
 	function handleSubmit(event) {
-		event.preventDefault();
-		const updatedBooking = {
-			_id: booking._id,
-			name: formState.name,
-			surname: formState.surname,
-			teeth: formState.teeth,
-			address: formState.address,
-			city: formState.city,
-			postcode: formState.postcode,
-			country: formState.country,
-			continent: formState.continent,
-			currency: formState.currency,
-			modified_date: new Date(),
-		};
+        event.preventDefault();
+        const updatedBooking = {
+            _id: booking._id,
+            child_name: formState.child_name,
+            teeth: formState.teeth,
+            address: formState.address,
+            city: formState.city,
+            postcode: formState.postcode,
+            country: formState.country,
+            continent: formState.continent,
+            currency: formState.currency,
+        };
+        updateBooking(updatedBooking).then(() => {
+            const otherBookings = bookings.filter(
+                (booking) => booking._id !== updatedBooking._id
+            );
+            dispatch({
+                type: 'setBookings',
+                data: [updatedBooking, ...otherBookings],
+            });
+        });
 
-		dispatch({
-			type: 'updateBooking',
-			data: updatedBooking,
-		});
-		history.push(`/bookings/${booking._id}`);
-		// history.push('/bookings')
-	}
+        history.push(`/bookings/${booking._id}`);
+        
+    }
+
+
 	//state
 	const initialFormState = {
-		name: '',
-		surname: '',
+		child_name: '',
 		teeth: '',
 		address: '',
 		city: '',
@@ -76,8 +79,7 @@ const EditBooking = ({ history, match }) => {
 	useEffect(() => {
 		booking &&
 			setFormState({
-				name: booking.name,
-				surname: booking.surname,
+				child_name: booking.child_name,
 				teeth: booking.teeth,
 				address: booking.address,
 				city: booking.city,
@@ -96,19 +98,8 @@ const EditBooking = ({ history, match }) => {
 					style={inputStyles}
 					required
 					type="text"
-					name="name"
-					value={formState.name}
-					onChange={handleChange}
-				></input>
-			</div>
-			<div style={divStyles}>
-				<label style={labelStyles}>surname</label>
-				<input
-					style={inputStyles}
-					required
-					type="text"
-					name="surname"
-					value={formState.surname}
+					name="child_name"
+					value={formState.child_name}
 					onChange={handleChange}
 				></input>
 			</div>

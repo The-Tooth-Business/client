@@ -21,3 +21,8 @@ export async function deleteBooking(id) {
 	const response = await api.delete(`/bookings/${id}`);
 	return response.data;
 }
+
+export async function updateBooking(booking) {
+	const response = await api.patch(`/bookings/${booking._id}`, booking);
+	return response.data;
+}

@@ -55,7 +55,6 @@ const Booking = ({ history, booking, showControls }) => {
 	const {
 		modified_date,
 		child_name,
-		surname,
 		teeth,
 		address,
 		city,
@@ -70,7 +69,6 @@ const Booking = ({ history, booking, showControls }) => {
 				<h1>{child_name}</h1>
 			</Link>
 			<p>{modified_date}</p>
-			<p>{surname}</p>
 			<p>{teeth}</p>
 			<p>{address}</p>
 			<p>{city}</p>
