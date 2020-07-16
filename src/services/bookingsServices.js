@@ -16,3 +16,8 @@ export async function addBooking(newBooking) {
 	console.log('received new booking from server: ', response.data);
 	return response.data;
 }
+
+export async function deleteBooking(id) {
+	const response = await api.delete(`/bookings/${id}`);
+	return response.data;
+}
