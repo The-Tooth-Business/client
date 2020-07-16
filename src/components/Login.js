@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { loginUser } from '../services/authServices';
+import { loginUser, setLoggedInUser } from '../services/authServices';
 import { useGlobalState } from '../config/globalState';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -86,6 +86,7 @@ const Login = ({ history }) => {
 		console.log('submit');
 		loginUser(userDetails)
 			.then((response) => {
+				setLoggedInUser(response.username);
 				dispatch({
 					type: 'setLoggedInUser',
 					data: response.username,
