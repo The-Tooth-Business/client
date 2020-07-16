@@ -1,9 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useGlobalState } from '../config/globalState';
+import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import { deleteBooking } from '../services/bookingsServices';
 
 const Booking = ({ history, booking, showControls }) => {
-	const { dispatch } = useGlobalState();
+	const { dispatch, store } = useGlobalState();
+	const { bookings } = store
 	// If we don't have a booking, return null.
 	if (!booking) return null;
 
@@ -11,18 +15,36 @@ const Booking = ({ history, booking, showControls }) => {
 		textDecoration: 'none',
 		color: 'black',
 	};
-	const buttonStyles = {
-		margin: '.5em',
-		fontSize: '1em',
-	};
+	// const classes = useStyles();
+	// const useStyles = makeStyles((theme) => ({
+	// 	root: {
+	// 	  display: 'flex',
+	// 	  flexDirection: 'column',
+	// 	  alignItems: 'center',
+	// 	  '& > *': {
+	// 		margin: theme.spacing(1),
+	// 	  },
+	// 	},
+	//   }));
+	// const buttonStyles = {
+	// 	margin: '.5em',
+	// 	fontSize: '1em',
+	// };
 
 	function handleDelete(event) {
 		event.preventDefault();
-		dispatch({
-			type: 'deleteBooking',
-			data: booking._id,
-		});
-		history.push('/dashboard');
+		deleteBooking(booking._id).then (() => {
+			const updatedBookings = bookings.filter((order) => order._id !== booking._id)
+			dispatch({
+				type: 'setBookings',
+				data: updatedBookings,
+			});
+			history.push('/dashboard');
+		}).catch((error) => {
+			console.log('Failed to delete booking', error)
+		})
+		
+		
 	}
 
 	function handleEdit(event) {
@@ -32,8 +54,7 @@ const Booking = ({ history, booking, showControls }) => {
 
 	const {
 		modified_date,
-		name,
-		surname,
+		child_name,
 		teeth,
 		address,
 		city,
@@ -45,10 +66,9 @@ const Booking = ({ history, booking, showControls }) => {
 	return (
 		<div>
 			<Link style={linkStyles} to={`/bookings/${booking._id}`}>
-				<h1>{name}</h1>
+				<h1>{child_name}</h1>
 			</Link>
-			<p>{modified_date.toLocaleString()}</p>
-			<p>{surname}</p>
+			<p>{modified_date}</p>
 			<p>{teeth}</p>
 			<p>{address}</p>
 			<p>{city}</p>
@@ -56,15 +76,15 @@ const Booking = ({ history, booking, showControls }) => {
 			<p>{country}</p>
 			<p>{continent}</p>
 			<p>{currency}</p>
-			{showControls && (
-				<div>
-					<button style={buttonStyles} onClick={handleEdit}>
-						Edit
-					</button>
-					<button style={buttonStyles} onClick={handleDelete}>
-						Delete
-					</button>
-				</div>
+			
+				{showControls && (
+					<ButtonGroup size="large" color="primary" aria-label="large outlined primary button group">
+						<Button onClick={handleEdit}>
+							Edit</Button>
+						<Button onClick={handleDelete}>
+							Delete</Button>
+					</ButtonGroup>
+			
 			)}
 		</div>
 	);

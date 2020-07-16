@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useGlobalState } from '../config/globalState';
+import { registerUser } from '../services/authServices';
 
-const Register = ({ history, registerUser }) => {
+
+const Register = ({ history }) => {
 	const { dispatch } = useGlobalState();
 	const initialFormState = {
 		username: '',
@@ -20,11 +22,21 @@ const Register = ({ history, registerUser }) => {
 	}
 	function handleSubmit(event) {
 		event.preventDefault();
-		dispatch({
-			type: 'setLoggedInUser',
-			data: userDetails.username,
-		});
-		history.push('/dashboard');
+		registerUser(userDetails).then((response) => {
+			dispatch({
+				type: 'setLoggedInUser',
+				data: response.username,
+			});
+			dispatch({
+				type: 'setAdminUser',
+				data: response.admin,
+			});
+			history.push('/dashboard');
+		}).catch((error) => {
+			console.log('Error registering user', error)
+		})
+		
+		
 	}
 
 	return (
