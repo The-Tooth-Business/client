@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import { useGlobalState } from '../config/globalState';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-
+import { deleteBooking } from '../services/bookingsServices';
 
 const Booking = ({ history, booking, showControls }) => {
-	const { dispatch } = useGlobalState();
+	const { dispatch, store } = useGlobalState();
+	const { bookings } = store
 	// If we don't have a booking, return null.
 	if (!booking) return null;
 
@@ -32,11 +33,18 @@ const Booking = ({ history, booking, showControls }) => {
 
 	function handleDelete(event) {
 		event.preventDefault();
-		dispatch({
-			type: 'deleteBooking',
-			data: booking._id,
-		});
-		history.push('/dashboard');
+		deleteBooking(booking._id).then (() => {
+			const updatedBookings = bookings.filter((order) => order._id !== booking._id)
+			dispatch({
+				type: 'setBookings',
+				data: updatedBookings,
+			});
+			history.push('/dashboard');
+		}).catch((error) => {
+			console.log('Failed to delete booking', error)
+		})
+		
+		
 	}
 
 	function handleEdit(event) {
