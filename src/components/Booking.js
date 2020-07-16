@@ -46,7 +46,7 @@ const Booking = ({ history, booking, showControls }) => {
 
 	const {
 		modified_date,
-		name,
+		child_name,
 		surname,
 		teeth,
 		address,
@@ -59,9 +59,9 @@ const Booking = ({ history, booking, showControls }) => {
 	return (
 		<div>
 			<Link style={linkStyles} to={`/bookings/${booking._id}`}>
-				<h1>{name}</h1>
+				<h1>{child_name}</h1>
 			</Link>
-			<p>{modified_date.toLocaleString()}</p>
+			<p>{modified_date}</p>
 			<p>{surname}</p>
 			<p>{teeth}</p>
 			<p>{address}</p>
