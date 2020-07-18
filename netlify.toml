@@ -4,10 +4,6 @@
 [context.production.environment]
   REACT_APP_STAGE = 'production'
   REACT_APP_API_ENDPOINT = 'https://tooth-inc.herokuapp.com/'
-[[plugins]]
-  package = "netlify-plugin-cypress"
-  [plugins.inputs]
-    record = true
 [[redirects]]
   from = "/*"
   to = "/index.html"
