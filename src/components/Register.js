@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useGlobalState } from '../config/globalState';
-import { registerUser } from '../services/authServices';
-
+import { registerUser, setLoggedInUser } from '../services/authServices';
 
 const Register = ({ history }) => {
 	const { dispatch } = useGlobalState();
@@ -22,21 +21,22 @@ const Register = ({ history }) => {
 	}
 	function handleSubmit(event) {
 		event.preventDefault();
-		registerUser(userDetails).then((response) => {
-			dispatch({
-				type: 'setLoggedInUser',
-				data: response.username,
+		registerUser(userDetails)
+			.then((response) => {
+				setLoggedInUser(response.username);
+				dispatch({
+					type: 'setLoggedInUser',
+					data: response.username,
+				});
+				dispatch({
+					type: 'setAdminUser',
+					data: response.admin,
+				});
+				history.push('/dashboard');
+			})
+			.catch((error) => {
+				console.log('Error registering user', error);
 			});
-			dispatch({
-				type: 'setAdminUser',
-				data: response.admin,
-			});
-			history.push('/dashboard');
-		}).catch((error) => {
-			console.log('Error registering user', error)
-		})
-		
-		
 	}
 
 	return (
