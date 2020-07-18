@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import { useGlobalState } from '../config/globalState';
-import {
-	registerUser,
-	loginUser,
-	setLoggedInUser,
-} from '../services/authServices';
+import { registerUser, setLoggedInUser } from '../services/authServices';
 
 const Register = ({ history }) => {
 	const { dispatch } = useGlobalState();
