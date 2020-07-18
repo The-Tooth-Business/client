@@ -111,7 +111,6 @@ const Login = ({ history }) => {
 
 	return (
 		<Grid
-			data-cy="login-form"
 			container
 			component="main"
 			className={classes.root}
@@ -128,7 +127,7 @@ const Login = ({ history }) => {
 					<Typography component="h1" variant="h5">
 						Login
 					</Typography>
-					<form className={classes.form} noValidate>
+					<form data-cy="login-form" className={classes.form} noValidate>
 						<TextField
 							data-cy="username"
 							variant="outlined"
