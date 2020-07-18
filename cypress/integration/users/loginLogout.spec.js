@@ -6,15 +6,15 @@ before(() => {
 	});
 });
 
-beforeEach(() => {
-	cy.viewport(1024, 768);
-	cy.visit('/');
-	cy.get('[data-cy=navbar]').then((nav) => {
-		if (nav.find('[data-cy=logout]').length > 0) {
-			cy.get('[data-cy=logout]').click();
-		}
-	});
-});
+// beforeEach(() => {
+// 	cy.viewport(1024, 768);
+// 	cy.visit('/');
+// 	cy.get('[data-cy=navbar]').then((nav) => {
+// 		if (nav.find('[data-cy=logout]').length > 0) {
+// 			cy.get('[data-cy=logout]').click();
+// 		}
+// 	});
+// });
 
 describe('Test Login', () => {
 	it('should route to /auth/login', () => {

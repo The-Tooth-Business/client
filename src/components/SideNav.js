@@ -113,7 +113,7 @@ export default function SideNav(props) {
 						<ListItemText>Bookings</ListItemText>
 					</ListItem>
 				</Link>
-				<Link to="/booking/new">
+				<Link data-cy="new-booking" to="/booking/new">
 					<ListItem>
 						<ListItemIcon>
 							<AddCircleIcon />
@@ -139,7 +139,7 @@ export default function SideNav(props) {
 	return (
 		<div>
 			<AppBar position="fixed" className={classes.appBar}>
-				<Toolbar>
+				<Toolbar data-cy="toolbar">
 					<IconButton
 						color="inherit"
 						aria-label="open drawer"
@@ -149,7 +149,7 @@ export default function SideNav(props) {
 					>
 						<MenuIcon />
 					</IconButton>
-					<Typography variant="h6" noWrap>
+					<Typography data-cy='user' variant="h6" noWrap>
 						Hello, {loggedInUser}
 					</Typography>
 				</Toolbar>
