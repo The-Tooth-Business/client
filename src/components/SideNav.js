@@ -124,12 +124,12 @@ export default function SideNav(props) {
 			</List>
 			<Divider />
 			<List>
-				<Link data-cy="logout" to="/auth/login" onClick={handleLogout}>
+				<Link to="/auth/login" onClick={handleLogout}>
 					<ListItem>
 						<ListItemIcon>
 							<AppsIcon />
 						</ListItemIcon>
-						<ListItemText>Logout</ListItemText>
+						<ListItemText data-cy="logout">Logout</ListItemText>
 					</ListItem>
 				</Link>
 			</List>
