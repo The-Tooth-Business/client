@@ -13,7 +13,7 @@ export default function Balance() {
 
 	return (
 		<div>
-			<h3>Current outgoing: ${getBalance()}</h3>
+			<h3 data-cy="balance">Current outgoing: ${getBalance()}</h3>
 		</div>
 	);
 }
