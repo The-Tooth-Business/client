@@ -113,12 +113,12 @@ export default function SideNav(props) {
 						<ListItemText>Bookings</ListItemText>
 					</ListItem>
 				</Link>
-				<Link data-cy="new-booking" to="/booking/new">
+				<Link to="/booking/new">
 					<ListItem>
 						<ListItemIcon>
 							<AddCircleIcon />
 						</ListItemIcon>
-						<ListItemText>Make a booking</ListItemText>
+						<ListItemText data-cy="logout">Make a booking</ListItemText>
 					</ListItem>
 				</Link>
 			</List>
@@ -129,7 +129,7 @@ export default function SideNav(props) {
 						<ListItemIcon>
 							<AppsIcon />
 						</ListItemIcon>
-						<ListItemText data-cy="logout">Logout</ListItemText>
+						<ListItemText data-cy="new-booking">Logout</ListItemText>
 					</ListItem>
 				</Link>
 			</List>
@@ -149,7 +149,7 @@ export default function SideNav(props) {
 					>
 						<MenuIcon />
 					</IconButton>
-					<Typography data-cy='user' variant="h6" noWrap>
+					<Typography data-cy="user" variant="h6" noWrap>
 						Hello, {loggedInUser}
 					</Typography>
 				</Toolbar>
