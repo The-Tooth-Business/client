@@ -4,5 +4,9 @@ cypress/integration/adminFlow.spec.js
 FAILED
 Link: https://dashboard.cypress.io/projects/qhaq5w/runs/40/specs/3886aa04-5d0a-41d1-a355-3717b8103194/stdout
 
+20/07/2020
+FAILED
+https://dashboard.cypress.io/projects/qhaq5w/runs/43/specs
+
 Notes: Tests unable to locate data-cy selectors as a merge has not been made from the development branch into master yet. An approved pull request should fix this.
 

@@ -1,6 +1,6 @@
 beforeEach(() => {
 	cy.viewport(1024, 768);
-	cy.visit(Cypress.env('production')); //! change to 'development', 'staging' or 'production' here
+	cy.visit(Cypress.env('staging')); //! change to 'development', 'staging' or 'production' here
 	cy.get('#root').then((root) => {
 		if (root.find('[data-cy=side-navbar]').length > 0) {
 			cy.get('[data-cy=logout]').click();
@@ -11,7 +11,7 @@ beforeEach(() => {
 describe('Parent login', () => {
 	it('Should login as user', () => {
 		cy.get('[data-cy=login-form]').should('be.visible');
-		cy.get('[data-cy=username]').type('cat');
+		cy.get('[data-cy=username]').type('lulu');
 		cy.get('[data-cy=password]').type('123456');
 		cy.get('[data-cy=login-button]').click();
 		cy.url().should('include', '/dashboard');
@@ -22,7 +22,7 @@ describe('Parent login', () => {
 describe('Make new booking', () => {
 	it('Should take input into a form and save it into a booking', () => {
 		cy.get('[data-cy=login-form]').should('be.visible');
-		cy.get('[data-cy=username]').type('cat');
+		cy.get('[data-cy=username]').type('lulu');
 		cy.get('[data-cy=password]').type('123456');
 		cy.get('[data-cy=login-button]').click();
 		cy.url().should('include', '/dashboard');
@@ -67,7 +67,7 @@ describe('Make new booking', () => {
       describe('Admin logout', () => {
         it('Should login as admin and successfully logout', () => {
           cy.get('[data-cy=login-form]').should('be.visible');
-          cy.get('[data-cy=username]').type('cat');
+          cy.get('[data-cy=username]').type('lulu');
           cy.get('[data-cy=password]').type('123456');
           cy.get('[data-cy=login-button]').click();
           cy.url().should('include', '/dashboard');
