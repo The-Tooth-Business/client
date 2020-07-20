@@ -1,0 +1,5 @@
+cypress/integration/adminFlow.spec.js
+
+20/07/2020
+Passed
+Link: https://dashboard.cypress.io/projects/qhaq5w/runs/38/specs/f794f04a-744a-422f-9678-8c8499b39fd7/stdout
