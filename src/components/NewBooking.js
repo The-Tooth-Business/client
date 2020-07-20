@@ -4,27 +4,12 @@ import { addBooking } from '../services/bookingsServices';
 import { useGlobalState } from '../config/globalState';
 import Form from './Form';
 
-const NewBooking = ({ history, nextId }) => {
+const NewBooking = ({ history }) => {
 	const { dispatch } = useGlobalState();
-
-	//state
-	const initialFormState = {
-		child_name: '',
-		surname: '',
-		teeth: '',
-		address: '',
-		city: '',
-		postcode: '',
-		country: '',
-		continent: '',
-		currency: '',
-	};
-	// const [formState, setFormState] = useState(initialFormState);
 	const [errorMessage, setErrorMessage] = useState(null);
 
-	// const newBooking = {};
-	function handleSubmit(newBooking) {
-		addBooking(newBooking)
+	function handleSubmit(booking) {
+		addBooking(booking)
 			.then((response) => {
 				dispatch({
 					type: 'addBooking',

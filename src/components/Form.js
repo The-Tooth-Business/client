@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import currencies from '../supported-currencies.json';
-import { addBooking } from '../services/bookingsServices';
-import { useGlobalState } from '../config/globalState';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -12,7 +10,7 @@ import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
 import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
+// import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
 
@@ -66,8 +64,9 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const Form = ({ handleSubmit, errorMessage }) => {
+const Form = ({ buttonLabel, handleSubmit, errorMessage, booking }) => {
 	const classes = useStyles();
+	console.log(booking);
 	const initialFormState = {
 		child_name: '',
 		surname: '',
@@ -80,6 +79,20 @@ const Form = ({ handleSubmit, errorMessage }) => {
 		currency: '',
 	};
 	const [formState, setFormState] = useState(initialFormState);
+
+	useEffect(() => {
+		booking &&
+			setFormState({
+				child_name: booking.child_name,
+				teeth: booking.teeth,
+				address: booking.address,
+				city: booking.city,
+				postcode: booking.postcode,
+				country: booking.country,
+				continent: booking.continent,
+				currency: booking.currency,
+			});
+	}, [booking]);
 
 	function handleChange(event) {
 		const name = event.target.name;
@@ -100,7 +113,10 @@ const Form = ({ handleSubmit, errorMessage }) => {
 			continent: formState.continent,
 			currency: formState.currency,
 		};
-		console.log(newBooking);
+		if (booking) {
+			newBooking._id = booking._id;
+		}
+
 		handleSubmit(newBooking);
 	}
 
@@ -109,15 +125,16 @@ const Form = ({ handleSubmit, errorMessage }) => {
 			<main className={classes.content}>
 				<Paper className={classes.paper}>
 					<Typography variant="h6" gutterBottom>
-						Booking
+						{buttonLabel}
 						{errorMessage && <p>{errorMessage}</p>}
 					</Typography>
 					<Grid container spacing={3}>
 						<Grid item xs={12}>
 							<TextField
-								required
+								required={true}
 								id="child_name"
 								name="child_name"
+								value={formState.child_name}
 								label="name"
 								fullWidth
 								autoComplete="given-name"
@@ -129,6 +146,7 @@ const Form = ({ handleSubmit, errorMessage }) => {
 								required
 								id="teeth"
 								name="teeth"
+								value={formState.teeth}
 								label="number of teeth"
 								fullWidth
 								autoComplete="number of teeth"
@@ -140,8 +158,8 @@ const Form = ({ handleSubmit, errorMessage }) => {
 								id="address"
 								name="address"
 								label="Address"
+								value={formState.address}
 								fullWidth
-								autoComplete="address"
 								onChange={handleChange}
 							/>
 						</Grid>
@@ -151,8 +169,8 @@ const Form = ({ handleSubmit, errorMessage }) => {
 								id="city"
 								name="city"
 								label="city"
+								value={formState.city}
 								fullWidth
-								autoComplete="shipping address-level2"
 								onChange={handleChange}
 							/>
 						</Grid>
@@ -162,8 +180,8 @@ const Form = ({ handleSubmit, errorMessage }) => {
 								id="postcode"
 								name="postcode"
 								label="postcode"
+								value={formState.postcode}
 								fullWidth
-								autoComplete="shipping postal-code"
 								onChange={handleChange}
 							/>
 						</Grid>
@@ -173,8 +191,8 @@ const Form = ({ handleSubmit, errorMessage }) => {
 								id="country"
 								name="country"
 								label="Country"
+								value={formState.country}
 								fullWidth
-								autoComplete="shipping country"
 								onChange={handleChange}
 							/>
 						</Grid>
@@ -184,6 +202,7 @@ const Form = ({ handleSubmit, errorMessage }) => {
 								id="continent"
 								name="continent"
 								label="continent"
+								value={formState.continent}
 								fullWidth
 								autoComplete="continent"
 								onChange={handleChange}
@@ -194,6 +213,7 @@ const Form = ({ handleSubmit, errorMessage }) => {
 							<InputLabel htmlFor="uncontrolled-native">Currency</InputLabel>
 							<NativeSelect
 								onChange={handleChange}
+								value={formState.currency}
 								inputProps={{
 									name: 'currency',
 									id: 'uncontrolled-native',
@@ -206,7 +226,7 @@ const Form = ({ handleSubmit, errorMessage }) => {
 									</option>
 								))}
 							</NativeSelect>
-							<FormHelperText>Required</FormHelperText>
+							{/* <FormHelperText>Required</FormHelperText> */}
 						</FormControl>
 						<Grid item xs={12}>
 							<FormControlLabel
@@ -224,7 +244,7 @@ const Form = ({ handleSubmit, errorMessage }) => {
 						onClick={handleFormSubmit}
 						className={classes.button}
 					>
-						Book now
+						Submit
 					</Button>
 				</Paper>
 			</main>
