@@ -20,10 +20,7 @@ function Copyright() {
 	return (
 		<Typography variant="body2" color="textSecondary" align="center">
 			{'Copyright © '}
-			<Link color="inherit" href="https://material-ui.com/">
-				Your Website
-			</Link>{' '}
-			{new Date().getFullYear()}
+			Tooth Inc. {new Date().getFullYear()}
 			{'.'}
 		</Typography>
 	);
@@ -116,7 +113,6 @@ const Login = ({ history }) => {
 			className={classes.root}
 			onSubmit={handleSubmit}
 		>
-			{errorMessage && <p>{errorMessage}</p>}
 			<CssBaseline />
 			<Grid item xs={false} sm={4} md={7} className={classes.image} />
 			<Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
@@ -126,6 +122,7 @@ const Login = ({ history }) => {
 					</Avatar>
 					<Typography component="h1" variant="h5">
 						Login
+						{errorMessage && <p>{errorMessage}</p>}
 					</Typography>
 					<form data-cy="login-form" className={classes.form} noValidate>
 						<TextField
