@@ -159,12 +159,12 @@ const Login = ({ history }) => {
 							label="Remember me"
 						/>
 						<Button
+							data-cy="login-button"
 							type="submit"
 							fullWidth
 							variant="contained"
 							color="primary"
 							className={classes.submit}
-							data-cy="login-button"
 						>
 							Login
 						</Button>
