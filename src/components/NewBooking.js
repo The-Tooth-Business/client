@@ -108,20 +108,13 @@ const NewBooking = ({ history }) => {
 					type: 'addBooking',
 					data: response,
 				});
-
-				// history.push('/dashboard');
+				if (response.error) {
+					throw new Error(response.error);
+				}
+				history.push('/dashboard');
 			})
 			.catch((error) => {
-				const status = error.response ? error.response.status : 500;
-				console.log('caught error on edit', error);
-				if (status === 403)
-					setErrorMessage(
-						'Oops! It appears we lost your login session. Make sure 3rd party cookies are not blocked by your browser settings.'
-					);
-				else
-					setErrorMessage(
-						'Well, this is embarrassing... There was a problem on the server.'
-					);
+				setErrorMessage('Please fill all fields');
 			});
 	}
 
@@ -251,11 +244,7 @@ const NewBooking = ({ history }) => {
 						</Grid>
 					</Grid>
 					<Button
-<<<<<<< HEAD
-						// disabled={enableSubmitButton}
-=======
 						data-cy="booking-new-submit"
->>>>>>> development
 						variant="contained"
 						color="primary"
 						onClick={handleSubmit}

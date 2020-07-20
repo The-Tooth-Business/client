@@ -26,9 +26,6 @@ const App = () => {
 	const [store, dispatch] = useReducer(stateReducer, initialState);
 	const { bookings, loggedInUser, adminUser } = store;
 
-	console.log('user: ', loggedInUser);
-	console.log('admin: ', adminUser);
-
 	useEffect(() => {
 		getBookings(loggedInUser, adminUser)
 			.then((bookings) => {

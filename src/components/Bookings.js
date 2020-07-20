@@ -6,7 +6,7 @@ const Bookings = () => {
 	const { store } = useGlobalState();
 	const { bookings } = store;
 	if (!bookings) return null;
-	console.log('from booking comp: ', bookings);
+
 	return (
 		<div>
 			{bookings
