@@ -66,11 +66,10 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const NewBooking = ({ history, nextId }) => {
+const NewBooking = ({ history }) => {
 	const { dispatch } = useGlobalState();
 	const classes = useStyles();
 
-	//state
 	const initialFormState = {
 		child_name: '',
 		surname: '',
@@ -109,13 +108,19 @@ const NewBooking = ({ history, nextId }) => {
 					type: 'addBooking',
 					data: response,
 				});
-				history.push('/dashboard');
+
+				// history.push('/dashboard');
 			})
 			.catch((error) => {
-				if (error) setErrorMessage('Missing fields please try again');
+				const status = error.response ? error.response.status : 500;
+				console.log('caught error on edit', error);
+				if (status === 403)
+					setErrorMessage(
+						'Oops! It appears we lost your login session. Make sure 3rd party cookies are not blocked by your browser settings.'
+					);
 				else
 					setErrorMessage(
-						'There may be a problem with the server. Please try again after a few moments.'
+						'Well, this is embarrassing... There was a problem on the server.'
 					);
 			});
 	}
@@ -123,10 +128,10 @@ const NewBooking = ({ history, nextId }) => {
 	return (
 		<React.Fragment>
 			<main className={classes.content}>
-				{errorMessage && <p>{errorMessage}</p>}
 				<Paper className={classes.paper}>
 					<Typography variant="h6" gutterBottom>
 						Booking
+						{errorMessage && <p>{errorMessage}</p>}
 					</Typography>
 					<Grid container spacing={3}>
 						<Grid item xs={12} sm={6}>
@@ -164,6 +169,7 @@ const NewBooking = ({ history, nextId }) => {
 						</Grid>
 						<Grid item xs={12}>
 							<TextField
+								required
 								id="address"
 								name="address"
 								label="Address"
@@ -245,6 +251,7 @@ const NewBooking = ({ history, nextId }) => {
 						</Grid>
 					</Grid>
 					<Button
+						// disabled={enableSubmitButton}
 						variant="contained"
 						color="primary"
 						onClick={handleSubmit}
