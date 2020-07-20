@@ -1,4 +1,8 @@
 {
 	"projectId": "qhaq5w",
-	"baseUrl": "http://localhost:3000/"
+	"env": {
+		"development": "http://localhost:3000/",
+		"staging": "https://development.toothinc.online/",
+		"production": "https://www.toothinc.online/"
+	}
 }
