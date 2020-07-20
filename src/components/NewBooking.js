@@ -245,6 +245,7 @@ const NewBooking = ({ history, nextId }) => {
 						</Grid>
 					</Grid>
 					<Button
+						data-cy="booking-new-submit"
 						variant="contained"
 						color="primary"
 						onClick={handleSubmit}

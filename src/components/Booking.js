@@ -65,8 +65,8 @@ const Booking = ({ history, booking, showControls }) => {
 	} = booking;
 	return (
 		<div>
-			<Link style={linkStyles} to={`/bookings/${booking._id}`}>
-				<h1>{child_name}</h1>
+			<Link data-cy='child-name' style={linkStyles} to={`/bookings/${booking._id}`}>
+				<h1>{ child_name }</h1>
 			</Link>
 			<p>{modified_date}</p>
 			<p>{teeth}</p>
