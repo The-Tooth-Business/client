@@ -251,7 +251,11 @@ const NewBooking = ({ history }) => {
 						</Grid>
 					</Grid>
 					<Button
+<<<<<<< HEAD
 						// disabled={enableSubmitButton}
+=======
+						data-cy="booking-new-submit"
+>>>>>>> development
 						variant="contained"
 						color="primary"
 						onClick={handleSubmit}

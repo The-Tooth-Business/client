@@ -3,3 +3,11 @@ cypress/integration/adminFlow.spec.js
 20/07/2020/
 Passed
 Link: https://dashboard.cypress.io/projects/qhaq5w/runs/39/specs/b662de82-ebb6-4595-a1fa-a75767cf9b62/stdout
+
+
+
+cypress/integration/parentFlow.spec.js
+
+20/07/2020/
+Failed because of unkown username. Changed username and test passed.
+Link: https://dashboard.cypress.io/projects/qhaq5w/runs/45/specs
