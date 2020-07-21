@@ -3,3 +3,7 @@ export function getTeeth(bookings) {
 	bookings.map((booking) => (balance += parseInt(booking.teeth)));
 	return balance;
 }
+
+export function getFairyDollars() {
+	return Math.floor(Math.random() * Math.floor(100));
+}

@@ -14,7 +14,7 @@ export default function SimpleCard({ color, number, text }) {
 			marginTop: 10,
 		},
 		number: {
-			fontSize: 70,
+			fontSize: 60,
 			fontWeight: 700,
 			color: color,
 		},

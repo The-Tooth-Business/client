@@ -7,7 +7,7 @@ import Continent from './Continent';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Card from './Card';
-import { getTeeth } from '../utils/calculations';
+import { getTeeth, getFairyDollars } from '../utils/calculations';
 const drawerWidth = '20vw';
 
 const useStyles = makeStyles((theme) => ({
@@ -41,10 +41,25 @@ function UserDashboard() {
 			<div className={classes.toolbar} />
 			<div className={classes.content}>
 				<Grid container spacing={3}>
-					<Grid item xs={6}>
+					<Grid item xs={6} lg={3}>
 						{adminUser && (
 							<Paper className={classes.paper}>
-								<Balance />
+								<Card
+									number={`F$ ${getFairyDollars()}`}
+									text={'Current Fairy dollar per A$'}
+									color={'#ffc000'}
+								/>
+							</Paper>
+						)}
+					</Grid>
+					<Grid item xs={6} lg={3}>
+						{adminUser && (
+							<Paper className={classes.paper}>
+								<Card
+									number={`F$ ${getFairyDollars()}`}
+									text={'Current Fairy dollar per A$'}
+									color={'black'}
+								/>
 							</Paper>
 						)}
 					</Grid>
