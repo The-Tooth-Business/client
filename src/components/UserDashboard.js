@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useGlobalState } from '../config/globalState';
 import Bookings from './Bookings';
 import Balance from './Balance';
+import Continent from './Continent';
 
 const drawerWidth = 240;
 
@@ -25,7 +26,11 @@ function UserDashboard() {
 	return (
 		<main className={classes.content}>
 			<div className={classes.toolbar} />
-			{adminUser && <Balance />}
+			{adminUser && (
+				<div>
+					<Balance /> <Continent />
+				</div>
+			)}
 			<Bookings />
 		</main>
 	);

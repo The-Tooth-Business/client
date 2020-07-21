@@ -5,6 +5,11 @@ export async function getBookings() {
 	return response.data;
 }
 
+export async function getBookingsByContinent(continent) {
+	const response = await api.get(`/bookings/continent?continent=${continent}`);
+	return response.data;
+}
+
 export async function addBooking(newBooking) {
 	const response = await api.post('/bookings', newBooking);
 	console.log('received new booking from server: ', response.data);

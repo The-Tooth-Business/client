@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { loginUser, setLoggedInUser } from '../services/authServices';
+import {
+	loginUser,
+	setLoggedInUser,
+	setAdminUser,
+} from '../services/authServices';
 import { useGlobalState } from '../config/globalState';
 import UserForm from './UserForm';
 
@@ -12,6 +16,7 @@ const Login = ({ history }) => {
 		loginUser(userDetails)
 			.then((response) => {
 				setLoggedInUser(response.username);
+				setAdminUser(response.admin);
 				dispatch({
 					type: 'setLoggedInUser',
 					data: response.username,
