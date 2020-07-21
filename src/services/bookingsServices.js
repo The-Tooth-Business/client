@@ -1,14 +1,8 @@
 import api from '../config/api';
 
-export async function getBookings(username, admin) {
-	console.log('making get req', username, admin);
-	if (username === 'FIC' || admin) {
-		const response = await api.get(`/bookings?admin=true`);
-		return response.data;
-	} else {
-		const response = await api.get(`/bookings?username=${username}`);
-		return response.data;
-	}
+export async function getBookings() {
+	const response = await api.get('/bookings');
+	return response.data;
 }
 
 export async function addBooking(newBooking) {
@@ -24,5 +18,6 @@ export async function deleteBooking(id) {
 
 export async function updateBooking(booking) {
 	const response = await api.patch(`/bookings/${booking._id}`, booking);
+	console.log('received updated booking from server: ', response.data);
 	return response.data;
 }

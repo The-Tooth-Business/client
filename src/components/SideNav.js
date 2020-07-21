@@ -115,21 +115,21 @@ export default function SideNav(props) {
 				</Link>
 				<Link to="/booking/new">
 					<ListItem>
-						<ListItemIcon>
+						<ListItemIcon >
 							<AddCircleIcon />
 						</ListItemIcon>
-						<ListItemText>Make a booking</ListItemText>
+						<ListItemText data-cy="booking-new">Make a booking</ListItemText>
 					</ListItem>
 				</Link>
 			</List>
 			<Divider />
 			<List>
-				<Link data-cy="logout" to="/auth/login" onClick={handleLogout}>
+				<Link to="/auth/login" onClick={handleLogout}>
 					<ListItem>
 						<ListItemIcon>
 							<AppsIcon />
 						</ListItemIcon>
-						<ListItemText>Logout</ListItemText>
+						<ListItemText data-cy="logout">Logout</ListItemText>
 					</ListItem>
 				</Link>
 			</List>
@@ -139,7 +139,7 @@ export default function SideNav(props) {
 	return (
 		<div>
 			<AppBar position="fixed" className={classes.appBar}>
-				<Toolbar>
+				<Toolbar data-cy="toolbar">
 					<IconButton
 						color="inherit"
 						aria-label="open drawer"
@@ -149,7 +149,7 @@ export default function SideNav(props) {
 					>
 						<MenuIcon />
 					</IconButton>
-					<Typography variant="h6" noWrap>
+					<Typography data-cy="user" variant="h6" noWrap>
 						Hello, {loggedInUser}
 					</Typography>
 				</Toolbar>
