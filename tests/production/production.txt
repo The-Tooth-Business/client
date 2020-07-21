@@ -1,12 +1,23 @@
 cypress/integration/adminFlow.spec.js
-
 20/07/2020
 FAILED
 Link: https://dashboard.cypress.io/projects/qhaq5w/runs/40/specs/3886aa04-5d0a-41d1-a355-3717b8103194/stdout
 
+cypress/integration/parentFlow.spec.js
 20/07/2020
 FAILED
 https://dashboard.cypress.io/projects/qhaq5w/runs/43/specs
 
 Notes: Tests unable to locate data-cy selectors as a merge has not been made from the development branch into master yet. An approved pull request should fix this.
 
+
+
+cypress/integration/adminFlow.spec.js
+21/07/2020
+PASSED
+Link: https://dashboard.cypress.io/projects/qhaq5w/runs/47/specs/1328564a-06c9-43bb-8087-1965d5c3e067/stdout?utm_source=Dashboard&utm_medium=Share+URL&utm_campaign=Output
+
+cypress/integration/parentFlow.spec.js
+21/07/2020/
+PASSED
+Link: https://dashboard.cypress.io/projects/qhaq5w/runs/48/specs/a0a3485c-2164-4a50-95c2-35af6f28fbfa/stdout?utm_source=Dashboard&utm_medium=Share+URL&utm_campaign=Output

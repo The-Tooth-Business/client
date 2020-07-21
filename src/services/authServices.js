@@ -20,6 +20,9 @@ export async function registerUser(userInfo) {
 export function getLoggedInUser() {
 	return localStorage.getItem('loggedInUser');
 }
+export function getAdminUser() {
+	return localStorage.getItem('adminUser');
+}
 
 // Store loggedInUser username in local storage
 export function setLoggedInUser(user) {
@@ -27,4 +30,11 @@ export function setLoggedInUser(user) {
 	user
 		? localStorage.setItem('loggedInUser', user)
 		: localStorage.removeItem('loggedInUser');
+}
+
+export function setAdminUser(admin) {
+	console.log('setting admin: ', admin);
+	admin
+		? localStorage.setItem('adminUser', admin)
+		: localStorage.removeItem('adminUser');
 }

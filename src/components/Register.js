@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import { useGlobalState } from '../config/globalState';
-import { registerUser, setLoggedInUser } from '../services/authServices';
+import {
+	registerUser,
+	setLoggedInUser,
+	setAdminUser,
+	getAdminUser,
+} from '../services/authServices';
 import UserForm from './UserForm';
 
 const Register = ({ history }) => {
@@ -12,13 +17,14 @@ const Register = ({ history }) => {
 		registerUser(userDetails)
 			.then((response) => {
 				setLoggedInUser(response.username);
+				setAdminUser(response.admin);
 				dispatch({
 					type: 'setLoggedInUser',
 					data: response.username,
 				});
 				dispatch({
 					type: 'setAdminUser',
-					data: response.admin,
+					data: getAdminUser(),
 				});
 				history.push('/dashboard');
 			})
