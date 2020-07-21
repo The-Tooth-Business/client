@@ -1,23 +1,27 @@
 import React from 'react';
+import { useGlobalState } from '../config/globalState';
 import { Line } from 'react-chartjs-2';
 
 const Continent = () => {
+	const { store } = useGlobalState();
+	const { bookings } = store;
+
+	let continents = {};
+
+	bookings.forEach((booking) => {
+		continents[booking.continent]
+			? continents[booking.continent]++
+			: (continents[booking.continent] = 1);
+	});
+
 	const data = {
-		labels: [
-			'Oceania',
-			'Asia',
-			'Europe',
-			'Africa',
-			'North America',
-			'South America',
-			'Antarctica',
-		],
+		labels: Object.keys(continents),
 		datasets: [
 			{
 				label: 'Bookings by Continent',
 				fill: false,
-				lineTension: 0.1,
-				backgroundColor: '#ed0f51',
+				lineTension: 0.5,
+				backgroundColor: '#30d6af',
 				borderColor: '#ed0f51',
 				borderCapStyle: 'round',
 				borderDash: [],
@@ -32,7 +36,7 @@ const Continent = () => {
 				pointHoverBorderWidth: 2,
 				pointRadius: 1,
 				pointHitRadius: 10,
-				data: [65, 59, 80, 81, 56, 55, 40],
+				data: Object.values(continents),
 			},
 		],
 	};
