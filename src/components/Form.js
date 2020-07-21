@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
-import currencies from '../supported-currencies.json';
+import currencies from '../data/supported-currencies.json';
+import countries from '../data/countries.json';
+import continents from '../data/continents.json';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -11,7 +13,7 @@ import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
 import InputLabel from '@material-ui/core/InputLabel';
 // import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
+// import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
 
 const drawerWidth = 240;
@@ -129,7 +131,7 @@ const Form = ({ buttonLabel, handleSubmit, errorMessage, booking }) => {
 						{errorMessage && <p>{errorMessage}</p>}
 					</Typography>
 					<Grid container spacing={3}>
-						<Grid item xs={12}>
+						<Grid item xs={12} md={6}>
 							<TextField
 								required={true}
 								id="child_name"
@@ -141,7 +143,7 @@ const Form = ({ buttonLabel, handleSubmit, errorMessage, booking }) => {
 								onChange={handleChange}
 							/>
 						</Grid>
-						<Grid item xs={12}>
+						<Grid item xs={12} md={6}>
 							<TextField
 								required
 								id="teeth"
@@ -155,15 +157,16 @@ const Form = ({ buttonLabel, handleSubmit, errorMessage, booking }) => {
 						</Grid>
 						<Grid item xs={12}>
 							<TextField
+								required
 								id="address"
 								name="address"
-								label="Address"
+								label="address"
 								value={formState.address}
 								fullWidth
 								onChange={handleChange}
 							/>
 						</Grid>
-						<Grid item xs={12} sm={6}>
+						<Grid item xs={12} md={6}>
 							<TextField
 								required
 								id="city"
@@ -174,7 +177,7 @@ const Form = ({ buttonLabel, handleSubmit, errorMessage, booking }) => {
 								onChange={handleChange}
 							/>
 						</Grid>
-						<Grid item xs={12} sm={6}>
+						<Grid item xs={12} md={6}>
 							<TextField
 								required
 								id="postcode"
@@ -185,33 +188,34 @@ const Form = ({ buttonLabel, handleSubmit, errorMessage, booking }) => {
 								onChange={handleChange}
 							/>
 						</Grid>
-						<Grid item xs={12} sm={6}>
-							<TextField
-								required
-								id="country"
-								name="country"
-								label="Country"
-								value={formState.country}
-								fullWidth
-								onChange={handleChange}
-							/>
-						</Grid>
-						<Grid item xs={12} sm={6}>
-							<TextField
-								required
-								id="continent"
-								name="continent"
-								label="continent"
-								value={formState.continent}
-								fullWidth
-								autoComplete="continent"
-								onChange={handleChange}
-							/>
-						</Grid>
-
-						<FormControl required className={classes.formControl}>
-							<InputLabel htmlFor="uncontrolled-native">Currency</InputLabel>
+						<Grid item xs={12} md={6}>
+							<InputLabel htmlFor="uncontrolled-native">country *</InputLabel>
 							<NativeSelect
+								required
+								name="currency"
+								onChange={handleChange}
+								value={formState.country}
+								inputProps={{
+									name: 'country',
+									id: 'uncontrolled-native',
+								}}
+							>
+								<option value="" disabled>
+									select
+								</option>
+								{countries.map((obj, index) => (
+									<option key={`${index}-${obj.country}`} value={obj.country}>
+										{' '}
+										{obj.country}{' '}
+									</option>
+								))}
+							</NativeSelect>
+						</Grid>
+						<Grid item xs={12} md={6}>
+							<InputLabel htmlFor="uncontrolled-native">currency *</InputLabel>
+							<NativeSelect
+								required
+								name="currency"
 								onChange={handleChange}
 								value={formState.currency}
 								inputProps={{
@@ -219,6 +223,9 @@ const Form = ({ buttonLabel, handleSubmit, errorMessage, booking }) => {
 									id: 'uncontrolled-native',
 								}}
 							>
+								<option value="" disabled>
+									select
+								</option>
 								{currencies.map((obj, index) => (
 									<option key={`${index}-${obj.country}`} value={obj.currency}>
 										{' '}
@@ -226,8 +233,31 @@ const Form = ({ buttonLabel, handleSubmit, errorMessage, booking }) => {
 									</option>
 								))}
 							</NativeSelect>
-							{/* <FormHelperText>Required</FormHelperText> */}
-						</FormControl>
+						</Grid>
+						<Grid item xs={12} md={6}>
+							<InputLabel htmlFor="uncontrolled-native">continent *</InputLabel>
+							<NativeSelect
+								required
+								name="currency"
+								onChange={handleChange}
+								value={formState.continent}
+								inputProps={{
+									name: 'continent',
+									id: 'uncontrolled-native',
+								}}
+							>
+								<option value="" disabled>
+									select
+								</option>
+								{continents.map((obj, index) => (
+									<option key={`${index}-${obj.name}`} value={obj.name}>
+										{' '}
+										{obj.name}{' '}
+									</option>
+								))}
+							</NativeSelect>
+						</Grid>
+
 						<Grid item xs={12}>
 							<FormControlLabel
 								control={

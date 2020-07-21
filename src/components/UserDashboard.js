@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useGlobalState } from '../config/globalState';
 import Bookings from './Bookings';
-import Balance from './Balance';
 import Continent from './Continent';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -27,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
 		padding: theme.spacing(2),
 		textAlign: 'center',
 		color: theme.palette.text.secondary,
-		// backgroundColor: '#ff3675',
 	},
 }));
 
@@ -72,13 +70,15 @@ function UserDashboard() {
 					</Grid>
 
 					<Grid item xs={6} lg={3}>
-						<Paper className={classes.paper}>
-							<Card
-								number={getTeeth(bookings)}
-								text={'Tooth exchanges today'}
-								color={'#ff3675'}
-							/>
-						</Paper>
+						{adminUser && (
+							<Paper className={classes.paper}>
+								<Card
+									number={getTeeth(bookings)}
+									text={'Tooth exchanges today'}
+									color={'#ff3675'}
+								/>
+							</Paper>
+						)}
 					</Grid>
 					<Grid item xs={6}>
 						<Paper className={classes.paper}>

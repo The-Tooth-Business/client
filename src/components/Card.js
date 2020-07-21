@@ -25,7 +25,7 @@ export default function SimpleCard({ color, number, text }) {
 	const classes = useStyles();
 
 	return (
-		<div className={classes.root} backgroundColor={color}>
+		<div className={classes.root}>
 			<CardContent>
 				<Typography
 					className={classes.number}
