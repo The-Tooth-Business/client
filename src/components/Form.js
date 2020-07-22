@@ -68,7 +68,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Form = ({ buttonLabel, handleSubmit, errorMessage, booking }) => {
 	const classes = useStyles();
-	console.log(booking);
 	const initialFormState = {
 		child_name: '',
 		surname: '',
@@ -83,7 +82,6 @@ const Form = ({ buttonLabel, handleSubmit, errorMessage, booking }) => {
 	const [formState, setFormState] = useState(initialFormState);
 
 	useEffect(() => {
-		console.log(booking);
 		booking &&
 			setFormState({
 				child_name: booking.child_name,

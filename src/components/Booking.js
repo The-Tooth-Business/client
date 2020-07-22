@@ -77,7 +77,9 @@ const Booking = ({ history, booking, showControls }) => {
 	} = booking;
 	return (
 		<div style={divstyles}>
-			{!booking.open_status && <Review booking={booking} />}
+			{!booking.open_status && !booking.review_status && (
+				<Review booking={booking} />
+			)}
 			<Link
 				data-cy="child-name"
 				style={linkStyles}
