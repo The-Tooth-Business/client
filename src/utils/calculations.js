@@ -7,3 +7,7 @@ export function getTeeth(bookings) {
 export function getFairyDollars() {
 	return Math.floor(Math.random() * Math.floor(100));
 }
+
+export function getWishes() {
+	return Math.floor(Math.random() * Math.floor(10000));
+}
