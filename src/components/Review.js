@@ -8,11 +8,11 @@ import Slider from '@material-ui/core/Slider';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
 	root: {
 		width: 300,
 	},
-});
+}));
 
 const Review = ({ history, booking }) => {
 	const { dispatch, store } = useGlobalState();
