@@ -68,7 +68,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Form = ({ buttonLabel, handleSubmit, errorMessage, booking }) => {
 	const classes = useStyles();
-	console.log(booking);
 	const initialFormState = {
 		child_name: '',
 		surname: '',
@@ -100,7 +99,6 @@ const Form = ({ buttonLabel, handleSubmit, errorMessage, booking }) => {
 		const name = event.target.name;
 		const value = event.target.value;
 		setFormState({ ...formState, [name]: value });
-		console.log(formState);
 	}
 
 	function handleFormSubmit(event) {
@@ -114,6 +112,7 @@ const Form = ({ buttonLabel, handleSubmit, errorMessage, booking }) => {
 			country: formState.country,
 			continent: formState.continent,
 			currency: formState.currency,
+			open_status: true,
 		};
 		if (booking) {
 			newBooking._id = booking._id;

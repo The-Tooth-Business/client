@@ -1,10 +1,20 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import { useGlobalState } from '../config/globalState';
 import { Line } from 'react-chartjs-2';
+import Paper from '@material-ui/core/Paper';
+
+const useStyles = makeStyles((theme) => ({
+	paper: {
+		padding: theme.spacing(2),
+		textAlign: 'center',
+	},
+}));
 
 const Continent = () => {
 	const { store } = useGlobalState();
 	const { bookings } = store;
+	const classes = useStyles();
 
 	let continents = {};
 
@@ -42,9 +52,9 @@ const Continent = () => {
 	};
 
 	return (
-		<div>
+		<Paper className={classes.paper}>
 			<Line data={data} />
-		</div>
+		</Paper>
 	);
 };
 
