@@ -38,6 +38,7 @@ import LastPageIcon from '@material-ui/icons/LastPage';
 import Chip from '@material-ui/core/Chip';
 import FaceIcon from '@material-ui/icons/Face';
 import TableHead from '@material-ui/core/TableHead';
+import { Link } from 'react-router-dom';
 
 const useStyles1 = makeStyles((theme) => ({
 	root: {
@@ -116,8 +117,8 @@ TablePaginationActions.propTypes = {
 	rowsPerPage: PropTypes.number.isRequired,
 };
 
-function createData(open_status, child_name, teeth, continent) {
-	return { open_status, child_name, teeth, continent };
+function createData(_id, open_status, child_name, teeth, continent) {
+	return { _id, open_status, child_name, teeth, continent };
 }
 
 const useStyles2 = makeStyles({
@@ -136,6 +137,7 @@ export default function Bookings({ bookings }) {
 		.sort((a, b) => b.modified_date - a.modified_date)
 		.map((booking) =>
 			createData(
+				booking._id,
 				booking.open_status,
 				booking.child_name,
 				booking.teeth,
@@ -160,6 +162,7 @@ export default function Bookings({ bookings }) {
 			<Table className={classes.table} aria-label="custom pagination table">
 				<TableHead>
 					<TableRow>
+						<TableCell>View</TableCell>
 						<TableCell>Status</TableCell>
 						<TableCell align="left">Name</TableCell>
 						<TableCell align="right">Teeth</TableCell>
@@ -172,6 +175,9 @@ export default function Bookings({ bookings }) {
 						: rows
 					).map((row) => (
 						<TableRow key={row.child_name}>
+							<TableCell style={{ width: '10%' }} align="left">
+								<Link to={`/bookings/${row._id}`}>Edit</Link>
+							</TableCell>
 							<TableCell style={{ width: '10%' }} align="right">
 								{row.open_status && (
 									<Chip
