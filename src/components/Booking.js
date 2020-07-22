@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { deleteBooking } from '../services/bookingsServices';
 import { updateBooking } from '../services/bookingsServices';
+import Review from './Review';
 
 const Booking = ({ history, booking, showControls }) => {
 	const { dispatch, store } = useGlobalState();
@@ -76,6 +77,7 @@ const Booking = ({ history, booking, showControls }) => {
 	} = booking;
 	return (
 		<div style={divstyles}>
+			{!booking.open_status && <Review booking={booking} />}
 			<Link
 				data-cy="child-name"
 				style={linkStyles}
@@ -103,7 +105,6 @@ const Booking = ({ history, booking, showControls }) => {
 					)}
 					{booking.open_status && <Button onClick={handleEdit}>Edit</Button>}
 					<Button onClick={handleDelete}>Delete</Button>
-					{!booking.open_status && <Button onClick={handleEdit}>Review</Button>}
 				</ButtonGroup>
 			)}
 		</div>

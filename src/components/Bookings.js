@@ -100,8 +100,8 @@ TablePaginationActions.propTypes = {
 	rowsPerPage: PropTypes.number.isRequired,
 };
 
-function createData(_id, open_status, child_name, teeth, continent) {
-	return { _id, open_status, child_name, teeth, continent };
+function createData(_id, open_status, child_name, teeth, continent, rating) {
+	return { _id, open_status, child_name, teeth, continent, rating };
 }
 
 const useStyles2 = makeStyles({
@@ -124,7 +124,8 @@ export default function Bookings({ bookings }) {
 				booking.open_status,
 				booking.child_name,
 				booking.teeth,
-				booking.continent
+				booking.continent,
+				booking.rating || '-'
 			)
 		);
 
@@ -151,6 +152,7 @@ export default function Bookings({ bookings }) {
 							<TableCell align="left">Name</TableCell>
 							<TableCell align="right">Teeth</TableCell>
 							<TableCell align="right">Continent</TableCell>
+							<TableCell align="right">Rating</TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
@@ -175,7 +177,7 @@ export default function Bookings({ bookings }) {
 										<Chip label="Closed" size="small" icon={<FaceIcon />} />
 									)}
 								</TableCell>
-								<TableCell component="th" scope="row">
+								<TableCell style={{ width: '20%' }} component="th" scope="row">
 									{row.child_name}
 								</TableCell>
 								<TableCell style={{ width: '10%' }} align="right">
@@ -183,6 +185,9 @@ export default function Bookings({ bookings }) {
 								</TableCell>
 								<TableCell style={{ width: '20%' }} align="right">
 									{row.continent}
+								</TableCell>
+								<TableCell style={{ width: '10%' }} align="center">
+									{row.rating}
 								</TableCell>
 							</TableRow>
 						))}
