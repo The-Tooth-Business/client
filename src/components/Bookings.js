@@ -1,25 +1,3 @@
-// import React from 'react';
-// import Booking from './Booking';
-// import { useGlobalState } from '../config/globalState';
-
-// const Bookings = () => {
-// 	const { store } = useGlobalState();
-// 	const { bookings } = store;
-// 	if (!bookings) return null;
-
-// 	return (
-// 		<div>
-// 			{bookings
-// 				.sort((a, b) => b.modified_date - a.modified_date)
-// 				.map((booking) => (
-// 					<Booking key={booking._id} booking={booking} />
-// 				))}
-// 		</div>
-// 	);
-// };
-
-// export default Bookings;
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -39,11 +17,16 @@ import Chip from '@material-ui/core/Chip';
 import FaceIcon from '@material-ui/icons/Face';
 import TableHead from '@material-ui/core/TableHead';
 import { Link } from 'react-router-dom';
+import Paper from '@material-ui/core/Paper';
 
 const useStyles1 = makeStyles((theme) => ({
 	root: {
 		flexShrink: 0,
 		marginLeft: theme.spacing(2.5),
+	},
+	paper: {
+		padding: theme.spacing(2),
+		textAlign: 'center',
 	},
 }));
 
@@ -158,76 +141,78 @@ export default function Bookings({ bookings }) {
 	};
 
 	return (
-		<TableContainer>
-			<Table className={classes.table} aria-label="custom pagination table">
-				<TableHead>
-					<TableRow>
-						<TableCell>View</TableCell>
-						<TableCell>Status</TableCell>
-						<TableCell align="left">Name</TableCell>
-						<TableCell align="right">Teeth</TableCell>
-						<TableCell align="right">Continent</TableCell>
-					</TableRow>
-				</TableHead>
-				<TableBody>
-					{(rowsPerPage > 0
-						? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-						: rows
-					).map((row) => (
-						<TableRow key={row.child_name}>
-							<TableCell style={{ width: '10%' }} align="left">
-								<Link to={`/bookings/${row._id}`}>Edit</Link>
-							</TableCell>
-							<TableCell style={{ width: '10%' }} align="right">
-								{row.open_status && (
-									<Chip
-										color="secondary"
-										label="Open"
-										size="small"
-										icon={<FaceIcon />}
-									/>
-								)}
-								{!row.open_status && (
-									<Chip label="Closed" size="small" icon={<FaceIcon />} />
-								)}
-							</TableCell>
-							<TableCell component="th" scope="row">
-								{row.child_name}
-							</TableCell>
-							<TableCell style={{ width: '10%' }} align="right">
-								{row.teeth}
-							</TableCell>
-							<TableCell style={{ width: '20%' }} align="right">
-								{row.continent}
-							</TableCell>
+		<Paper className={classes.paper}>
+			<TableContainer>
+				<Table className={classes.table} aria-label="custom pagination table">
+					<TableHead>
+						<TableRow>
+							<TableCell>View</TableCell>
+							<TableCell>Status</TableCell>
+							<TableCell align="left">Name</TableCell>
+							<TableCell align="right">Teeth</TableCell>
+							<TableCell align="right">Continent</TableCell>
 						</TableRow>
-					))}
+					</TableHead>
+					<TableBody>
+						{(rowsPerPage > 0
+							? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+							: rows
+						).map((row) => (
+							<TableRow key={row.child_name}>
+								<TableCell style={{ width: '10%' }} align="left">
+									<Link to={`/bookings/${row._id}`}>Edit</Link>
+								</TableCell>
+								<TableCell style={{ width: '10%' }} align="right">
+									{row.open_status && (
+										<Chip
+											color="secondary"
+											label="Open"
+											size="small"
+											icon={<FaceIcon />}
+										/>
+									)}
+									{!row.open_status && (
+										<Chip label="Closed" size="small" icon={<FaceIcon />} />
+									)}
+								</TableCell>
+								<TableCell component="th" scope="row">
+									{row.child_name}
+								</TableCell>
+								<TableCell style={{ width: '10%' }} align="right">
+									{row.teeth}
+								</TableCell>
+								<TableCell style={{ width: '20%' }} align="right">
+									{row.continent}
+								</TableCell>
+							</TableRow>
+						))}
 
-					{emptyRows > 0 && (
-						<TableRow style={{ height: 53 * emptyRows }}>
-							<TableCell colSpan={6} />
+						{emptyRows > 0 && (
+							<TableRow style={{ height: 53 * emptyRows }}>
+								<TableCell colSpan={6} />
+							</TableRow>
+						)}
+					</TableBody>
+					<TableFooter>
+						<TableRow>
+							<TablePagination
+								rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+								colSpan={3}
+								count={rows.length}
+								rowsPerPage={rowsPerPage}
+								page={page}
+								SelectProps={{
+									inputProps: { 'aria-label': 'rows per page' },
+									native: true,
+								}}
+								onChangePage={handleChangePage}
+								onChangeRowsPerPage={handleChangeRowsPerPage}
+								ActionsComponent={TablePaginationActions}
+							/>
 						</TableRow>
-					)}
-				</TableBody>
-				<TableFooter>
-					<TableRow>
-						<TablePagination
-							rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-							colSpan={3}
-							count={rows.length}
-							rowsPerPage={rowsPerPage}
-							page={page}
-							SelectProps={{
-								inputProps: { 'aria-label': 'rows per page' },
-								native: true,
-							}}
-							onChangePage={handleChangePage}
-							onChangeRowsPerPage={handleChangeRowsPerPage}
-							ActionsComponent={TablePaginationActions}
-						/>
-					</TableRow>
-				</TableFooter>
-			</Table>
-		</TableContainer>
+					</TableFooter>
+				</Table>
+			</TableContainer>
+		</Paper>
 	);
 }
