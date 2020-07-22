@@ -83,6 +83,7 @@ const Form = ({ buttonLabel, handleSubmit, errorMessage, booking }) => {
 	const [formState, setFormState] = useState(initialFormState);
 
 	useEffect(() => {
+		console.log(booking);
 		booking &&
 			setFormState({
 				child_name: booking.child_name,
@@ -100,7 +101,6 @@ const Form = ({ buttonLabel, handleSubmit, errorMessage, booking }) => {
 		const name = event.target.name;
 		const value = event.target.value;
 		setFormState({ ...formState, [name]: value });
-		console.log(formState);
 	}
 
 	function handleFormSubmit(event) {
@@ -114,6 +114,7 @@ const Form = ({ buttonLabel, handleSubmit, errorMessage, booking }) => {
 			country: formState.country,
 			continent: formState.continent,
 			currency: formState.currency,
+			open_status: true,
 		};
 		if (booking) {
 			newBooking._id = booking._id;

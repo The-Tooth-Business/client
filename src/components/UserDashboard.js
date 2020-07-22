@@ -6,7 +6,7 @@ import Continent from './Continent';
 import Grid from '@material-ui/core/Grid';
 import Card from './Card';
 import { getTeeth, getFairyDollars, getWishes } from '../utils/calculations';
-const drawerWidth = '20vw';
+const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
 	toolbar: theme.mixins.toolbar,

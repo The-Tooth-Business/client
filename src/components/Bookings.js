@@ -160,7 +160,7 @@ export default function Bookings({ bookings }) {
 						).map((row) => (
 							<TableRow key={row.child_name}>
 								<TableCell style={{ width: '10%' }} align="left">
-									<Link to={`/bookings/${row._id}`}>Edit</Link>
+									<Link to={`/bookings/${row._id}`}>View</Link>
 								</TableCell>
 								<TableCell style={{ width: '10%' }} align="right">
 									{row.open_status && (

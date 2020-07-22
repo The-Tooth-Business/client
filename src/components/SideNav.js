@@ -11,7 +11,6 @@ import Hidden from '@material-ui/core/Hidden';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
-import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import AppsIcon from '@material-ui/icons/Apps';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 
@@ -105,17 +104,17 @@ export default function SideNav(props) {
 						<ListItemText>Dashboard</ListItemText>
 					</ListItem>
 				</Link>
-				<Link to="/bookings">
+				{/* <Link to="/bookings">
 					<ListItem>
 						<ListItemIcon>
 							<AssignmentTurnedInIcon />
 						</ListItemIcon>
 						<ListItemText>Bookings</ListItemText>
 					</ListItem>
-				</Link>
+				</Link> */}
 				<Link to="/booking/new">
 					<ListItem>
-						<ListItemIcon >
+						<ListItemIcon>
 							<AddCircleIcon />
 						</ListItemIcon>
 						<ListItemText data-cy="booking-new">Make a booking</ListItemText>
