@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useGlobalState } from '../config/globalState';
+import moment from 'moment';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { deleteBooking } from '../services/bookingsServices';
@@ -127,11 +128,12 @@ const Booking = ({ history, booking, showControls }) => {
 							</Paper>
 						</Grid>
 					)}
+					{/* {//TODO H3 & p tags can't be nested inside of typography} */}
 					<Grid item xs={12}>
 						<Paper className={classes.paper}>
 							<Typography>
 								<h3>{child_name}</h3>
-								<p>Date: {modified_date}</p>
+								<p>Last modified: {moment(modified_date).fromNow()}</p>
 								<p>Number of teeth: {teeth}</p>
 								<p>Address: {address}</p>
 								<p>City: {city}</p>
