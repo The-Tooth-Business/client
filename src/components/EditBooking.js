@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { useGlobalState } from '../config/globalState';
 import { updateBooking } from '../services/bookingsServices';
 import Form from './Form';
-import CircularIntegration from './CircularIntegration';
+// import CircularIntegration from './CircularIntegration';
 
 const EditBooking = ({ history, match }) => {
 	const { dispatch, store } = useGlobalState();

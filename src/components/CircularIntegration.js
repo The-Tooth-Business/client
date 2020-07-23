@@ -9,6 +9,7 @@ import Fab from '@material-ui/core/Fab';
 import CheckIcon from '@material-ui/icons/Check';
 import SaveIcon from '@material-ui/icons/Save';
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -41,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CircularIntegration() {
+export default function CircularIntegration({handleSubmit, booking}) {
   const classes = useStyles();
   const [loading, setLoading] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
@@ -64,8 +65,10 @@ export default function CircularIntegration() {
       timer.current = setTimeout(() => {
         setSuccess(true);
         setLoading(false);
+        handleSubmit(booking)
       }, 2000);
     }
+    
   };
 
   return (
@@ -75,7 +78,7 @@ export default function CircularIntegration() {
           aria-label="save"
           color="primary"
           className={buttonClassname}
-          onClick={handleButtonClick}
+          onClick={handleButtonClick} 
         >
           {success ? <CheckIcon /> : <SaveIcon />}
         </Fab>
