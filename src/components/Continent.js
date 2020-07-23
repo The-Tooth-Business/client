@@ -53,7 +53,7 @@ const Continent = () => {
 
 	return (
 		<Paper className={classes.paper}>
-			<Line data={data} />
+			<Line data-cy="continents" data={data} />
 		</Paper>
 	);
 };

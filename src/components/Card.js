@@ -33,7 +33,7 @@ export default function SimpleCard({ background, color, number, text }) {
 	const classes = useStyles();
 
 	return (
-		<div className={classes.root}>
+		<div data-cy="card" className={classes.root}>
 			<Paper className={classes.paper}>
 				<CardContent>
 					<Typography

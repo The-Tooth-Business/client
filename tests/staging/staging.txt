@@ -11,3 +11,11 @@ cypress/integration/parentFlow.spec.js
 20/07/2020/
 Failed because of unkown username. Changed username and test passed.
 Link: https://dashboard.cypress.io/projects/qhaq5w/runs/45/specs
+
+
+cypress/integration/adminFlow.spec.js
+
+23/07/2020/
+FAILED
+Link: https://dashboard.cypress.io/projects/qhaq5w/runs/50/specs/5b289b85-1f85-43f2-9663-683435e15025/stdout?utm_source=Dashboard&utm_medium=Share+URL&utm_campaign=Output
+Notes: PAssing previous test but staging needs to be updated to use new data-cy labels
