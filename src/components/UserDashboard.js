@@ -31,12 +31,18 @@ function UserDashboard() {
 	const { store } = useGlobalState();
 	const { adminUser, bookings } = store;
 	const [wishes, setWishes] = useState(getWishes());
+	const [dollars, setDollars] = useState(getFairyDollars());
 	const [content, setContent] = useState('');
 
 	useEffect(() => {
-		const interval = setInterval(() => setWishes(getWishes()), 60000);
+		const wishesInterval = setInterval(() => setWishes(getWishes()), 60000);
+		const dollarsInterval = setInterval(
+			() => setDollars(getFairyDollars()),
+			30000
+		);
 		return () => {
-			clearInterval(interval);
+			clearInterval(wishesInterval);
+			clearInterval(dollarsInterval);
 		};
 	}, []);
 
@@ -50,21 +56,11 @@ function UserDashboard() {
 					<Grid item xs={12} md={6} lg={3}>
 						{adminUser && <PendingBookings />}
 					</Grid>
+
 					<Grid item xs={12} md={6} lg={3}>
 						{adminUser && (
 							<Card
-								number={`F$ ${getFairyDollars()}`}
-								text={'Current Fairy dollar per A$'}
-								background={
-									'radial-gradient(circle, rgba(107,236,252,1) 50%, rgba(56,205,212,1) 91%)'
-								}
-							/>
-						)}
-					</Grid>
-					<Grid item xs={12} md={6} lg={3}>
-						{adminUser && (
-							<Card
-								number={`F$ ${getFairyDollars()}`}
+								number={`F$ ${dollars}`}
 								text={'Current Fairy dollar per A$'}
 								background={
 									'linear-gradient(180deg, rgba(255,205,241,1) 50%, rgba(235,173,237,1) 100%)'
