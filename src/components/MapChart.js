@@ -5,6 +5,22 @@ import {
 	Geographies,
 	Geography,
 } from 'react-simple-maps';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+
+const useStyles = makeStyles((theme) => ({
+	root: {
+		flexShrink: 0,
+		marginLeft: theme.spacing(2.5),
+	},
+	paper: {
+		padding: theme.spacing(2),
+		textAlign: 'center',
+	},
+	title: {
+		color: 'gray',
+	},
+}));
 
 const geoUrl =
 	'https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json';
@@ -18,10 +34,11 @@ const MapChart = ({ setTooltipContent, bookings }) => {
 			: (countryBookings[booking.country] = 1);
 	});
 
-	console.log(countryBookings);
+	const classes = useStyles();
 
 	return (
-		<>
+		<Paper className={classes.paper}>
+			<h1 className={classes.title}>Bookings by country</h1>
 			<ComposableMap data-tip="" projectionConfig={{ scale: 200 }}>
 				<ZoomableGroup>
 					<Geographies geography={geoUrl}>
@@ -59,7 +76,7 @@ const MapChart = ({ setTooltipContent, bookings }) => {
 					</Geographies>
 				</ZoomableGroup>
 			</ComposableMap>
-		</>
+		</Paper>
 	);
 };
 

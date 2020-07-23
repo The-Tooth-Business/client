@@ -72,7 +72,7 @@ function UserDashboard() {
 						{adminUser && (
 							<Card
 								number={getTeeth(bookings)}
-								text={'Tooth exchanges today'}
+								text={'Tooth exchanges tonight'}
 								background={
 									'linear-gradient(94deg, rgba(81,27,119,1) 50%, rgba(41,20,115,1) 100%)'
 								}
@@ -90,6 +90,7 @@ function UserDashboard() {
 							/>
 						)}
 					</Grid>
+
 					<Grid item xs={12} lg={6}>
 						{adminUser && <Continent />}
 					</Grid>
