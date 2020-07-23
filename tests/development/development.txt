@@ -9,3 +9,9 @@ cypress/integration/parentFlow.spec.js
 20/07/2020
 Passed
 Link: https://dashboard.cypress.io/projects/qhaq5w/runs/41/specs
+
+cypress/integration/adminFlow.spec.js
+
+23/07/2020
+Passed
+Link: https://dashboard.cypress.io/projects/qhaq5w/runs/49/specs/bc77328b-4cf5-423c-a7af-27f96ab91aa2/stdout?utm_source=Dashboard&utm_medium=Share+URL&utm_campaign=Output
