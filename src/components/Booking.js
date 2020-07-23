@@ -128,11 +128,12 @@ const Booking = ({ history, booking, showControls }) => {
 							</Paper>
 						</Grid>
 					)}
+					{/* {//TODO H3 & p tags can't be nested inside of typography} */}
 					<Grid item xs={12}>
 						<Paper className={classes.paper}>
 							<Typography>
 								<h3>{child_name}</h3>
-								<p>Date: {moment(modified_date).fromNow()}</p>
+								<p>Last modified: {moment(modified_date).fromNow()}</p>
 								<p>Number of teeth: {teeth}</p>
 								<p>Address: {address}</p>
 								<p>City: {city}</p>
