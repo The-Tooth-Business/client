@@ -117,7 +117,7 @@ export default function Bookings({ bookings }) {
 	if (!bookings) return null;
 
 	const rows = bookings
-		.sort((a, b) => b.modified_date - a.modified_date)
+		.sort((a, b) => b.open_status - a.open_status)
 		.map((booking) =>
 			createData(
 				booking._id,
@@ -164,7 +164,7 @@ export default function Bookings({ bookings }) {
 								<TableCell style={{ width: '10%' }} align="left">
 									<Link to={`/bookings/${row._id}`}>View</Link>
 								</TableCell>
-								<TableCell style={{ width: '10%' }} align="right">
+								<TableCell style={{ width: '10%' }} align="left">
 									{row.open_status && (
 										<Chip
 											color="secondary"

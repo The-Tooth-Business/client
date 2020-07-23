@@ -18,7 +18,7 @@ const NewBooking = ({ history }) => {
 				if (response.error) {
 					throw new Error(response.error);
 				}
-				history.push('/dashboard');
+				history.push(`/bookings/${response._id}`);
 			})
 			.catch((error) => {
 				if (error) setErrorMessage('Missing fields please try again');

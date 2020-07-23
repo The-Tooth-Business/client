@@ -1,6 +1,12 @@
 export function getTeeth(bookings) {
 	let balance = 0;
-	bookings.map((booking) => (balance += parseInt(booking.teeth)));
+	let date = new Date();
+	let day = date.getUTCDate();
+	bookings.map((booking) =>
+		new Date(booking.create_date).getUTCDate() === day
+			? (balance += parseInt(booking.teeth))
+			: null
+	);
 	return balance;
 }
 
