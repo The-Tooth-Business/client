@@ -1,13 +1,17 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useGlobalState } from '../config/globalState';
-import { Line } from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2';
 import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles((theme) => ({
 	paper: {
 		padding: theme.spacing(2),
 		textAlign: 'center',
+		// height: '100%',
+	},
+	title: {
+		color: 'gray',
 	},
 }));
 
@@ -30,22 +34,14 @@ const Continent = () => {
 			{
 				label: 'Bookings by Continent',
 				fill: true,
-				lineTension: 0.5,
-				backgroundColor: '#30d6af',
-				borderColor: '#30d6af',
-				borderCapStyle: 'round',
-				borderDash: [],
-				borderDashOffset: 0.0,
-				borderJoinStyle: 'miter',
-				pointBorderColor: '#ed0f51',
-				pointBackgroundColor: '#ed0f51',
-				pointBorderWidth: 2,
-				pointHoverRadius: 10,
-				pointHoverBackgroundColor: '#ed0f51',
-				pointHoverBorderColor: '#ed0f51',
-				pointHoverBorderWidth: 2,
-				pointRadius: 1,
-				pointHitRadius: 10,
+				backgroundColor: [
+					'#ff3675',
+					'#ffc000',
+					'#1bbef4',
+					'#f2744b',
+					'#c84bf2',
+					'#30d6af',
+				],
 				data: Object.values(continents),
 			},
 		],
@@ -53,7 +49,8 @@ const Continent = () => {
 
 	return (
 		<Paper className={classes.paper}>
-			<Line data-cy="continents" data={data} />
+			<h1 className={classes.title}>Bookings by continent</h1>
+			<Doughnut data={data} />
 		</Paper>
 	);
 };

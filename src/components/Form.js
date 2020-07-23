@@ -12,7 +12,7 @@ import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
 import InputLabel from '@material-ui/core/InputLabel';
 import NativeSelect from '@material-ui/core/NativeSelect';
-import CircularIntegration from './CircularIntegration'
+import CircularIntegration from './CircularIntegration';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -92,7 +92,6 @@ const Form = ({ buttonLabel, handleSubmit, errorMessage, booking }) => {
 				currency: booking.currency,
 			});
 	}, [booking]);
-  
 
 	function handleChange(event) {
 		const name = event.target.name;
@@ -119,7 +118,6 @@ const Form = ({ buttonLabel, handleSubmit, errorMessage, booking }) => {
 
 		handleSubmit(newBooking);
 	}
-
 
 	return (
 		<React.Fragment>
@@ -270,11 +268,9 @@ const Form = ({ buttonLabel, handleSubmit, errorMessage, booking }) => {
 						booking={formState}
 						data-cy="booking-new-submit"
 						handleSubmit={handleFormSubmit}
-						// className={classes.button}
 					>
 						Submit
 					</CircularIntegration>
-					
 				</Paper>
 			</main>
 		</React.Fragment>
