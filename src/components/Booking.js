@@ -106,7 +106,7 @@ const Booking = ({ history, booking, showControls }) => {
 							{open_status && (
 								<p>
 									The {continent} fairy will visit {address} this evening.
-									Please put the tooth under the childs pillow and remove all
+									Please put the tooth under the child's pillow and remove all
 									dogs, cats and fly swats.
 								</p>
 							)}
