@@ -7,6 +7,9 @@ import Grid from '@material-ui/core/Grid';
 import Card from './Card';
 import PendingBookings from './PendingBookings';
 import { getTeeth, getFairyDollars, getWishes } from '../utils/calculations';
+import ReactTooltip from 'react-tooltip';
+import MapChart from './MapChart';
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -28,6 +31,7 @@ function UserDashboard() {
 	const { store } = useGlobalState();
 	const { adminUser, bookings } = store;
 	const [wishes, setWishes] = useState(getWishes());
+	const [content, setContent] = useState('');
 
 	useEffect(() => {
 		const interval = setInterval(() => setWishes(getWishes()), 60000);
@@ -94,7 +98,12 @@ function UserDashboard() {
 						{adminUser && <Continent />}
 					</Grid>
 					<Grid item xs={12} lg={6}>
-						{adminUser && <Continent />}
+						{adminUser && (
+							<div>
+								<MapChart setTooltipContent={setContent} bookings={bookings} />
+								<ReactTooltip>{content}</ReactTooltip>
+							</div>
+						)}
 					</Grid>
 
 					<Grid item xs={12}>
