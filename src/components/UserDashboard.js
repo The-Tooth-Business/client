@@ -5,6 +5,7 @@ import Bookings from './Bookings';
 import Continent from './Continent';
 import Grid from '@material-ui/core/Grid';
 import Card from './Card';
+import PendingBookings from './PendingBookings';
 import { getTeeth, getFairyDollars, getWishes } from '../utils/calculations';
 const drawerWidth = 240;
 
@@ -42,6 +43,9 @@ function UserDashboard() {
 			<div className={classes.toolbar} />
 			<div className={classes.content}>
 				<Grid container spacing={3}>
+					<Grid item xs={12} md={6} lg={3}>
+						{adminUser && <PendingBookings />}
+					</Grid>
 					<Grid item xs={12} md={6} lg={3}>
 						{adminUser && (
 							<Card
