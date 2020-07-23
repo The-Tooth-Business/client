@@ -8,11 +8,10 @@ export default function PendingBookings() {
 
 	const [pending, setPending] = useState([]);
 
-	let date = new Date();
-	let day = date.getUTCDate();
-	let pendingBookings = [];
-
 	useEffect(() => {
+		let date = new Date();
+		let day = date.getUTCDate();
+		let pendingBookings = [];
 		bookings.map((booking) =>
 			booking.open_status && new Date(booking.modified_date).getUTCDate() < day
 				? pendingBookings.push(booking)
@@ -34,15 +33,12 @@ export default function PendingBookings() {
 					type: 'setBookings',
 					data: [updatedBooking, ...otherBookings],
 				});
-				console.log('updated bookings');
 				if (response.error) {
 					throw new Error(response.error);
 				}
 			});
 		});
 	}
-
-	console.log('current pending bookings: ', pending);
 
 	return (
 		<div>
