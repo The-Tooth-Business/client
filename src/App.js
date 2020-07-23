@@ -25,6 +25,7 @@ const App = () => {
 	const initialState = {
 		bookings: [],
 		loggedInUser: null,
+		reviews: [],
 	};
 
 	const [store, dispatch] = useReducer(stateReducer, initialState);

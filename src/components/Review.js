@@ -19,8 +19,6 @@ const Review = ({ history, booking }) => {
 	const { bookings } = store;
 	const classes = useStyles();
 
-	console.log('to review: ', booking);
-
 	const [slider, setSlider] = useState(0);
 	const [comment, setComment] = useState('');
 
@@ -57,6 +55,10 @@ const Review = ({ history, booking }) => {
 				dispatch({
 					type: 'setBookings',
 					data: [updatedBooking, ...otherBookings],
+				});
+				dispatch({
+					type: 'setReviews',
+					data: updatedBooking,
 				});
 				if (response.error) {
 					throw new Error(response.error);

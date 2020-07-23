@@ -28,8 +28,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function UserDashboard() {
-	const { store } = useGlobalState();
-	const { adminUser, bookings } = store;
+	const { store, dispatch } = useGlobalState();
+	const { adminUser, bookings, reviews } = store;
 	const [wishes, setWishes] = useState(getWishes());
 	const [dollars, setDollars] = useState(getFairyDollars());
 	const [content, setContent] = useState('');
@@ -40,13 +40,20 @@ function UserDashboard() {
 			() => setDollars(getFairyDollars()),
 			30000
 		);
+		dispatch({
+			type: 'setReviews',
+			data: bookings,
+		});
 		return () => {
 			clearInterval(wishesInterval);
 			clearInterval(dollarsInterval);
 		};
-	}, []);
+	}, [bookings, dispatch]);
 
 	const classes = useStyles();
+	if (!reviews) {
+		return null;
+	}
 
 	return (
 		<main className={classes.content}>
@@ -102,8 +109,10 @@ function UserDashboard() {
 							<Grid item xs={12} md={6}>
 								{adminUser && (
 									<Card
-										number={'60%'}
-										text={'Europe fairy current rating'}
+										number={`${reviews[0].rating}/10` || '0%'}
+										text={
+											`latest review: "${reviews[0].comments}"` || 'no comment'
+										}
 										background={
 											'linear-gradient(0deg, rgb(255, 192, 0) 30%, rgb(255, 161, 0) 96%)'
 										}

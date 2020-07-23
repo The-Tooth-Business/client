@@ -46,6 +46,14 @@ function stateReducer(state, action) {
 				...state,
 				adminUser: action.data,
 			};
+		case 'setReviews':
+			const reviews = state.bookings.filter(
+				(booking) => booking.review_status && booking.rating && booking.comments
+			);
+			return {
+				...state,
+				reviews: reviews,
+			};
 
 		default:
 			return state;
