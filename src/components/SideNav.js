@@ -104,14 +104,6 @@ export default function SideNav(props) {
 						<ListItemText>Dashboard</ListItemText>
 					</ListItem>
 				</Link>
-				{/* <Link to="/bookings">
-					<ListItem>
-						<ListItemIcon>
-							<AssignmentTurnedInIcon />
-						</ListItemIcon>
-						<ListItemText>Bookings</ListItemText>
-					</ListItem>
-				</Link> */}
 				<Link to="/booking/new">
 					<ListItem>
 						<ListItemIcon>
@@ -138,7 +130,12 @@ export default function SideNav(props) {
 	return (
 		<div>
 			<AppBar position="fixed" className={classes.appBar}>
-				<Toolbar data-cy="toolbar">
+				<Toolbar
+					data-cy="toolbar"
+					style={{
+						background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+					}}
+				>
 					<IconButton
 						color="inherit"
 						aria-label="open drawer"
