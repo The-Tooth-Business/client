@@ -13,8 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
 import AppsIcon from '@material-ui/icons/Apps';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import background from '../images/bokeh.jpg';
-import Alert from './Alert';
+
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useGlobalState } from '../config/globalState';
 import { Link } from 'react-router-dom';
@@ -38,32 +37,16 @@ const useStyles = makeStyles((theme) => ({
 			marginLeft: drawerWidth,
 		},
 	},
-	alert: {
-		position: 'fixed',
-		right: '5%',
-	},
 	menuButton: {
 		marginRight: theme.spacing(2),
 		[theme.breakpoints.up('sm')]: {
 			display: 'none',
 		},
 	},
-	text: {
-		color: 'white',
-		textDecoration: 'none',
-	},
-	icon: {
-		fill: 'white',
-	},
 	// necessary for content to be below app bar
 	toolbar: theme.mixins.toolbar,
 	drawerPaper: {
 		width: drawerWidth,
-		backgroundImage: `url(${background})`,
-		backgroundRepeat: 'no-repeat',
-		opacity: 0.9,
-		backgroundSize: 'cover',
-		backgroundPosition: 'center',
 	},
 	content: {
 		flexGrow: 1,
@@ -116,40 +99,28 @@ export default function SideNav(props) {
 				<Link to="/dashboard">
 					<ListItem>
 						<ListItemIcon>
-							<AppsIcon className={classes.icon} />
+							<AppsIcon />
 						</ListItemIcon>
-						<ListItemText className={classes.text}>Dashboard</ListItemText>
+						<ListItemText>Dashboard</ListItemText>
 					</ListItem>
 				</Link>
 				<Link to="/booking/new">
 					<ListItem>
 						<ListItemIcon>
-							<AddCircleIcon className={classes.icon} />
+							<AddCircleIcon />
 						</ListItemIcon>
-						<ListItemText data-cy="booking-new" className={classes.text}>
-							Make a booking
-						</ListItemText>
+						<ListItemText data-cy="booking-new">Make a booking</ListItemText>
 					</ListItem>
 				</Link>
 			</List>
-			<Divider />
-
-			{/* FOR FIC ONLY */}
-			{/* loop through continents and display a link to continent fairy info */}
-
-			{/* FOR PARENT
-			display continent fairy relevant to bookings */}
-
 			<Divider />
 			<List>
 				<Link to="/auth/login" onClick={handleLogout}>
 					<ListItem>
 						<ListItemIcon>
-							<AppsIcon className={classes.icon} />
+							<AppsIcon />
 						</ListItemIcon>
-						<ListItemText data-cy="logout" className={classes.text}>
-							Logout
-						</ListItemText>
+						<ListItemText data-cy="logout">Logout</ListItemText>
 					</ListItem>
 				</Link>
 			</List>
@@ -177,9 +148,6 @@ export default function SideNav(props) {
 					<Typography data-cy="user" variant="h6" noWrap>
 						Hello, {loggedInUser}
 					</Typography>
-					<div className={classes.alert}>
-						<Alert />
-					</div>
 				</Toolbar>
 			</AppBar>
 			<nav className={classes.drawer} aria-label="mailbox folders">

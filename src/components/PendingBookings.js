@@ -26,9 +26,12 @@ export default function PendingBookings() {
 			updatedBooking.open_status = false;
 
 			updateBooking(updatedBooking).then((response) => {
+				const otherBookings = bookings.filter(
+					(booking) => booking._id !== updatedBooking._id
+				);
 				dispatch({
-					type: 'updateBooking',
-					data: updatedBooking,
+					type: 'setBookings',
+					data: [updatedBooking, ...otherBookings],
 				});
 				if (response.error) {
 					throw new Error(response.error);

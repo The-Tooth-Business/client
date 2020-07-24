@@ -15,9 +15,12 @@ const EditBooking = ({ history, match }) => {
 	function handleSubmit(updatedBooking) {
 		updateBooking(updatedBooking)
 			.then((response) => {
+				const otherBookings = bookings.filter(
+					(booking) => booking._id !== updatedBooking._id
+				);
 				dispatch({
-					type: 'updateBooking',
-					data: response,
+					type: 'setBookings',
+					data: [updatedBooking, ...otherBookings],
 				});
 				if (response.error) {
 					throw new Error(response.error);

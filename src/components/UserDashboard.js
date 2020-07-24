@@ -6,15 +6,9 @@ import Continent from './Continent';
 import Grid from '@material-ui/core/Grid';
 import Card from './Card';
 import PendingBookings from './PendingBookings';
-import {
-	getTeeth,
-	getFairyDollars,
-	getWishes,
-	totalTeeth,
-} from '../utils/calculations';
+import { getTeeth, getFairyDollars, getWishes } from '../utils/calculations';
 import ReactTooltip from 'react-tooltip';
 import MapChart from './MapChart';
-import MakeAWish from './MakeAWish';
 
 const drawerWidth = 240;
 
@@ -35,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
 function UserDashboard() {
 	const { store } = useGlobalState();
-	const { adminUser, bookings, reviews } = store;
+	const { adminUser, bookings } = store;
 	const [wishes, setWishes] = useState(getWishes());
 	const [dollars, setDollars] = useState(getFairyDollars());
 	const [content, setContent] = useState('');
@@ -50,7 +44,7 @@ function UserDashboard() {
 			clearInterval(wishesInterval);
 			clearInterval(dollarsInterval);
 		};
-	}, [bookings, reviews]);
+	}, []);
 
 	const classes = useStyles();
 
@@ -59,33 +53,6 @@ function UserDashboard() {
 			<div className={classes.toolbar} />
 			<div className={classes.content}>
 				<Grid container spacing={3}>
-					{!adminUser && (
-						<Grid item xs={12} lg={6}>
-							<MakeAWish />
-						</Grid>
-					)}
-					{!adminUser && bookings.length > 0 && (
-						<Grid item xs={12} md={6}>
-							<Card
-								number={totalTeeth(bookings)}
-								text={'Total teeth collected'}
-								background={
-									'linear-gradient(94deg, rgba(81,27,119,1) 50%, rgba(41,20,115,1) 100%)'
-								}
-							/>
-						</Grid>
-					)}
-					{!adminUser && bookings.length === 0 && (
-						<Grid item xs={12} md={6}>
-							<Card
-								number={'Hmm..'}
-								text={`Looks like you don't have any bookings yet`}
-								background={
-									'linear-gradient(180deg, rgba(255,205,241,1) 50%, rgba(235,173,237,1) 100%)'
-								}
-							/>
-						</Grid>
-					)}
 					<Grid item xs={12} lg={6}>
 						{adminUser && (
 							<div>
@@ -93,15 +60,14 @@ function UserDashboard() {
 								<ReactTooltip>{content}</ReactTooltip>
 							</div>
 						)}
-
 						<Grid item xs={12} md={6}>
 							{adminUser && <PendingBookings />}
 						</Grid>
 					</Grid>
 					<Grid item xs={12} md={12} lg={6}>
 						<Grid container spacing={3}>
-							{adminUser && (
-								<Grid item xs={12} md={6}>
+							<Grid item xs={12} md={6}>
+								{adminUser && (
 									<Card
 										number={`F$ ${dollars}`}
 										text={'Current Fairy dollar per A$'}
@@ -109,10 +75,10 @@ function UserDashboard() {
 											'linear-gradient(180deg, rgba(255,205,241,1) 50%, rgba(235,173,237,1) 100%)'
 										}
 									/>
-								</Grid>
-							)}
-							{adminUser && (
-								<Grid item xs={12} md={6}>
+								)}
+							</Grid>
+							<Grid item xs={12} md={6}>
+								{adminUser && (
 									<Card
 										number={getTeeth(bookings)}
 										text={'Tooth exchanges tonight'}
@@ -120,10 +86,10 @@ function UserDashboard() {
 											'linear-gradient(94deg, rgba(81,27,119,1) 50%, rgba(41,20,115,1) 100%)'
 										}
 									/>
-								</Grid>
-							)}
-							{adminUser && (
-								<Grid item xs={12} md={6}>
+								)}
+							</Grid>
+							<Grid item xs={12} md={6}>
+								{adminUser && (
 									<Card
 										number={wishes}
 										text={'Wishes made in last minute'}
@@ -131,23 +97,19 @@ function UserDashboard() {
 											'linear-gradient(45deg, rgba(41,223,189,1) 62%, rgba(101,255,213,1) 96%)'
 										}
 									/>
-								</Grid>
-							)}
-
+								)}
+							</Grid>
 							<Grid item xs={12} md={6}>
 								{adminUser && (
 									<Card
-										number={reviews.rating ? `${reviews.rating}/10` : '0%'}
-										text={
-											`latest review: "${reviews.comments}"` || 'no comment'
-										}
+										number={'60%'}
+										text={'Europe fairy current rating'}
 										background={
 											'linear-gradient(0deg, rgb(255, 192, 0) 30%, rgb(255, 161, 0) 96%)'
 										}
 									/>
 								)}
 							</Grid>
-
 							<Grid item xs={12}>
 								{adminUser && <Continent />}
 							</Grid>

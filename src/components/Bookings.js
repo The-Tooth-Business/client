@@ -159,8 +159,8 @@ export default function Bookings({ bookings }) {
 						{(rowsPerPage > 0
 							? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 							: rows
-						).map((row, index) => (
-							<TableRow key={`${index} - ${row.child_name}`}>
+						).map((row) => (
+							<TableRow key={row.child_name}>
 								<TableCell style={{ width: '10%' }} align="left">
 									<Link to={`/bookings/${row._id}`}>View</Link>
 								</TableCell>
