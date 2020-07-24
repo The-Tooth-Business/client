@@ -64,13 +64,24 @@ function UserDashboard() {
 							<MakeAWish />
 						</Grid>
 					)}
-					{!adminUser && (
+					{!adminUser && bookings.length > 0 && (
 						<Grid item xs={12} md={6}>
 							<Card
 								number={totalTeeth(bookings)}
 								text={'Total teeth collected'}
 								background={
 									'linear-gradient(94deg, rgba(81,27,119,1) 50%, rgba(41,20,115,1) 100%)'
+								}
+							/>
+						</Grid>
+					)}
+					{!adminUser && bookings.length === 0 && (
+						<Grid item xs={12} md={6}>
+							<Card
+								number={'Hmm..'}
+								text={`Looks like you don't have any bookings yet`}
+								background={
+									'linear-gradient(180deg, rgba(255,205,241,1) 50%, rgba(235,173,237,1) 100%)'
 								}
 							/>
 						</Grid>
