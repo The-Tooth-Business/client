@@ -3,7 +3,7 @@ import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { green } from '@material-ui/core/colors';
+// import { green } from '@material-ui/core/colors';
 import Button from '@material-ui/core/Button';
 import Fab from '@material-ui/core/Fab';
 import CheckIcon from '@material-ui/icons/Check';
@@ -20,20 +20,20 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
   },
   buttonSuccess: {
-    backgroundColor: green[500],
+    backgroundColor: '#009688',
     '&:hover': {
-      backgroundColor: green[700],
+      backgroundColor: '#009688',
     },
   },
   fabProgress: {
-    color: green[500],
+    color: '#009688',
     position: 'absolute',
     top: -6,
     left: -6,
     zIndex: 1,
   },
   buttonProgress: {
-    color: green[500],
+    color: "#009688",
     position: 'absolute',
     top: '50%',
     left: '50%',
@@ -65,7 +65,9 @@ export default function CircularIntegration({handleSubmit, booking}) {
       timer.current = setTimeout(() => {
         setSuccess(true);
         setLoading(false);
-        handleSubmit(booking)
+        setTimeout(function() {
+          handleSubmit(booking);
+        },2000);
       }, 2000);
     }
     
@@ -76,7 +78,7 @@ export default function CircularIntegration({handleSubmit, booking}) {
       <div className={classes.wrapper}>
         <Fab
           aria-label="save"
-          color="primary"
+          color="secondary"
           className={buttonClassname}
           onClick={handleButtonClick} 
         >
@@ -87,7 +89,7 @@ export default function CircularIntegration({handleSubmit, booking}) {
       <div className={classes.wrapper}>
         <Button
           variant="contained"
-          color="primary"
+          color="secondary"
           className={buttonClassname}
           disabled={loading}
           onClick={handleButtonClick}
