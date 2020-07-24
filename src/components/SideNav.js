@@ -14,6 +14,7 @@ import AppBar from '@material-ui/core/AppBar';
 import AppsIcon from '@material-ui/icons/Apps';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import background from '../images/bokeh.jpg';
+import Alert from './Alert';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useGlobalState } from '../config/globalState';
 import { Link } from 'react-router-dom';
@@ -172,6 +173,7 @@ export default function SideNav(props) {
 					<Typography data-cy="user" variant="h6" noWrap>
 						Hello, {loggedInUser}
 					</Typography>
+					<Alert />
 				</Toolbar>
 			</AppBar>
 			<nav className={classes.drawer} aria-label="mailbox folders">

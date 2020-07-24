@@ -6,7 +6,12 @@ import Continent from './Continent';
 import Grid from '@material-ui/core/Grid';
 import Card from './Card';
 import PendingBookings from './PendingBookings';
-import { getTeeth, getFairyDollars, getWishes } from '../utils/calculations';
+import {
+	getTeeth,
+	getFairyDollars,
+	getWishes,
+	totalTeeth,
+} from '../utils/calculations';
 import ReactTooltip from 'react-tooltip';
 import MapChart from './MapChart';
 
@@ -108,6 +113,15 @@ function UserDashboard() {
 										}
 										background={
 											'linear-gradient(0deg, rgb(255, 192, 0) 30%, rgb(255, 161, 0) 96%)'
+										}
+									/>
+								)}
+								{!adminUser && (
+									<Card
+										number={totalTeeth(bookings)}
+										text={'Total teeth collected'}
+										background={
+											'linear-gradient(94deg, rgba(81,27,119,1) 50%, rgba(41,20,115,1) 100%)'
 										}
 									/>
 								)}
