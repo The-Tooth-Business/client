@@ -38,6 +38,10 @@ const useStyles = makeStyles((theme) => ({
 			marginLeft: drawerWidth,
 		},
 	},
+	alert: {
+		position: 'fixed',
+		right: '5%',
+	},
 	menuButton: {
 		marginRight: theme.spacing(2),
 		[theme.breakpoints.up('sm')]: {
@@ -173,7 +177,9 @@ export default function SideNav(props) {
 					<Typography data-cy="user" variant="h6" noWrap>
 						Hello, {loggedInUser}
 					</Typography>
-					<Alert />
+					<div className={classes.alert}>
+						<Alert />
+					</div>
 				</Toolbar>
 			</AppBar>
 			<nav className={classes.drawer} aria-label="mailbox folders">
