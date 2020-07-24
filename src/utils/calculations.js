@@ -10,6 +10,13 @@ export function getTeeth(bookings) {
 	return balance;
 }
 
+export function totalTeeth(bookings) {
+	let teeth = 0;
+
+	bookings.map((booking) => (teeth += booking.teeth));
+	return teeth;
+}
+
 export function getFairyDollars() {
 	return Math.floor(Math.random() * Math.floor(100));
 }

@@ -25,6 +25,7 @@ const App = () => {
 	const initialState = {
 		bookings: [],
 		loggedInUser: null,
+		reviews: [],
 	};
 
 	const [store, dispatch] = useReducer(stateReducer, initialState);
@@ -43,6 +44,10 @@ const App = () => {
 				dispatch({
 					type: 'setAdminUser',
 					data: getAdminUser(),
+				});
+				dispatch({
+					type: 'setReviews',
+					data: bookings,
 				});
 			})
 			.catch((error) => {
