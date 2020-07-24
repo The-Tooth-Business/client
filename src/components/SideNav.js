@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
 import AppsIcon from '@material-ui/icons/Apps';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-
+import background from '../images/bokeh.jpg';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useGlobalState } from '../config/globalState';
 import { Link } from 'react-router-dom';
@@ -43,10 +43,22 @@ const useStyles = makeStyles((theme) => ({
 			display: 'none',
 		},
 	},
+	text: {
+		color: 'white',
+		textDecoration: 'none',
+	},
+	icon: {
+		fill: 'white',
+	},
 	// necessary for content to be below app bar
 	toolbar: theme.mixins.toolbar,
 	drawerPaper: {
 		width: drawerWidth,
+		backgroundImage: `url(${background})`,
+		backgroundRepeat: 'no-repeat',
+		opacity: 0.9,
+		backgroundSize: 'cover',
+		backgroundPosition: 'center',
 	},
 	content: {
 		flexGrow: 1,
@@ -99,28 +111,40 @@ export default function SideNav(props) {
 				<Link to="/dashboard">
 					<ListItem>
 						<ListItemIcon>
-							<AppsIcon />
+							<AppsIcon className={classes.icon} />
 						</ListItemIcon>
-						<ListItemText>Dashboard</ListItemText>
+						<ListItemText className={classes.text}>Dashboard</ListItemText>
 					</ListItem>
 				</Link>
 				<Link to="/booking/new">
 					<ListItem>
 						<ListItemIcon>
-							<AddCircleIcon />
+							<AddCircleIcon className={classes.icon} />
 						</ListItemIcon>
-						<ListItemText data-cy="booking-new">Make a booking</ListItemText>
+						<ListItemText data-cy="booking-new" className={classes.text}>
+							Make a booking
+						</ListItemText>
 					</ListItem>
 				</Link>
 			</List>
+			<Divider />
+
+			{/* FOR FIC ONLY */}
+			{/* loop through continents and display a link to continent fairy info */}
+
+			{/* FOR PARENT
+			display continent fairy relevant to bookings */}
+
 			<Divider />
 			<List>
 				<Link to="/auth/login" onClick={handleLogout}>
 					<ListItem>
 						<ListItemIcon>
-							<AppsIcon />
+							<AppsIcon className={classes.icon} />
 						</ListItemIcon>
-						<ListItemText data-cy="logout">Logout</ListItemText>
+						<ListItemText data-cy="logout" className={classes.text}>
+							Logout
+						</ListItemText>
 					</ListItem>
 				</Link>
 			</List>

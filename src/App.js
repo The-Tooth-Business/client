@@ -45,6 +45,10 @@ const App = () => {
 					type: 'setAdminUser',
 					data: getAdminUser(),
 				});
+				dispatch({
+					type: 'setReviews',
+					data: bookings,
+				});
 			})
 			.catch((error) => {
 				setLoggedInUser(null);
