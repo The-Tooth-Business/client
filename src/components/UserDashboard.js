@@ -14,6 +14,7 @@ import {
 } from '../utils/calculations';
 import ReactTooltip from 'react-tooltip';
 import MapChart from './MapChart';
+import MakeAWish from './MakeAWish';
 
 const drawerWidth = 240;
 
@@ -58,6 +59,22 @@ function UserDashboard() {
 			<div className={classes.toolbar} />
 			<div className={classes.content}>
 				<Grid container spacing={3}>
+					{!adminUser && (
+						<Grid item xs={12} lg={6}>
+							<MakeAWish />
+						</Grid>
+					)}
+					{!adminUser && (
+						<Grid item xs={12} md={6}>
+							<Card
+								number={totalTeeth(bookings)}
+								text={'Total teeth collected'}
+								background={
+									'linear-gradient(94deg, rgba(81,27,119,1) 50%, rgba(41,20,115,1) 100%)'
+								}
+							/>
+						</Grid>
+					)}
 					<Grid item xs={12} lg={6}>
 						{adminUser && (
 							<div>
@@ -65,14 +82,15 @@ function UserDashboard() {
 								<ReactTooltip>{content}</ReactTooltip>
 							</div>
 						)}
+
 						<Grid item xs={12} md={6}>
 							{adminUser && <PendingBookings />}
 						</Grid>
 					</Grid>
 					<Grid item xs={12} md={12} lg={6}>
 						<Grid container spacing={3}>
-							<Grid item xs={12} md={6}>
-								{adminUser && (
+							{adminUser && (
+								<Grid item xs={12} md={6}>
 									<Card
 										number={`F$ ${dollars}`}
 										text={'Current Fairy dollar per A$'}
@@ -80,10 +98,10 @@ function UserDashboard() {
 											'linear-gradient(180deg, rgba(255,205,241,1) 50%, rgba(235,173,237,1) 100%)'
 										}
 									/>
-								)}
-							</Grid>
-							<Grid item xs={12} md={6}>
-								{adminUser && (
+								</Grid>
+							)}
+							{adminUser && (
+								<Grid item xs={12} md={6}>
 									<Card
 										number={getTeeth(bookings)}
 										text={'Tooth exchanges tonight'}
@@ -91,10 +109,10 @@ function UserDashboard() {
 											'linear-gradient(94deg, rgba(81,27,119,1) 50%, rgba(41,20,115,1) 100%)'
 										}
 									/>
-								)}
-							</Grid>
-							<Grid item xs={12} md={6}>
-								{adminUser && (
+								</Grid>
+							)}
+							{adminUser && (
+								<Grid item xs={12} md={6}>
 									<Card
 										number={wishes}
 										text={'Wishes made in last minute'}
@@ -102,8 +120,9 @@ function UserDashboard() {
 											'linear-gradient(45deg, rgba(41,223,189,1) 62%, rgba(101,255,213,1) 96%)'
 										}
 									/>
-								)}
-							</Grid>
+								</Grid>
+							)}
+
 							<Grid item xs={12} md={6}>
 								{adminUser && (
 									<Card
@@ -116,16 +135,8 @@ function UserDashboard() {
 										}
 									/>
 								)}
-								{!adminUser && (
-									<Card
-										number={totalTeeth(bookings)}
-										text={'Total teeth collected'}
-										background={
-											'linear-gradient(94deg, rgba(81,27,119,1) 50%, rgba(41,20,115,1) 100%)'
-										}
-									/>
-								)}
 							</Grid>
+
 							<Grid item xs={12}>
 								{adminUser && <Continent />}
 							</Grid>

@@ -54,14 +54,6 @@ function stateReducer(state, action) {
 				...state,
 				reviews: reviews[0],
 			};
-		case 'setPendingReviews':
-			const pendingReviews = action.data.filter(
-				(booking) => !booking.review_status && !booking.open_status
-			);
-			return {
-				...state,
-				pendingReview: [pendingReviews],
-			};
 		default:
 			return state;
 	}
