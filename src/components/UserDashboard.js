@@ -137,7 +137,7 @@ function UserDashboard() {
 							<Grid item xs={12} md={6}>
 								{adminUser && (
 									<Card
-										number={`${reviews.rating}/10` || '0%'}
+										number={reviews.rating ? `${reviews.rating}/10` : '0%'}
 										text={
 											`latest review: "${reviews.comments}"` || 'no comment'
 										}
