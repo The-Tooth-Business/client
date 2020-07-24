@@ -15,8 +15,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Review = ({ history, booking }) => {
-	const { dispatch, store } = useGlobalState();
-	const { bookings } = store;
+	const { dispatch } = useGlobalState();
 	const classes = useStyles();
 
 	const [slider, setSlider] = useState(0);
@@ -49,16 +48,13 @@ const Review = ({ history, booking }) => {
 		};
 		updateBooking(updatedBooking)
 			.then((response) => {
-				const otherBookings = bookings.filter(
-					(booking) => booking._id !== updatedBooking._id
-				);
 				dispatch({
-					type: 'setBookings',
-					data: [updatedBooking, ...otherBookings],
+					type: 'updateBooking',
+					data: response,
 				});
 				dispatch({
 					type: 'setReviews',
-					data: updatedBooking,
+					data: response,
 				});
 				if (response.error) {
 					throw new Error(response.error);

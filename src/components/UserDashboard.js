@@ -44,7 +44,7 @@ function UserDashboard() {
 			clearInterval(wishesInterval);
 			clearInterval(dollarsInterval);
 		};
-	}, []);
+	}, [bookings, reviews]);
 
 	const classes = useStyles();
 

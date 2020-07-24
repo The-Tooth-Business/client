@@ -17,7 +17,7 @@ function stateReducer(state, action) {
 			);
 			return {
 				...state,
-				bookings: [...otherBooking, action.data],
+				bookings: [action.data, ...otherBooking],
 			};
 		case 'deleteBooking':
 			const otherBookings = state.bookings.filter(
