@@ -9,7 +9,6 @@ import { updateBooking } from '../services/bookingsServices';
 import Review from './Review';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -128,10 +127,9 @@ const Booking = ({ history, booking, showControls }) => {
 							</Paper>
 						</Grid>
 					)}
-					{/* {//TODO H3 & p tags can't be nested inside of typography} */}
 					<Grid item xs={12}>
 						<Paper className={classes.paper}>
-							<Typography>
+							<div>
 								<h3>{child_name}</h3>
 								<p>Last modified: {moment(modified_date).fromNow()}</p>
 								<p>Number of teeth: {teeth}</p>
@@ -141,7 +139,7 @@ const Booking = ({ history, booking, showControls }) => {
 								<p>Country: {country}</p>
 								<p>Continent: {continent}</p>
 								<p>Currency: {currency}</p>
-							</Typography>
+							</div>
 
 							{showControls && (
 								<ButtonGroup
