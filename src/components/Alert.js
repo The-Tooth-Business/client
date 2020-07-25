@@ -67,8 +67,12 @@ export default function Alert() {
 				</DialogTitle>
 				<DialogContent>
 					<DialogContentText id="alert-dialog-description">
-						{pendingReview.map((booking) => (
-							<Link to={`/bookings/${booking._id}`} onClick={handleClose}>
+						{pendingReview.map((booking, index) => (
+							<Link
+								key={`${index}-${booking._id}`}
+								to={`/bookings/${booking._id}`}
+								onClick={handleClose}
+							>
 								<p>{booking.child_name}</p>
 							</Link>
 						))}
