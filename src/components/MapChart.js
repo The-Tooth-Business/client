@@ -38,7 +38,6 @@ const MapChart = ({ setTooltipContent, bookings }) => {
 
 	return (
 		<Paper className={classes.paper}>
-			{/* <h1 className={classes.title}>Bookings by country</h1> */}
 			<ComposableMap data-tip="" projectionConfig={{ scale: 200 }}>
 				<ZoomableGroup>
 					<Geographies geography={geoUrl}>
