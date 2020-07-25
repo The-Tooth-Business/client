@@ -20,6 +20,8 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useGlobalState } from '../config/globalState';
 import { Link } from 'react-router-dom';
 import { logoutUser, setLoggedInUser } from '../services/authServices';
+import FaceIcon from '@material-ui/icons/Face';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const drawerWidth = 240;
 
@@ -74,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SideNav(props) {
 	const { store, dispatch } = useGlobalState();
-	const { loggedInUser } = store;
+	const { loggedInUser, adminUser } = store;
 	const [mobileOpen, setMobileOpen] = React.useState(false);
 	const { window } = props;
 	const classes = useStyles();
@@ -135,27 +137,24 @@ export default function SideNav(props) {
 			</List>
 			<Divider />
 
-			{/* FOR FIC ONLY */}
-			{/* loop through continents and display a link to continent fairy info */}
-			{continents.map((obj, index) => (
-				<Link key={`${index}-${obj.name}`} to={`/fairy/${obj.name}`}>
-					<ListItem>
-						<ListItemIcon>
-							<AppsIcon className={classes.icon} />
-						</ListItemIcon>
-						<ListItemText className={classes.text}>{obj.name}</ListItemText>
-					</ListItem>
-				</Link>
-			))}
-			{/* FOR PARENT
-			display continent fairy relevant to bookings */}
+			{adminUser &&
+				continents.map((obj, index) => (
+					<Link key={`${index}-${obj.name}`} to={`/fairy/${obj.name}`}>
+						<ListItem>
+							<ListItemIcon>
+								<FaceIcon className={classes.icon} />
+							</ListItemIcon>
+							<ListItemText className={classes.text}>{obj.name}</ListItemText>
+						</ListItem>
+					</Link>
+				))}
 
 			<Divider />
 			<List>
 				<Link to="/auth/login" onClick={handleLogout}>
 					<ListItem>
 						<ListItemIcon>
-							<AppsIcon className={classes.icon} />
+							<ExitToAppIcon className={classes.icon} />
 						</ListItemIcon>
 						<ListItemText data-cy="logout" className={classes.text}>
 							Logout

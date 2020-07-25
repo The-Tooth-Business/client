@@ -6,6 +6,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import avatar from '../images/avatar.jpg';
 import Bookings from './Bookings';
 import { getAverageRating } from '../utils/calculations';
+import { useGlobalState } from '../config/globalState';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
 	toolbar: theme.mixins.toolbar,
@@ -25,6 +27,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const FairyProfile = ({ continent }) => {
+	const { store } = useGlobalState();
+	const { adminUser } = store;
 	const classes = useStyles();
 	const initialState = {
 		continent: 'continent',
@@ -53,18 +57,38 @@ const FairyProfile = ({ continent }) => {
 		<div>
 			<div className={classes.toolbar} />
 			<main className={classes.content}>
-				<div className={classes.avatar}> </div>
-				<p>{fairyData.description}</p>
-				<p>Average rating: {fairyRating || '0'}/10</p>
-				<Card
-					number={fairyData.fairy_name}
-					text={`The ${fairyData.continent} Fairy`}
-					background={
-						'linear-gradient(45deg, rgba(41,223,189,1) 62%, rgba(101,255,213,1) 96%)'
-					}
-				/>
+				<Grid container spacing={3}>
+					<Grid item xs={12} lg={3}>
+						<div className={classes.avatar}> </div>
+					</Grid>
+				</Grid>
+				<Grid container spacing={3}>
+					<Grid item xs={12} lg={6}>
+						<Card
+							number={fairyData.fairy_name}
+							text={`The ${fairyData.continent} Fairy`}
+							background={
+								'linear-gradient(45deg, rgba(41,223,189,1) 62%, rgba(101,255,213,1) 96%)'
+							}
+						/>
+						<p>{fairyData.description}</p>
+					</Grid>
+					{adminUser && (
+						<Grid item xs={12} lg={3}>
+							<Card
+								number={`${fairyRating || '0'}/10`}
+								text={'Average rating'}
+								background={fairyRating > 5 ? 'green' : 'red'}
+							/>
+						</Grid>
+					)}
 
-				<Bookings bookings={fairyBookings} />
+					{adminUser && (
+						<Grid item xs={12}>
+							<Bookings bookings={fairyBookings} />
+						</Grid>
+					)}
+				</Grid>
 			</main>
 		</div>
 	);
