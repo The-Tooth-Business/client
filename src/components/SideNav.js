@@ -15,6 +15,7 @@ import AppsIcon from '@material-ui/icons/Apps';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import background from '../images/bokeh.jpg';
 import Alert from './Alert';
+import continents from '../data/continents.json';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useGlobalState } from '../config/globalState';
 import { Link } from 'react-router-dom';
@@ -136,7 +137,16 @@ export default function SideNav(props) {
 
 			{/* FOR FIC ONLY */}
 			{/* loop through continents and display a link to continent fairy info */}
-
+			{continents.map((obj, index) => (
+				<Link key={`${index}-${obj.name}`} to={`/fairy/${obj.name}`}>
+					<ListItem>
+						<ListItemIcon>
+							<AppsIcon className={classes.icon} />
+						</ListItemIcon>
+						<ListItemText className={classes.text}>{obj.name}</ListItemText>
+					</ListItem>
+				</Link>
+			))}
 			{/* FOR PARENT
 			display continent fairy relevant to bookings */}
 

@@ -7,5 +7,5 @@ export async function getContinents() {
 
 export async function getFairyByContinent(continent) {
 	const response = await api.get(`/continent/continent?continent=${continent}`);
-	return response.data;
+	return response.data[0];
 }

@@ -8,6 +8,7 @@ import EditBooking from './components/EditBooking';
 import Login from './components/Login';
 import Register from './components/Register';
 import Success from './components/Success';
+import FairyProfile from './components/FairyProfile';
 import NotFound from './components/NotFound';
 import stateReducer from './config/stateReducer';
 import { StateContext } from './config/globalState';
@@ -102,6 +103,13 @@ const App = () => {
 									booking={getBookingFromId(props.match.params.id)}
 									showControls
 								/>
+							)}
+						/>
+						<Route
+							exact
+							path="/fairy/:id"
+							render={(props) => (
+								<FairyProfile {...props} continent={props.match.params.id} />
 							)}
 						/>
 						<PrivateRoute exact path="/booking/new" component={NewBooking} />
