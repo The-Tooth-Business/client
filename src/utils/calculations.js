@@ -24,3 +24,15 @@ export function getFairyDollars() {
 export function getWishes() {
 	return Math.floor(Math.random() * Math.floor(10000));
 }
+
+export function getAverageRating(bookings) {
+	let count = 0;
+	let rating = 0;
+	bookings.forEach((booking) => {
+		if (booking.review_status) {
+			count += 1;
+			rating += booking.rating;
+		}
+	});
+	return Math.ceil(rating / count);
+}
