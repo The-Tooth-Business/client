@@ -9,6 +9,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 
 const StyledBadge = withStyles((theme) => ({
 	badge: {
@@ -68,13 +69,16 @@ export default function Alert() {
 				<DialogContent>
 					<DialogContentText id="alert-dialog-description">
 						{pendingReview.map((booking, index) => (
-							<Link
-								key={`${index}-${booking._id}`}
-								to={`/bookings/${booking._id}`}
-								onClick={handleClose}
-							>
-								<p>{booking.child_name}</p>
-							</Link>
+							<Button key={`${index}-${booking._id}`}>
+								{' '}
+								<Link
+									key={`${index}-${booking._id}`}
+									to={`/bookings/${booking._id}`}
+									onClick={handleClose}
+								>
+									{booking.child_name}
+								</Link>
+							</Button>
 						))}
 					</DialogContentText>
 				</DialogContent>
