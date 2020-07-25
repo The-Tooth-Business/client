@@ -15,6 +15,7 @@ import {
 import ReactTooltip from 'react-tooltip';
 import MapChart from './MapChart';
 import MakeAWish from './MakeAWish';
+import IncomingWish from './IncomingWish';
 
 const drawerWidth = 240;
 
@@ -86,18 +87,27 @@ function UserDashboard() {
 							/>
 						</Grid>
 					)}
-					<Grid item xs={12} lg={6}>
-						{adminUser && (
-							<div>
-								<MapChart setTooltipContent={setContent} bookings={bookings} />
-								<ReactTooltip>{content}</ReactTooltip>
-							</div>
-						)}
-
-						<Grid item xs={12} md={6}>
-							{adminUser && <PendingBookings />}
+					{adminUser && (
+						<Grid item xs={12} lg={6}>
+							<Grid container spacing={3}>
+								<Grid item xs={12}>
+									<div>
+										<MapChart
+											setTooltipContent={setContent}
+											bookings={bookings}
+										/>
+										<ReactTooltip>{content}</ReactTooltip>
+									</div>
+								</Grid>
+								<Grid item xs={12}>
+									<PendingBookings />
+								</Grid>
+								<Grid item xs={12}>
+									<IncomingWish />
+								</Grid>
+							</Grid>
 						</Grid>
-					</Grid>
+					)}
 					<Grid item xs={12} md={12} lg={6}>
 						<Grid container spacing={3}>
 							{adminUser && (
