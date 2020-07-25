@@ -14,7 +14,6 @@ export default function PendingBookings() {
 		},
 		paper: {
 			padding: theme.spacing(2),
-			textAlign: 'left',
 			height: '100%',
 			width: '100%',
 			textAlign: 'center',
