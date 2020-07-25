@@ -5,6 +5,7 @@ import Card from './Card';
 import { makeStyles } from '@material-ui/core/styles';
 import avatar from '../images/avatar.jpg';
 import Bookings from './Bookings';
+import { getAverageRating } from '../utils/calculations';
 
 const useStyles = makeStyles((theme) => ({
 	toolbar: theme.mixins.toolbar,
@@ -32,10 +33,12 @@ const FairyProfile = ({ continent }) => {
 	};
 	const [fairyBookings, setFairyBookings] = useState([]);
 	const [fairyData, setFairyData] = useState(initialState);
+	const [fairyRating, setFairyRating] = useState(0);
 
 	useEffect(() => {
 		getBookingsByContinent(continent).then((bookings) => {
 			setFairyBookings(bookings);
+			setFairyRating(getAverageRating(bookings));
 		});
 		getFairyByContinent(continent)
 			.then((fairy) => {
@@ -52,6 +55,7 @@ const FairyProfile = ({ continent }) => {
 			<main className={classes.content}>
 				<div className={classes.avatar}> </div>
 				<p>{fairyData.description}</p>
+				<p>Average rating: {fairyRating || '0'}/10</p>
 				<Card
 					number={fairyData.fairy_name}
 					text={`The ${fairyData.continent} Fairy`}
