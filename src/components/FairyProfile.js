@@ -5,9 +5,10 @@ import Card from './Card';
 import { makeStyles } from '@material-ui/core/styles';
 import avatar from '../images/avatar.jpg';
 import Bookings from './Bookings';
-import { getAverageRating } from '../utils/calculations';
+import { getAverageRating, totalTeeth } from '../utils/calculations';
 import { useGlobalState } from '../config/globalState';
 import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles((theme) => ({
 	toolbar: theme.mixins.toolbar,
@@ -16,13 +17,19 @@ const useStyles = makeStyles((theme) => ({
 		padding: theme.spacing(3),
 	},
 	avatar: {
-		width: '300px',
+		width: '100%',
 		height: '300px',
 		backgroundImage: `url(${avatar})`,
 		backgroundRepeat: 'no-repeat',
 		opacity: 0.9,
 		backgroundSize: 'cover',
 		backgroundPosition: 'center',
+	},
+	paper: {
+		padding: theme.spacing(2),
+		textAlign: 'left',
+		height: '100%',
+		width: '100%',
 	},
 }));
 
@@ -58,30 +65,36 @@ const FairyProfile = ({ continent }) => {
 			<div className={classes.toolbar} />
 			<main className={classes.content}>
 				<Grid container spacing={3}>
-					<Grid item xs={12} lg={3}>
-						<div className={classes.avatar}> </div>
-					</Grid>
-				</Grid>
-				<Grid container spacing={3}>
 					<Grid item xs={12} lg={6}>
-						<Card
-							number={fairyData.fairy_name}
-							text={`The ${fairyData.continent} Fairy`}
-							background={
-								'linear-gradient(45deg, rgba(41,223,189,1) 62%, rgba(101,255,213,1) 96%)'
-							}
-						/>
-						<p>{fairyData.description}</p>
+						<Paper className={classes.paper}>
+							<div className={classes.avatar}> </div>
+							<div>
+								<h1>{fairyData.fairy_name}</h1>
+								<h2>The {fairyData.continent} Fairy</h2>
+								<p>{fairyData.description}</p>
+							</div>
+						</Paper>
 					</Grid>
 					{adminUser && (
 						<Grid item xs={12} lg={3}>
 							<Card
 								number={`${fairyRating || '0'}/10`}
 								text={'Average rating'}
-								background={fairyRating > 5 ? 'green' : 'red'}
+								background={
+									fairyRating > 5
+										? 'linear-gradient(149deg, rgba(10,172,99,1) 17%, rgba(61,255,149,1) 91%)'
+										: 'linear-gradient(295deg, rgba(238,131,127,1) 17%, rgba(255,61,61,1) 91%)'
+								}
 							/>
 						</Grid>
 					)}
+					<Grid item xs={12} lg={3}>
+						<Card
+							number={totalTeeth(fairyBookings)}
+							text={'total exchanges'}
+							background={'pink'}
+						/>
+					</Grid>
 
 					{adminUser && (
 						<Grid item xs={12}>
