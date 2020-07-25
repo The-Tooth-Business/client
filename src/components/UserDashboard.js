@@ -15,6 +15,7 @@ import {
 import ReactTooltip from 'react-tooltip';
 import MapChart from './MapChart';
 import MakeAWish from './MakeAWish';
+import IncomingWish from './IncomingWish';
 
 const drawerWidth = 240;
 
@@ -100,6 +101,9 @@ function UserDashboard() {
 								</Grid>
 								<Grid item xs={12}>
 									<PendingBookings />
+								</Grid>
+								<Grid item xs={12}>
+									<IncomingWish />
 								</Grid>
 							</Grid>
 						</Grid>
