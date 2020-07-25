@@ -1,12 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { useGlobalState } from '../config/globalState';
 import { updateBooking } from '../services/bookingsServices';
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
 export default function PendingBookings() {
+	const [pending, setPending] = useState([]);
+	const useStyles = makeStyles((theme) => ({
+		root: {
+			flexShrink: 0,
+			marginLeft: theme.spacing(2.5),
+		},
+		paper: {
+			padding: theme.spacing(2),
+			textAlign: 'left',
+			height: '100%',
+			width: '100%',
+			textAlign: 'center',
+		},
+		title: {
+			color: pending.length > 0 ? 'red' : 'green',
+			fontSize: 40,
+		},
+		disc: {
+			fontSize: '10px',
+			fontStyle: 'italic',
+		},
+	}));
+	const classes = useStyles();
 	const { store, dispatch } = useGlobalState();
 	const { bookings } = store;
-
-	const [pending, setPending] = useState([]);
 
 	useEffect(() => {
 		let date = new Date();
@@ -38,9 +62,12 @@ export default function PendingBookings() {
 	}
 
 	return (
-		<div>
-			<h3> Pending Bookings: {pending.length}</h3>
-			<button onClick={handleClose}>Close all pending Bookings</button>
-		</div>
+		<Paper className={classes.paper}>
+			<h1 className={classes.title}>{pending.length}</h1>
+			<p>bookings are waiting to be closed</p>
+			<Button onClick={handleClose} disabled={pending}>
+				Close all pending Bookings
+			</Button>
+		</Paper>
 	);
 }

@@ -86,18 +86,24 @@ function UserDashboard() {
 							/>
 						</Grid>
 					)}
-					<Grid item xs={12} lg={6}>
-						{adminUser && (
-							<div>
-								<MapChart setTooltipContent={setContent} bookings={bookings} />
-								<ReactTooltip>{content}</ReactTooltip>
-							</div>
-						)}
-
-						<Grid item xs={12} md={6}>
-							{adminUser && <PendingBookings />}
+					{adminUser && (
+						<Grid item xs={12} lg={6}>
+							<Grid container spacing={3}>
+								<Grid item xs={12}>
+									<div>
+										<MapChart
+											setTooltipContent={setContent}
+											bookings={bookings}
+										/>
+										<ReactTooltip>{content}</ReactTooltip>
+									</div>
+								</Grid>
+								<Grid item xs={12}>
+									<PendingBookings />
+								</Grid>
+							</Grid>
 						</Grid>
-					</Grid>
+					)}
 					<Grid item xs={12} md={12} lg={6}>
 						<Grid container spacing={3}>
 							{adminUser && (
