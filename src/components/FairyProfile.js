@@ -63,7 +63,7 @@ const FairyProfile = ({ continent }) => {
 		},
 		avatar: {
 			width: '100%',
-			height: '300px',
+			height: '700px',
 			backgroundImage: `url(${image})`,
 			backgroundRepeat: 'no-repeat',
 			opacity: 0.9,
