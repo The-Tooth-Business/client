@@ -7,7 +7,6 @@ import NewBooking from './components/NewBooking';
 import EditBooking from './components/EditBooking';
 import Login from './components/Login';
 import Register from './components/Register';
-import Success from './components/Success';
 import FairyProfile from './components/FairyProfile';
 import NotFound from './components/NotFound';
 import stateReducer from './config/stateReducer';
@@ -92,7 +91,6 @@ const App = () => {
 						<PrivateRoute exact path="/dashboard" component={UserDashboard} />
 						<Route exact path="/auth/login" component={Login} />
 						<Route exact path="/auth/logout" render={Login} />
-						<PrivateRoute exact path="/success" component={Success} />
 						<PrivateRoute exact path="/bookings" component={Bookings} />
 						<Route
 							exact

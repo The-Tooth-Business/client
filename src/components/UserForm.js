@@ -23,6 +23,7 @@ function Copyright() {
 	);
 }
 
+// Styling for the form
 const useStyles = makeStyles((theme) => ({
 	root: {
 		height: '100vh',
@@ -97,6 +98,7 @@ const UserForm = ({ label, handleSubmit, errorMessage }) => {
 					<Avatar className={classes.avatar}>
 						<LockOutlinedIcon />
 					</Avatar>
+					{/* render error message  */}
 					<Typography component="h1" variant="h5">
 						{label}
 						{errorMessage && <p>{errorMessage}</p>}
@@ -115,6 +117,7 @@ const UserForm = ({ label, handleSubmit, errorMessage }) => {
 							onChange={handleChange}
 							autoFocus
 						/>
+						{/* only render if on registration  */}
 						{label === 'Register' && (
 							<TextField
 								data-cy="email"
@@ -158,6 +161,7 @@ const UserForm = ({ label, handleSubmit, errorMessage }) => {
 							{label}
 						</Button>
 						<Grid container>
+							{/* conditionally render login or register */}
 							<Grid item>
 								{label === 'Register' && (
 									<Link to="/auth/login" variant="body2">
