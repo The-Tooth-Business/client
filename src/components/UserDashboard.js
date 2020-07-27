@@ -148,10 +148,10 @@ function UserDashboard() {
 								{adminUser && (
 									<Card
 										number={
-											reviews.length > 0 ? `${reviews[0][0].rating}/10` : '0%'
+											reviews.length > 0 ? `${reviews[0].rating}/10` : '0%'
 										}
-										text={`latest review: "${
-											reviews.length > 0 ? reviews[0][0].comments : 'no comment'
+										text={`latest review: ${
+											reviews.length > 0 ? reviews[0].comments : 'no comment'
 										}`}
 										background={
 											'linear-gradient(0deg, rgb(255, 192, 0) 30%, rgb(255, 161, 0) 96%)'

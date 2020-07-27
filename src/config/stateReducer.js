@@ -48,11 +48,11 @@ function stateReducer(state, action) {
 			};
 		case 'setReviews':
 			const reviews = state.bookings.filter(
-				(booking) => booking.review_status && booking.rating && booking.comments
+				(booking) => booking.review_status && booking.rating
 			);
 			return {
 				...state,
-				reviews: [reviews],
+				reviews: [...reviews],
 			};
 
 		default:
