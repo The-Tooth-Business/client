@@ -12,13 +12,14 @@ const NewBooking = ({ history }) => {
 	function handleSubmit(booking) {
 		addBooking(booking)
 			.then((response) => {
+				if (response.error) {
+					throw new Error(response.error);
+				}
 				dispatch({
 					type: 'addBooking',
 					data: response,
 				});
-				if (response.error) {
-					throw new Error(response.error);
-				}
+
 				history.push(`/bookings/${response._id}`);
 			})
 			.catch((error) => {
