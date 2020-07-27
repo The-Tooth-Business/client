@@ -15,13 +15,13 @@ const EditBooking = ({ history, match }) => {
 	function handleSubmit(updatedBooking) {
 		updateBooking(updatedBooking)
 			.then((response) => {
+				if (response.error) {
+					throw new Error(response.error);
+				}
 				dispatch({
 					type: 'updateBooking',
 					data: response,
 				});
-				if (response.error) {
-					throw new Error(response.error);
-				}
 				history.push(`/bookings/${response._id}`);
 			})
 			.catch((error) => {
