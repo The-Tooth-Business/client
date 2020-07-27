@@ -58,6 +58,41 @@ To view as a parent:
   username: user1
   password: 123456
 
+---
+
+## API Endpoints
+
+### Authentication:
+
+- POST /auth/register
+- POST /auth/login
+- GET /auth/logout
+
+### Bookings
+
+- GET /bookings/
+- GET /bookings/continent
+- GET /bookings/:id
+- POST /bookings
+- DELETE /bookings/:id
+- PATCH /bookings/:id
+
+### Continents
+
+- GET /continents/
+- GET /continents/continent
+- POST /continents
+- DELETE /continents/:id
+- PATCH /continents/:id
+
+### Wishes
+
+- GET /wishes/
+- GET /wishes/:id
+- POST /wishes
+- DELETE /wishes/:id
+- PATCH /wishes/:id
+
 ### Testing
 
 The application has been tested in Chrome on Mac OS Catalina 10.15.6.
