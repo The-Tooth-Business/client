@@ -1,4 +1,11 @@
 import React from 'react';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { useGlobalState } from '../config/globalState';
+import { logoutUser, setLoggedInUser } from '../services/authServices';
+import continents from '../data/continents.json';
+//Styled components
+import Alert from './Alert';
+import StyledLink from './StyledLink';
 import List from '@material-ui/core/List';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -11,12 +18,6 @@ import AppBar from '@material-ui/core/AppBar';
 import AppsIcon from '@material-ui/icons/Apps';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import background from '../images/bokeh.jpg';
-import Alert from './Alert';
-import continents from '../data/continents.json';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { useGlobalState } from '../config/globalState';
-import { logoutUser, setLoggedInUser } from '../services/authServices';
-import StyledLink from './StyledLink';
 import FaceIcon from '@material-ui/icons/Face';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
