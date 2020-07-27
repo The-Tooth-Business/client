@@ -63,12 +63,12 @@ const FairyProfile = ({ continent }) => {
 		},
 		avatar: {
 			width: '100%',
-			height: '700px',
+			height: '400px',
 			backgroundImage: `url(${image})`,
 			backgroundRepeat: 'no-repeat',
 			opacity: 0.9,
 			backgroundSize: 'cover',
-			backgroundPosition: 'center',
+			backgroundPosition: 'top',
 		},
 		paper: {
 			padding: theme.spacing(2),
