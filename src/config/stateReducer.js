@@ -52,7 +52,7 @@ function stateReducer(state, action) {
 			);
 			return {
 				...state,
-				reviews: reviews[0],
+				reviews: [reviews],
 			};
 
 		default:
