@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { addBooking } from '../services/bookingsServices';
 import { useGlobalState } from '../config/globalState';
-// import CircularIntegration from './CircularIntegration';
+
 import Form from './Form';
 
 const NewBooking = ({ history }) => {

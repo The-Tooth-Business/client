@@ -65,7 +65,9 @@ export default function CircularIntegration({handleSubmit, booking}) {
       timer.current = setTimeout(() => {
         setSuccess(true);
         setLoading(false);
-        handleSubmit(booking)
+        setTimeout(function() {
+          handleSubmit(booking);
+        },2000);
       }, 2000);
     }
     
