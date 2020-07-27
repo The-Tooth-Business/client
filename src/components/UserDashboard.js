@@ -144,7 +144,7 @@ function UserDashboard() {
 								</Grid>
 							)}
 
-							<Grid item xs={12} md={6}>
+							{/* <Grid item xs={12} md={6}>
 								{adminUser && (
 									<Card
 										number={reviews.rating ? `${reviews.rating}/10` : '0%'}
@@ -156,7 +156,7 @@ function UserDashboard() {
 										}
 									/>
 								)}
-							</Grid>
+							</Grid> */}
 
 							<Grid item xs={12}>
 								{adminUser && <Continent />}
