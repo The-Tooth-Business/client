@@ -1,73 +1,145 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) using the basic template.
+# 🦷 Tooth Inc. MERN application
 
-## What's in the basic template?
-- It includes node-sass, and a style.scss (and removes all .css files)
-- It doesn't use serviceWorker
-- It replaces the react favicon with a flower of life icon
+### Louise Flanagan & Catherine Callcott-Stevens
 
-## Available Scripts
+![Twitter Follow](https://img.shields.io/twitter/follow/flangerhanger?&style=flat&logo=twitter&logoColor=white) ![Twitter Follow](https://img.shields.io/twitter/follow/catcstevens?&style=flat&logo=twitter&logoColor=white)
 
-In the project directory, you can run:
+---
 
-### `yarn start`
+💎 Deployed App: https://www.toothinc.online/
+🛠 Staging Environment App: https://www.development.toothinc.online/
+🖥 Client Repo: https://github.com/The-Tooth-Business/client
+🖥 Server Repo: https://github.com/The-Tooth-Business/server
+📖 Part A Documentation Repo: https://github.com/The-Tooth-Business/TheToothFairyDocs
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+ToothInc.online is a comprehensive booking management system for the Tooth Fairy and a place for parents to book tooth collections. The application has been built with the MERN stack and deployed with Netlify and Heroku.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Installation Instructions
 
-### `yarn test`
+To use the production app, please visit toothinc.online and create an account.
+To use the app locally, please follow the below instructions.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Requirements:
 
-### `yarn build`
+- Node.js
+- MongoDB. If you do not have MongoDB installed, please follow the installation instructions here (https://docs.mongodb.com/guides/server/install/) and make sure that Mongo is running locally.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Server:
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- Create a directory on your machine named ToothInc and CD into it.
+- Whilst in the ToothInc directory, from bash CLI, clone the server repo `$ git clone https://github.com/The-Tooth-Business/server.git`
+- CD into the server folder `$ CD server`
+- Install npm packages with `$ npm install`
+- Make sure that Mongo is running.
+- Seed the Mongo database with the following command `$ npm run seed` to view dummy data in your local application
+- From bash, `npm start` to start the local server
+- The server will run on local host 3030
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Client:
 
-### `yarn eject`
+- From bash, cd into the ToothInc directory and clone the client repo `$ git clone https://github.com/The-Tooth-Business/client.git`
+- Move into the client folder `$ CD client`
+- Install npm packages with `$ npm install` or `$ yarn install`
+- Make sure that your local server is running.
+- From bash, `$ npm start` or `$ yarn start` to start the local client
+- The server will allow requests from local host 3000
+- A browser window will open - this app has been developed and tested with Google Chrome.
+- Enjoy :)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+To view as admin:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- The seed data file created an admin account for you with the following credentials to login:
+  username: FIC
+  password: 123456
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+To view as a parent:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- The seed data file setup the below parent account with dummy data however you can now also create an account as a new user would.
+  username: user1
+  password: 123456
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## API Endpoints
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Authentication:
 
-### Code Splitting
+- POST /auth/register
+- POST /auth/login
+- GET /auth/logout
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+### Bookings
 
-### Analyzing the Bundle Size
+- GET /bookings/
+- GET /bookings/continent
+- GET /bookings/:id
+- POST /bookings
+- DELETE /bookings/:id
+- PATCH /bookings/:id
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+### Continents
 
-### Making a Progressive Web App
+- GET /continents/
+- GET /continents/continent
+- POST /continents
+- DELETE /continents/:id
+- PATCH /continents/:id
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+### Wishes
 
-### Advanced Configuration
+- GET /wishes/
+- GET /wishes/:id
+- POST /wishes
+- DELETE /wishes/:id
+- PATCH /wishes/:id
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+### Testing
 
-### Deployment
+The application has been tested in Chrome on Mac OS Catalina 10.15.6.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+The production and development applications have both gone through extensive automated and manual testing with Postman, Mocha and Cypress.
 
-### `yarn build` fails to minify
+Manual test logs:
+Cypress Dashboard logs:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### Server Libraries & Dependencies:
+
+- `express ^4.17.1` -
+- `mongoose ^5.9.22` - Mongoose is an Object Data Modelling (ODM) library for MongoDB and Node.js. It allows the creation of strongly-typed schemas for MongoDB documents to provide data validation. Several models have been defined within the server containing Mongoose schemas to better structure and validate database documents.
+- `mongoose-Seed ^0.6.0` - Used to create a seed script to seed the local database with default data.
+- `mongoose-unique-validator` - A plugin which adds pre-save validation for unique fields within a Mongoose schema. This is used to add an extra layer of validation when new users create accounts.
+- `express-session ^1.17.1` - Creates user sessions and stores the session data on the server and gives the client a session ID to access the data.
+- `connect-mongo ^3.2.0` - Allows for user sessions created with express-session to be saved in the Mongo database. It automatically removes expired sessions based on the lifespan of the session set in app.js.
+- `cors ^2.8.5` - CORS is a node.js package for middleware that enables cross origin resource sharing between the Express server and React client.
+- `passport, passport-local and passport-local-mongoose` -
+- `dotenv ^8.2.0` - Dotenv is a zero-dependency module that loads environment variables from a .env file into process.env. Env variables have been used to safely store information such as database keys and to conditionally determine which version of the client to connect with.
+- `body-parser ^1.19.0` - Body parser extracts the entire body of an incoming request and exposes it on req.body. The body of incoming request objects contains information from the client to access the database and is used in the server for authentication.
+
+#### Server Development dependencies
+
+- `mocha ^8.0.1` - Testing framework used to unit test the different api endpoints within the server.
+- `expect ^26.1.0` - as a dependency of mocha
+- `nodemon ^2.0.4` -
+- `prettier ^2.0.5` - Used to declare a pre-defined code format to maintain consistency across different developer machines.
+
+### Client Libraries & Dependencies:
+
+- `react ^16.13.1`: A Javascript Front-end library for building user interfaces. Maintained by Facebook.
+- `react-dom ^16.13.1` -
+- `react-router-dom ^5.2.0` -
+- `react-scripts 3.4.1` -
+- `react-simple-maps ^2.1.2` - Used to create the interactive map of bookings by country in the user dashboard.
+- `react-tooltip ^4.2.7` - Used as a dependency to react-simple-maps, this package is used to create tooltips that appear over countries when they are hovered over on the interactive map.
+- `material UI core & icons` - Material UI is a
+- `axios` - Axios is a Javascript library used to make HTTP requests to the server from the client. Axios configuration has been set in src/config/api.js to use environment variables via `process.env`. Bookings, auth and fairy services each use axios to make HTTP requests to their dedicated api end points on the server.
+- `chart.js` - A JavaScript library that provides simple and flexible charting. Chart.js was used to create the animated doughnut diagram displaying bookings by continent on the admin dashboard.
+- `env-cmd ^10.1.0` -
+- `moment ^2.27.0` -
+
+#### Client Development dependencies
+
+- `cypress ^4.10.0` -
+- `eslint-plugin-cypress ^2.11.1` - An additional linter specifically for Cypress testing. Without this linter, VS Code does not recognise some of the Cypress functions as declared.
+- `prettier ^2.0.5` - Used to declare a pre-defined code format to maintain consistency across different developer machines.
+
+### Project management

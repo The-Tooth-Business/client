@@ -3,40 +3,23 @@ import { getFairyByContinent } from '../services/fairyServices';
 import { getBookingsByContinent } from '../services/bookingsServices';
 import Card from './Card';
 import { makeStyles } from '@material-ui/core/styles';
-import avatar from '../images/avatar.jpg';
+import Asia from '../images/Asia.jpeg';
+import NorthAmerica from '../images/NorthAmerica.jpeg';
+import SouthAmerica from '../images/SouthAmerica.jpeg';
+import Europe from '../images/Europe.jpeg';
+import Oceania from '../images/Oceania.jpeg';
+import Antarctica from '../images/Antarctica.jpeg';
+import Africa from '../images/Africa.jpeg';
 import Bookings from './Bookings';
 import { getAverageRating, totalTeeth } from '../utils/calculations';
 import { useGlobalState } from '../config/globalState';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 
-const useStyles = makeStyles((theme) => ({
-	toolbar: theme.mixins.toolbar,
-	content: {
-		flexGrow: 1,
-		padding: theme.spacing(3),
-	},
-	avatar: {
-		width: '100%',
-		height: '300px',
-		backgroundImage: `url(${avatar})`,
-		backgroundRepeat: 'no-repeat',
-		opacity: 0.9,
-		backgroundSize: 'cover',
-		backgroundPosition: 'center',
-	},
-	paper: {
-		padding: theme.spacing(2),
-		textAlign: 'left',
-		height: '100%',
-		width: '100%',
-	},
-}));
-
 const FairyProfile = ({ continent }) => {
 	const { store } = useGlobalState();
 	const { adminUser } = store;
-	const classes = useStyles();
+
 	const initialState = {
 		continent: 'continent',
 		fairy_name: 'name',
@@ -45,8 +28,20 @@ const FairyProfile = ({ continent }) => {
 	const [fairyBookings, setFairyBookings] = useState([]);
 	const [fairyData, setFairyData] = useState(initialState);
 	const [fairyRating, setFairyRating] = useState(0);
+	const [image, setImage] = useState([]);
 
 	useEffect(() => {
+		const imgs = [
+			{ name: 'Asia', url: Asia },
+			{ name: 'Europe', url: Europe },
+			{ name: 'North America', url: NorthAmerica },
+			{ name: 'South America', url: SouthAmerica },
+			{ name: 'Africa', url: Africa },
+			{ name: 'Antarctica', url: Antarctica },
+			{ name: 'Oceania', url: Oceania },
+		];
+		const profile = imgs.find((img) => img.name === continent).url;
+		setImage(profile);
 		getBookingsByContinent(continent).then((bookings) => {
 			setFairyBookings(bookings);
 			setFairyRating(getAverageRating(bookings));
@@ -60,6 +55,30 @@ const FairyProfile = ({ continent }) => {
 			});
 	}, [continent]);
 
+	const useStyles = makeStyles((theme) => ({
+		toolbar: theme.mixins.toolbar,
+		content: {
+			flexGrow: 1,
+			padding: theme.spacing(3),
+		},
+		avatar: {
+			width: '100%',
+			height: '400px',
+			backgroundImage: `url(${image})`,
+			backgroundRepeat: 'no-repeat',
+			opacity: 0.9,
+			backgroundSize: 'cover',
+			backgroundPosition: 'top',
+		},
+		paper: {
+			padding: theme.spacing(2),
+			textAlign: 'left',
+			height: '100%',
+			width: '100%',
+		},
+	}));
+	const classes = useStyles();
+
 	return (
 		<div>
 			<div className={classes.toolbar} />
@@ -67,7 +86,8 @@ const FairyProfile = ({ continent }) => {
 				<Grid container spacing={3}>
 					<Grid item xs={12} lg={6}>
 						<Paper className={classes.paper}>
-							<div className={classes.avatar}> </div>
+							<div className={classes.avatar} />
+							{/* <img src={image} alt="profile" /> */}
 							<div>
 								<h1>{fairyData.fairy_name}</h1>
 								<h2>The {fairyData.continent} Fairy</h2>
