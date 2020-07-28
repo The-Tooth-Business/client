@@ -52,10 +52,7 @@ const App = () => {
 			})
 			.catch((error) => {
 				setLoggedInUser(null);
-				console.log(
-					'An error occurred fetching bookings from the server:',
-					error
-				);
+				console.log('An error occurred fetching bookings from the server:', error);
 			});
 	}, [loggedInUser, adminUser]);
 
@@ -92,10 +89,10 @@ const App = () => {
 						<Route exact path="/auth/login" component={Login} />
 						<Route exact path="/auth/logout" render={Login} />
 						<PrivateRoute exact path="/bookings" component={Bookings} />
-						<Route
+						<PrivateRoute
 							exact
 							path="/bookings/:id"
-							render={(props) => (
+							component={(props) => (
 								<Booking
 									{...props}
 									booking={getBookingFromId(props.match.params.id)}
@@ -103,15 +100,15 @@ const App = () => {
 								/>
 							)}
 						/>
-						<Route
+						<PrivateRoute
 							exact
 							path="/fairy/:id"
-							render={(props) => (
+							component={(props) => (
 								<FairyProfile {...props} continent={props.match.params.id} />
 							)}
 						/>
 						<PrivateRoute exact path="/booking/new" component={NewBooking} />
-						<Route exact path="/booking/edit/:id" component={EditBooking} />
+						<PrivateRoute exact path="/booking/edit/:id" component={EditBooking} />
 						<Route component={NotFound} />
 					</Switch>
 				</BrowserRouter>

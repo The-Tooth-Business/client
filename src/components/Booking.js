@@ -6,10 +6,10 @@ import { deleteBooking } from '../services/bookingsServices';
 import { updateBooking } from '../services/bookingsServices';
 // Styled components
 import Review from './Review';
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
+import { Button, ButtonGroup, Grid, Paper } from '@material-ui/core';
+// import ButtonGroup from '@material-ui/core/ButtonGroup';
+// import Grid from '@material-ui/core/Grid';
+// import Paper from '@material-ui/core/Paper';
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
