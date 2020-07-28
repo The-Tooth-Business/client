@@ -56,23 +56,23 @@ const FairyProfile = ({ continent }) => {
 	}, [continent]);
 
 	const useStyles = makeStyles((theme) => ({
+		root: {
+			flexGrow: 1,
+		},
 		toolbar: theme.mixins.toolbar,
 		content: {
 			flexGrow: 1,
 			padding: theme.spacing(3),
+			width: '100%',
 		},
 		avatar: {
 			width: '100%',
-			height: 'auto',
-			// backgroundImage: `url(${image})`,
-			// backgroundRepeat: 'no-repeat',
+			height: '600px',
+			backgroundImage: `url(${image})`,
+			backgroundRepeat: 'no-repeat',
 			opacity: 0.9,
 			backgroundSize: 'cover',
 			backgroundPosition: 'top',
-		},
-		container: {
-			width: '100%',
-			height: '70%',
 		},
 		paper: {
 			padding: theme.spacing(2),
@@ -84,52 +84,51 @@ const FairyProfile = ({ continent }) => {
 	const classes = useStyles();
 
 	return (
-		<div>
+		<main className={classes.content}>
 			<div className={classes.toolbar} />
-			<main className={classes.content}>
-				<Grid container spacing={3}>
-					<Grid item xs={12} lg={6}>
-						<Paper className={classes.paper}>
-							{/* <div className={classes.avatar} /> */}
-							<div className={classes.container}>
-								<img src={image} alt="profile" className={classes.avatar} />
-							</div>
-							<div>
-								<h1>{fairyData.fairy_name}</h1>
-								<h2>The {fairyData.continent} Fairy</h2>
-								<p>{fairyData.description}</p>
-							</div>
-						</Paper>
-					</Grid>
-					{adminUser && (
-						<Grid item xs={12} lg={3}>
+			<Grid container spacing={3}>
+				<Grid item xs={12} lg={6}>
+					<Paper className={classes.paper}>
+						<div>
+							<h1>{fairyData.fairy_name}</h1>
+							<h2>The {fairyData.continent} Fairy</h2>
+							<p>{fairyData.description}</p>
+						</div>
+						<div className={classes.avatar} />
+					</Paper>
+				</Grid>
+				<Grid item xs={12} lg={6}>
+					<Grid container spacing={3}>
+						{adminUser && (
+							<Grid item xs={12} lg={6}>
+								<Card
+									number={`${fairyRating || '0'}/10`}
+									text={'Average rating'}
+									background={
+										fairyRating > 5
+											? 'linear-gradient(149deg, rgba(10,172,99,1) 17%, rgba(61,255,149,1) 91%)'
+											: 'linear-gradient(295deg, rgba(238,131,127,1) 17%, rgba(255,61,61,1) 91%)'
+									}
+								/>
+							</Grid>
+						)}
+						<Grid item xs={12} lg={6}>
 							<Card
-								number={`${fairyRating || '0'}/10`}
-								text={'Average rating'}
-								background={
-									fairyRating > 5
-										? 'linear-gradient(149deg, rgba(10,172,99,1) 17%, rgba(61,255,149,1) 91%)'
-										: 'linear-gradient(295deg, rgba(238,131,127,1) 17%, rgba(255,61,61,1) 91%)'
-								}
+								number={totalTeeth(fairyBookings)}
+								text={'total exchanges'}
+								background={'pink'}
 							/>
 						</Grid>
-					)}
-					<Grid item xs={12} lg={3}>
-						<Card
-							number={totalTeeth(fairyBookings)}
-							text={'total exchanges'}
-							background={'pink'}
-						/>
-					</Grid>
 
-					{adminUser && (
-						<Grid item xs={12}>
-							<Bookings bookings={fairyBookings} />
-						</Grid>
-					)}
+						{adminUser && (
+							<Grid item xs={12}>
+								<Bookings bookings={fairyBookings} />
+							</Grid>
+						)}
+					</Grid>
 				</Grid>
-			</main>
-		</div>
+			</Grid>
+		</main>
 	);
 };
 
