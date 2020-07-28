@@ -4,7 +4,7 @@ import { addWish } from '../services/wishServices';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
+import CircularIntegration from './CircularIntegration';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -32,19 +32,18 @@ const useStyles = makeStyles((theme) => ({
 		const [wishState, setWishState] = useState('');
 
 		function handleChange(event) {
-			// const name = event.target.name;
 			const value = event.target.value;
-			console.log(wishState);
 			setWishState(value);
 		}
 
-		function handleWishSubmit(event) {
-			event.preventDefault();
+		function handleWishSubmit() {
+			
 			const newWish = {
 				wish: wishState
 			}
 			addWish(newWish).then((response) => {
 				console.log('Wish recieved from server', response)
+				setWishState('')
 			}).catch((error) => {
 				console.log('error', error)
 			})
@@ -62,10 +61,8 @@ const useStyles = makeStyles((theme) => ({
 				no guarantee that your wish will be granted. Wishes will not be granted
 				to those on Santa's naughty list.
 			</p>
-			<Button variant="contained" size="large" color="secondary" className={classes.margin}
-				onClick={handleWishSubmit}> Submit
-			</Button>
-			
+			<CircularIntegration 
+			booking={wishState} handleSubmit={handleWishSubmit}/> 
 		</Paper>
 	);
 }
