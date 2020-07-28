@@ -54,7 +54,7 @@ function UserDashboard() {
 	}, [bookings, reviews]);
 
 	const classes = useStyles();
-	console.log(reviews);
+	
 
 	return (
 		<main className={classes.content}>
