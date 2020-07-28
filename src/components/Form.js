@@ -4,14 +4,16 @@ import currencies from '../data/supported-currencies.json';
 import countries from '../data/countries.json';
 import continents from '../data/continents.json';
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Paper from '@material-ui/core/Paper';
-import Checkbox from '@material-ui/core/Checkbox';
-import InputLabel from '@material-ui/core/InputLabel';
-import NativeSelect from '@material-ui/core/NativeSelect';
+import {
+	Grid,
+	Typography,
+	TextField,
+	FormControlLabel,
+	Paper,
+	Checkbox,
+	InputLabel,
+	NativeSelect,
+} from '@material-ui/core/';
 import CircularIntegration from './CircularIntegration';
 
 const drawerWidth = 240;
@@ -257,9 +259,7 @@ const Form = ({ buttonLabel, handleSubmit, errorMessage, booking }) => {
 
 						<Grid item xs={12}>
 							<FormControlLabel
-								control={
-									<Checkbox color="secondary" name="saveAddress" value="yes" />
-								}
+								control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
 								label="Save this address?"
 							/>
 						</Grid>

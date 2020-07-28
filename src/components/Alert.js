@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useGlobalState } from '../config/globalState';
-import Badge from '@material-ui/core/Badge';
-import { withStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import { Link } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import {
+	Badge,
+	IconButton,
+	Dialog,
+	DialogContent,
+	DialogContentText,
+	DialogTitle,
+	Button,
+} from '@material-ui/core';
 
 const StyledBadge = withStyles((theme) => ({
 	badge: {
@@ -45,10 +47,7 @@ export default function Alert() {
 	return (
 		<div>
 			<IconButton onClick={handleClickOpen}>
-				<StyledBadge
-					badgeContent={pendingReview.length || null}
-					color="primary"
-				>
+				<StyledBadge badgeContent={pendingReview.length || null} color="primary">
 					<NotificationsIcon />
 				</StyledBadge>
 			</IconButton>
@@ -60,9 +59,7 @@ export default function Alert() {
 			>
 				<DialogTitle id="alert-dialog-title">
 					{pendingReview.length > 0 && (
-						<p>
-							You have {pendingReview.length} bookings waiting to be reviewed
-						</p>
+						<p>You have {pendingReview.length} bookings waiting to be reviewed</p>
 					)}
 					{pendingReview.length === 0 && <p>You're all caught up!</p>}
 				</DialogTitle>
