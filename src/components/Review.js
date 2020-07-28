@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 const Review = ({ history, booking }) => {
 	const { dispatch } = useGlobalState();
 	const classes = useStyles();
-
+	
 	const [slider, setSlider] = useState(1);
 	const [comment, setComment] = useState('');
 

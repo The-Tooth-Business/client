@@ -29,7 +29,7 @@ const App = () => {
 	};
 
 	const [store, dispatch] = useReducer(stateReducer, initialState);
-	const { bookings, loggedInUser, adminUser } = store;
+	const { bookings, loggedInUser, adminUser,  } = store;
 	useEffect(() => {
 		getBookings(loggedInUser, adminUser)
 			.then((bookings) => {
@@ -49,6 +49,7 @@ const App = () => {
 					type: 'setReviews',
 					data: bookings,
 				});
+				
 			})
 			.catch((error) => {
 				setLoggedInUser(null);

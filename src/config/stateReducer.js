@@ -54,7 +54,7 @@ function stateReducer(state, action) {
 				...state,
 				reviews: [...reviews],
 			};
-
+			
 		default:
 			return state;
 	}
