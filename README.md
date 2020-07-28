@@ -143,3 +143,10 @@ Cypress Dashboard logs:
 - `prettier ^2.0.5` - Used to declare a pre-defined code format to maintain consistency across different developer machines.
 
 ### Project management
+
+In phase one of this project we undertook extensive market research and planning from briefs given to us by the client. We finished what would be the first sprint with the green-light to run with the project. A sprint review at the end of sprint one had most of the documentation completed:
+![Trello at first sprint review](TrelloDay4.jpg)
+
+We had done our preliminary sprint planning where we had added the most obvious tasks to the Trello, but at our agile ceremony we got out the user stories to effectively project manage. As we read through each user story we each discussed which tasks the story entailed. When we reached a consensus we would add the cards to the Trello. We also discussed which tasks were the most important to complete first and stared planning our sprints accordingly. We are a very effective agile team and agreed immediately on an effort estimation of getting as much done in the first two sprints as we could as our experience suggested the client would add new features as the project progressed. This was the longest ceremony and it helped us build a plan, using the Trello, with a comprehensive lists of tasks. The tasks were all given a due-date based on which sprint they were in, and a rating of easy, medium and hard. Tasks for the first sprint were given an estimated turnaround and then were allocated fairly. We were going to use planning poker, but it was quite hard in a team of two and we were pretty much in agreement of how long each task would take.
+
+![Trello at first agile ceremony](TrelloDay5.jpg)
