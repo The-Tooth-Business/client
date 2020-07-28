@@ -54,6 +54,17 @@ function stateReducer(state, action) {
 				...state,
 				reviews: [...reviews],
 			};
+			case 'setWishes':
+			return {
+				...state,
+				wishes: action.data,
+			};
+
+		case 'addWish':
+			return {
+				...state,
+				wishes: [action.data, ...state.wishes],
+			};
 
 		default:
 			return state;

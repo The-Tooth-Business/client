@@ -17,7 +17,7 @@ export async function deleteWish(id) {
 }
 
 export async function updateWish(wish) {
-	const response = await api.patch(`/bookings/${wish._id}`, wish);
+	const response = await api.patch(`/wish/${wish._id}`, wish);
 	console.log('received updated wish from server: ', response.data);
 	return response.data;
 }
