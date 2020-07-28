@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { getWishes, updateWish } from '../services/wishServices';
-import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
+import { Paper, Button } from '@material-ui/core/';
 import { makeStyles } from '@material-ui/core/styles';
+import { useGlobalState } from '../config/globalState';
 
 export default function IncomingWish() {
+	const { dispatch, store } = useGlobalState();
+	const { pendingWishes } = store;
 	const useStyles = makeStyles((theme) => ({
 		paper: {
 			padding: theme.spacing(2),
@@ -14,32 +16,43 @@ export default function IncomingWish() {
 		},
 	}));
 	const classes = useStyles();
-	const [incomingWish, setIncomingWish] = useState({})
-	const [ wishes, setWishes ] = useState(incomingWish);
+	const [incomingWish, setIncomingWish] = useState({});
+
 	useEffect(() => {
 		getWishes().then((response) => {
-			setIncomingWish(response.pop() || {})
-		})
+			dispatch({
+				type: 'setPendingWishes',
+				data: response.length,
+			});
+			setIncomingWish(response.pop() || {});
+		});
+
 		return () => {};
-	}, [wishes]);
+	}, [dispatch]);
 
 	function handleSubmit(event) {
-		const updatedWish = incomingWish
+		const updatedWish = incomingWish;
 		if (event.target.name === 'approve') {
 			updatedWish.granted = true;
 		} else {
 			updatedWish.granted = false;
-		} 
-		updateWish(updatedWish).then((response) => {
-			setWishes([]);
-		})
+		}
+		updateWish(updatedWish).then(() => {
+			dispatch({ type: 'setPendingWishes', data: pendingWishes - 1 });
+		});
 	}
 
 	return (
 		<Paper className={classes.paper}>
-			{incomingWish.hasOwnProperty('wish') ? `Incoming wish from ${incomingWish.username} - ${incomingWish.wish}`: 'No incoming wishes'}
-			<Button disabled={!incomingWish.hasOwnProperty('wish')} onClick={handleSubmit} name='approve' >approve</Button>
-			<Button disabled={!incomingWish.hasOwnProperty('wish')} onClick={handleSubmit} name='deny' >deny</Button>
+			{pendingWishes > 0
+				? `Incoming wish from ${incomingWish.username} - ${incomingWish.wish}`
+				: 'No incoming wishes'}
+			<Button disabled={!pendingWishes > 0} onClick={handleSubmit} name="approve">
+				approve
+			</Button>
+			<Button disabled={!pendingWishes > 0} onClick={handleSubmit} name="deny">
+				deny
+			</Button>
 		</Paper>
 	);
 }

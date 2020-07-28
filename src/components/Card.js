@@ -1,8 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
+import { CardContent, Typography, Paper } from '@material-ui/core';
 
 export default function SimpleCard({ background, color, number, text }) {
 	const useStyles = makeStyles((theme) => ({
@@ -36,18 +34,10 @@ export default function SimpleCard({ background, color, number, text }) {
 		<div data-cy="card" className={classes.root}>
 			<Paper className={classes.paper}>
 				<CardContent>
-					<Typography
-						className={classes.number}
-						color="textSecondary"
-						gutterBottom
-					>
+					<Typography className={classes.number} color="textSecondary" gutterBottom>
 						{number}
 					</Typography>
-					<Typography
-						className={classes.title}
-						color="textSecondary"
-						gutterBottom
-					>
+					<Typography className={classes.title} color="textSecondary" gutterBottom>
 						{text}
 					</Typography>
 				</CardContent>

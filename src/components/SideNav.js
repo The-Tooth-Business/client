@@ -1,8 +1,12 @@
 import React from 'react';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { useGlobalState } from '../config/globalState';
+import { logoutUser, setLoggedInUser } from '../services/authServices';
+import continents from '../data/continents.json';
+//Styled components
+import Alert from './Alert';
+import StyledLink from './StyledLink';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Divider from '@material-ui/core/Divider';
@@ -14,12 +18,6 @@ import AppBar from '@material-ui/core/AppBar';
 import AppsIcon from '@material-ui/icons/Apps';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import background from '../images/bokeh.jpg';
-import Alert from './Alert';
-import continents from '../data/continents.json';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { useGlobalState } from '../config/globalState';
-import { Link } from 'react-router-dom';
-import { logoutUser, setLoggedInUser } from '../services/authServices';
 import FaceIcon from '@material-ui/icons/Face';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
@@ -55,9 +53,6 @@ const useStyles = makeStyles((theme) => ({
 		color: 'white',
 		textDecoration: 'none',
 	},
-	icon: {
-		fill: 'white',
-	},
 	// necessary for content to be below app bar
 	toolbar: theme.mixins.toolbar,
 	drawerPaper: {
@@ -82,13 +77,6 @@ export default function SideNav(props) {
 	const classes = useStyles();
 	const theme = useTheme();
 
-	const handleDrawerToggle = () => {
-		setMobileOpen(!mobileOpen);
-	};
-
-	const container =
-		window !== undefined ? () => window().document.body : undefined;
-
 	function handleLogout() {
 		setLoggedInUser(null);
 		logoutUser()
@@ -111,56 +99,45 @@ export default function SideNav(props) {
 		});
 	}
 
+	const handleDrawerToggle = () => {
+		setMobileOpen(!mobileOpen);
+	};
+
+	const container =
+		window !== undefined ? () => window().document.body : undefined;
+
 	const drawer = (
 		<div data-cy="side-navbar">
 			<div className={classes.toolbar} />
 			<Divider />
 			<List>
-				<Link to="/dashboard">
-					<ListItem>
-						<ListItemIcon>
-							<AppsIcon className={classes.icon} />
-						</ListItemIcon>
-						<ListItemText className={classes.text}>Dashboard</ListItemText>
-					</ListItem>
-				</Link>
-				<Link to="/booking/new">
-					<ListItem>
-						<ListItemIcon>
-							<AddCircleIcon className={classes.icon} />
-						</ListItemIcon>
-						<ListItemText data-cy="booking-new" className={classes.text}>
-							Make a booking
-						</ListItemText>
-					</ListItem>
-				</Link>
+				<StyledLink icon={AppsIcon} text={'Dashboard'} link="/dashboard" />
+				<StyledLink
+					icon={AddCircleIcon}
+					text={'Make a booking'}
+					link="/booking/new"
+				/>
 			</List>
 			<Divider />
 
 			{adminUser &&
 				continents.map((obj, index) => (
-					<Link key={`${index}-${obj.name}`} to={`/fairy/${obj.name}`}>
-						<ListItem>
-							<ListItemIcon>
-								<FaceIcon className={classes.icon} />
-							</ListItemIcon>
-							<ListItemText className={classes.text}>{obj.name}</ListItemText>
-						</ListItem>
-					</Link>
+					<StyledLink
+						key={`${index}-${obj.name}`}
+						link={`/fairy/${obj.name}`}
+						icon={FaceIcon}
+						text={obj.name}
+					/>
 				))}
 
 			<Divider />
 			<List>
-				<Link to="/auth/login" onClick={handleLogout}>
-					<ListItem>
-						<ListItemIcon>
-							<ExitToAppIcon className={classes.icon} />
-						</ListItemIcon>
-						<ListItemText data-cy="logout" className={classes.text}>
-							Logout
-						</ListItemText>
-					</ListItem>
-				</Link>
+				<StyledLink
+					link="/auth/login"
+					icon={ExitToAppIcon}
+					text={'Logout'}
+					onClick={handleLogout}
+				/>
 			</List>
 		</div>
 	);

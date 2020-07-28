@@ -1,23 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableFooter from '@material-ui/core/TableFooter';
-import TablePagination from '@material-ui/core/TablePagination';
-import TableRow from '@material-ui/core/TableRow';
-import IconButton from '@material-ui/core/IconButton';
+import {
+	Table,
+	TableBody,
+	TableCell,
+	TableContainer,
+	TableFooter,
+	TablePagination,
+	TableRow,
+	TableHead,
+	Chip,
+	Paper,
+	IconButton,
+} from '@material-ui/core';
 import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
-import Chip from '@material-ui/core/Chip';
+
 import FaceIcon from '@material-ui/icons/Face';
-import TableHead from '@material-ui/core/TableHead';
-import { Link } from 'react-router-dom';
-import Paper from '@material-ui/core/Paper';
+import StyledLink from './StyledLink';
 
 const useStyles1 = makeStyles((theme) => ({
 	root: {
@@ -65,22 +68,14 @@ function TablePaginationActions(props) {
 				disabled={page === 0}
 				aria-label="previous page"
 			>
-				{theme.direction === 'rtl' ? (
-					<KeyboardArrowRight />
-				) : (
-					<KeyboardArrowLeft />
-				)}
+				{theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
 			</IconButton>
 			<IconButton
 				onClick={handleNextButtonClick}
 				disabled={page >= Math.ceil(count / rowsPerPage) - 1}
 				aria-label="next page"
 			>
-				{theme.direction === 'rtl' ? (
-					<KeyboardArrowLeft />
-				) : (
-					<KeyboardArrowRight />
-				)}
+				{theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
 			</IconButton>
 			<IconButton
 				onClick={handleLastPageButtonClick}
@@ -147,12 +142,12 @@ export default function Bookings({ bookings }) {
 				<Table className={classes.table} aria-label="custom pagination table">
 					<TableHead>
 						<TableRow>
-							<TableCell>View</TableCell>
 							<TableCell>Status</TableCell>
 							<TableCell align="left">Name</TableCell>
-							<TableCell align="right">Teeth</TableCell>
-							<TableCell align="right">Continent</TableCell>
-							<TableCell align="right">Rating</TableCell>
+							<TableCell align="left">Teeth</TableCell>
+							<TableCell align="left">Continent</TableCell>
+							<TableCell align="left">Rating</TableCell>
+							<TableCell align="right"></TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
@@ -161,9 +156,6 @@ export default function Bookings({ bookings }) {
 							: rows
 						).map((row, index) => (
 							<TableRow key={`${index} - ${row.child_name}`}>
-								<TableCell style={{ width: '10%' }} align="left">
-									<Link to={`/bookings/${row._id}`}>View</Link>
-								</TableCell>
 								<TableCell style={{ width: '10%' }} align="left">
 									{row.open_status && (
 										<Chip
@@ -180,14 +172,21 @@ export default function Bookings({ bookings }) {
 								<TableCell style={{ width: '20%' }} component="th" scope="row">
 									{row.child_name}
 								</TableCell>
-								<TableCell style={{ width: '10%' }} align="right">
+								<TableCell style={{ width: '10%' }} align="left">
 									{row.teeth}
 								</TableCell>
-								<TableCell style={{ width: '20%' }} align="right">
+								<TableCell style={{ width: '20%' }} align="left">
 									{row.continent}
 								</TableCell>
-								<TableCell style={{ width: '10%' }} align="center">
+								<TableCell style={{ width: '10%' }} align="left">
 									{row.rating}
+								</TableCell>
+								<TableCell style={{ width: '10%' }} align="left">
+									<StyledLink
+										link={`/bookings/${row._id}`}
+										text={'View'}
+										color={'hotpink'}
+									/>
 								</TableCell>
 							</TableRow>
 						))}

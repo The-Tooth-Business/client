@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useGlobalState } from '../config/globalState';
-import Badge from '@material-ui/core/Badge';
-import { withStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import { Link } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import {
+	Badge,
+	IconButton,
+	Dialog,
+	DialogContent,
+	DialogContentText,
+	DialogTitle,
+	Button,
+} from '@material-ui/core';
 
 const StyledBadge = withStyles((theme) => ({
 	badge: {
@@ -22,8 +24,19 @@ const StyledBadge = withStyles((theme) => ({
 
 export default function Alert() {
 	const { store } = useGlobalState();
-	const { bookings } = store;
+	const { bookings, adminUser, pendingWishes } = store;
 	const [open, setOpen] = React.useState(false);
+	const [wishes, setWishes] = React.useState(0);
+	const [pendingReview, setPendingReview] = useState([]);
+
+	useEffect(() => {
+		const pendingReviews = bookings.filter(
+			(booking) => !booking.review_status && !booking.open_status
+		);
+		adminUser && setWishes(pendingWishes);
+		setPendingReview(pendingReviews);
+		return () => {};
+	}, [bookings, pendingWishes, adminUser]);
 
 	const handleClickOpen = () => {
 		setOpen(true);
@@ -33,21 +46,12 @@ export default function Alert() {
 		setOpen(false);
 	};
 
-	const [pendingReview, setPendingReview] = useState([]);
-
-	useEffect(() => {
-		const pendingReviews = bookings.filter(
-			(booking) => !booking.review_status && !booking.open_status
-		);
-		setPendingReview(pendingReviews);
-		return () => {};
-	}, [bookings]);
 	return (
 		<div>
 			<IconButton onClick={handleClickOpen}>
 				<StyledBadge
-					badgeContent={pendingReview.length || null}
-					color="primary"
+					badgeContent={adminUser ? wishes || null : pendingReview.length || null}
+					color="secondary"
 				>
 					<NotificationsIcon />
 				</StyledBadge>
@@ -58,30 +62,38 @@ export default function Alert() {
 				aria-labelledby="alert-dialog-title"
 				aria-describedby="alert-dialog-description"
 			>
-				<DialogTitle id="alert-dialog-title">
-					{pendingReview.length > 0 && (
-						<p>
-							You have {pendingReview.length} bookings waiting to be reviewed
-						</p>
-					)}
-					{pendingReview.length === 0 && <p>You're all caught up!</p>}
-				</DialogTitle>
-				<DialogContent>
-					<DialogContentText id="alert-dialog-description">
-						{pendingReview.map((booking, index) => (
-							<Button key={`${index}-${booking._id}`}>
-								{' '}
-								<Link
-									key={`${index}-${booking._id}`}
-									to={`/bookings/${booking._id}`}
-									onClick={handleClose}
-								>
-									{booking.child_name}
-								</Link>
-							</Button>
-						))}
-					</DialogContentText>
-				</DialogContent>
+				{adminUser && (
+					<DialogTitle id="alert-dialog-title">
+						{wishes > 0 && <p>You have {wishes} wishes waiting to be reviewed</p>}
+						{!wishes && <p>You're all caught up!</p>}
+					</DialogTitle>
+				)}
+				{!adminUser && (
+					<DialogTitle id="alert-dialog-title">
+						{pendingReview.length > 0 && (
+							<p>You have {pendingReview.length} bookings waiting to be reviewed</p>
+						)}
+						{pendingReview.length === 0 && <p>You're all caught up!</p>}
+					</DialogTitle>
+				)}
+				{!adminUser && (
+					<DialogContent>
+						<DialogContentText id="alert-dialog-description">
+							{pendingReview.map((booking, index) => (
+								<Button key={`${index}-${booking._id}`}>
+									{' '}
+									<Link
+										key={`${index}-${booking._id}`}
+										to={`/bookings/${booking._id}`}
+										onClick={handleClose}
+									>
+										{booking.child_name}
+									</Link>
+								</Button>
+							))}
+						</DialogContentText>
+					</DialogContent>
+				)}
 			</Dialog>
 		</div>
 	);

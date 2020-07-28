@@ -54,7 +54,6 @@ function UserDashboard() {
 	}, [bookings, reviews]);
 
 	const classes = useStyles();
-	
 
 	return (
 		<main className={classes.content}>
@@ -93,10 +92,7 @@ function UserDashboard() {
 							<Grid container spacing={3}>
 								<Grid item xs={12}>
 									<div>
-										<MapChart
-											setTooltipContent={setContent}
-											bookings={bookings}
-										/>
+										<MapChart setTooltipContent={setContent} bookings={bookings} />
 										<ReactTooltip>{content}</ReactTooltip>
 									</div>
 								</Grid>
@@ -148,9 +144,7 @@ function UserDashboard() {
 							<Grid item xs={12} md={6}>
 								{adminUser && (
 									<Card
-										number={
-											reviews.length > 0 ? `${reviews[0].rating}/10` : '0%'
-										}
+										number={reviews.length > 0 ? `${reviews[0].rating}/10` : '0%'}
 										text={`latest review: ${
 											reviews.length > 0 ? reviews[0].comments : 'no comment'
 										}`}
@@ -160,13 +154,12 @@ function UserDashboard() {
 									/>
 								)}
 							</Grid>
-
 							<Grid item xs={12}>
 								{adminUser && <Continent />}
 							</Grid>
 						</Grid>
 					</Grid>
-
+					{/* render for both admin and parent */}
 					<Grid item xs={12}>
 						<Bookings bookings={bookings} />
 					</Grid>

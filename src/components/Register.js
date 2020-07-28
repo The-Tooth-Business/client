@@ -5,6 +5,7 @@ import {
 	setLoggedInUser,
 	setAdminUser,
 	getAdminUser,
+	getLoggedInUser,
 } from '../services/authServices';
 import UserForm from './UserForm';
 
@@ -20,7 +21,7 @@ const Register = ({ history }) => {
 				setAdminUser(response.admin);
 				dispatch({
 					type: 'setLoggedInUser',
-					data: response.username,
+					data: getLoggedInUser(),
 				});
 				dispatch({
 					type: 'setAdminUser',

@@ -54,7 +54,12 @@ function stateReducer(state, action) {
 				...state,
 				reviews: [...reviews],
 			};
-			
+		case 'setPendingWishes':
+			return {
+				...state,
+				pendingWishes: action.data,
+			};
+
 		default:
 			return state;
 	}

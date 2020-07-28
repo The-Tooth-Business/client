@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import {
 	loginUser,
 	setLoggedInUser,
+	getAdminUser,
 	setAdminUser,
+	getLoggedInUser,
 } from '../services/authServices';
 import { useGlobalState } from '../config/globalState';
 import UserForm from './UserForm';
@@ -19,15 +21,16 @@ const Login = ({ history }) => {
 				setAdminUser(response.admin);
 				dispatch({
 					type: 'setLoggedInUser',
-					data: response.username,
+					data: getLoggedInUser(),
 				});
 				dispatch({
 					type: 'setAdminUser',
-					data: response.admin,
+					data: getAdminUser(),
 				});
 				history.push('/dashboard');
 			})
 			.catch((error) => {
+				setLoggedInUser(null);
 				if (error.response && error.response.status === 401)
 					setErrorMessage(
 						'Authentication failed. Please check your username and password.'
