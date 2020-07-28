@@ -65,7 +65,7 @@ export default function Alert() {
 				{adminUser && (
 					<DialogTitle id="alert-dialog-title">
 						{wishes > 0 && <p>You have {wishes} wishes waiting to be reviewed</p>}
-						{wishes === 0 && <p>You're all caught up!</p>}
+						{!wishes && <p>You're all caught up!</p>}
 					</DialogTitle>
 				)}
 				{!adminUser && (
