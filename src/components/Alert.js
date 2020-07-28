@@ -3,7 +3,6 @@ import { useGlobalState } from '../config/globalState';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { getWishes } from '../services/wishServices';
 import {
 	Badge,
 	IconButton,
@@ -25,9 +24,19 @@ const StyledBadge = withStyles((theme) => ({
 
 export default function Alert() {
 	const { store } = useGlobalState();
-	const { bookings, adminUser } = store;
+	const { bookings, adminUser, pendingWishes } = store;
 	const [open, setOpen] = React.useState(false);
-	const [wishes, setWishes] = React.useState(false);
+	const [wishes, setWishes] = React.useState(0);
+	const [pendingReview, setPendingReview] = useState([]);
+
+	useEffect(() => {
+		const pendingReviews = bookings.filter(
+			(booking) => !booking.review_status && !booking.open_status
+		);
+		adminUser && setWishes(pendingWishes);
+		setPendingReview(pendingReviews);
+		return () => {};
+	}, [bookings, pendingWishes, adminUser]);
 
 	const handleClickOpen = () => {
 		setOpen(true);
@@ -37,18 +46,6 @@ export default function Alert() {
 		setOpen(false);
 	};
 
-	const [pendingReview, setPendingReview] = useState([]);
-
-	useEffect(() => {
-		const pendingReviews = bookings.filter(
-			(booking) => !booking.review_status && !booking.open_status
-		);
-		getWishes().then((wishes) => {
-			setWishes(wishes.length);
-		});
-		setPendingReview(pendingReviews);
-		return () => {};
-	}, [bookings]);
 	return (
 		<div>
 			<IconButton onClick={handleClickOpen}>

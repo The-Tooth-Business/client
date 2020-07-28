@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 const Review = ({ history, booking }) => {
 	const { dispatch } = useGlobalState();
 	const classes = useStyles();
-	
+
 	const [slider, setSlider] = useState(1);
 	const [comment, setComment] = useState('');
 
@@ -88,6 +88,7 @@ const Review = ({ history, booking }) => {
 					name="comments"
 					label="additional feedback"
 					onChange={handleCommentChange}
+					fullWidth
 				/>
 			</div>
 			<Button

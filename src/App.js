@@ -15,11 +15,7 @@ import PrivateRoute from './components/PrivateRoute';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import SideNav from './components/SideNav';
 import { getBookings } from './services/bookingsServices';
-import {
-	setLoggedInUser,
-	getLoggedInUser,
-	getAdminUser,
-} from './services/authServices';
+import { setLoggedInUser } from './services/authServices';
 
 const App = () => {
 	const initialState = {
@@ -31,14 +27,6 @@ const App = () => {
 	const [store, dispatch] = useReducer(stateReducer, initialState);
 	const { bookings, loggedInUser, adminUser } = store;
 	useEffect(() => {
-		dispatch({
-			type: 'setLoggedInUser',
-			data: getLoggedInUser(),
-		});
-		dispatch({
-			type: 'setAdminUser',
-			data: getAdminUser(),
-		});
 		loggedInUser &&
 			getBookings(loggedInUser, adminUser)
 				.then((bookings) => {
@@ -46,7 +34,6 @@ const App = () => {
 						type: 'setBookings',
 						data: bookings,
 					});
-
 					dispatch({
 						type: 'setReviews',
 						data: bookings,
