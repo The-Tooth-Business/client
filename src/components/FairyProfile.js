@@ -63,12 +63,16 @@ const FairyProfile = ({ continent }) => {
 		},
 		avatar: {
 			width: '100%',
-			height: '400px',
-			backgroundImage: `url(${image})`,
-			backgroundRepeat: 'no-repeat',
+			height: 'auto',
+			// backgroundImage: `url(${image})`,
+			// backgroundRepeat: 'no-repeat',
 			opacity: 0.9,
 			backgroundSize: 'cover',
 			backgroundPosition: 'top',
+		},
+		container: {
+			width: '100%',
+			height: '70%',
 		},
 		paper: {
 			padding: theme.spacing(2),
@@ -86,8 +90,10 @@ const FairyProfile = ({ continent }) => {
 				<Grid container spacing={3}>
 					<Grid item xs={12} lg={6}>
 						<Paper className={classes.paper}>
-							<div className={classes.avatar} />
-							{/* <img src={image} alt="profile" /> */}
+							{/* <div className={classes.avatar} /> */}
+							<div className={classes.container}>
+								<img src={image} alt="profile" className={classes.avatar} />
+							</div>
 							<div>
 								<h1>{fairyData.fairy_name}</h1>
 								<h2>The {fairyData.continent} Fairy</h2>

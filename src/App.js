@@ -15,7 +15,7 @@ import PrivateRoute from './components/PrivateRoute';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import SideNav from './components/SideNav';
 import { getBookings } from './services/bookingsServices';
-import { setLoggedInUser } from './services/authServices';
+import { getLoggedInUser, getAdminUser } from './services/authServices';
 
 const App = () => {
 	const initialState = {
@@ -27,6 +27,14 @@ const App = () => {
 	const [store, dispatch] = useReducer(stateReducer, initialState);
 	const { bookings, loggedInUser, adminUser } = store;
 	useEffect(() => {
+		dispatch({
+			type: 'setLoggedInUser',
+			data: getLoggedInUser(),
+		});
+		dispatch({
+			type: 'setAdminUser',
+			data: getAdminUser(),
+		});
 		loggedInUser &&
 			getBookings(loggedInUser, adminUser)
 				.then((bookings) => {
@@ -40,7 +48,7 @@ const App = () => {
 					});
 				})
 				.catch((error) => {
-					setLoggedInUser(null);
+					// setLoggedInUser(null);
 					console.log('An error occurred fetching bookings from the server:', error);
 				});
 	}, [loggedInUser, adminUser]);
