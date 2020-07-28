@@ -88,6 +88,7 @@ const Review = ({ history, booking }) => {
 					name="comments"
 					label="additional feedback"
 					onChange={handleCommentChange}
+					fullWidth
 				/>
 			</div>
 			<Button

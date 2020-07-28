@@ -2,13 +2,11 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useGlobalState } from '../config/globalState';
 import moment from 'moment';
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { deleteBooking } from '../services/bookingsServices';
 import { updateBooking } from '../services/bookingsServices';
+// Styled components
 import Review from './Review';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
+import { Button, ButtonGroup, Grid, Paper } from '@material-ui/core';
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -99,25 +97,20 @@ const Booking = ({ history, booking, showControls }) => {
 				<Grid container spacing={3}>
 					<Grid item xs={12}>
 						<Paper className={classes.paper}>
-							<h3>
-								Thank you for booking your tooth collection with Tooth Inc.
-							</h3>
+							<h3>Thank you for booking your tooth collection with Tooth Inc.</h3>
 							{open_status && (
 								<p>
-									The {continent} fairy will visit {address} this evening.
-									Please put the tooth under the child's pillow and remove all
-									dogs, cats and fly swats.
+									The {continent} fairy will visit {address} this evening. Please put the
+									tooth under the child's pillow and remove all dogs, cats and fly swats.
 								</p>
 							)}
 							{!open_status && !review_status && (
 								<p>
-									{child_name}'s tooth has now been collected. Please let us
-									know how the {continent} fairy did.
+									{child_name}'s tooth has now been collected. Please let us know how the{' '}
+									{continent} fairy did.
 								</p>
 							)}
-							{!open_status && review_status && (
-								<p>Thank you for your review.</p>
-							)}
+							{!open_status && review_status && <p>Thank you for your review.</p>}
 						</Paper>
 					</Grid>
 					{!open_status && !review_status && (

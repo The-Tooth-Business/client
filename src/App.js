@@ -7,7 +7,7 @@ import NewBooking from './components/NewBooking';
 import EditBooking from './components/EditBooking';
 import Login from './components/Login';
 import Register from './components/Register';
-import Success from './components/Success';
+import FairyProfile from './components/FairyProfile';
 import NotFound from './components/NotFound';
 import stateReducer from './config/stateReducer';
 import { StateContext } from './config/globalState';
@@ -15,11 +15,7 @@ import PrivateRoute from './components/PrivateRoute';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import SideNav from './components/SideNav';
 import { getBookings } from './services/bookingsServices';
-import {
-	setLoggedInUser,
-	getLoggedInUser,
-	getAdminUser,
-} from './services/authServices';
+import { getLoggedInUser, getAdminUser } from './services/authServices';
 
 const App = () => {
 	const initialState = {
@@ -31,32 +27,30 @@ const App = () => {
 	const [store, dispatch] = useReducer(stateReducer, initialState);
 	const { bookings, loggedInUser, adminUser } = store;
 	useEffect(() => {
-		getBookings(loggedInUser, adminUser)
-			.then((bookings) => {
-				dispatch({
-					type: 'setBookings',
-					data: bookings,
+		dispatch({
+			type: 'setLoggedInUser',
+			data: getLoggedInUser(),
+		});
+		dispatch({
+			type: 'setAdminUser',
+			data: getAdminUser(),
+		});
+		loggedInUser &&
+			getBookings(loggedInUser, adminUser)
+				.then((bookings) => {
+					dispatch({
+						type: 'setBookings',
+						data: bookings,
+					});
+					dispatch({
+						type: 'setReviews',
+						data: bookings,
+					});
+				})
+				.catch((error) => {
+					// setLoggedInUser(null);
+					console.log('An error occurred fetching bookings from the server:', error);
 				});
-				dispatch({
-					type: 'setLoggedInUser',
-					data: getLoggedInUser(),
-				});
-				dispatch({
-					type: 'setAdminUser',
-					data: getAdminUser(),
-				});
-				dispatch({
-					type: 'setReviews',
-					data: bookings,
-				});
-			})
-			.catch((error) => {
-				setLoggedInUser(null);
-				console.log(
-					'An error occurred fetching bookings from the server:',
-					error
-				);
-			});
 	}, [loggedInUser, adminUser]);
 
 	function getBookingFromId(id) {
@@ -91,12 +85,11 @@ const App = () => {
 						<PrivateRoute exact path="/dashboard" component={UserDashboard} />
 						<Route exact path="/auth/login" component={Login} />
 						<Route exact path="/auth/logout" render={Login} />
-						<PrivateRoute exact path="/success" component={Success} />
 						<PrivateRoute exact path="/bookings" component={Bookings} />
-						<Route
+						<PrivateRoute
 							exact
 							path="/bookings/:id"
-							render={(props) => (
+							component={(props) => (
 								<Booking
 									{...props}
 									booking={getBookingFromId(props.match.params.id)}
@@ -104,8 +97,15 @@ const App = () => {
 								/>
 							)}
 						/>
+						<PrivateRoute
+							exact
+							path="/fairy/:id"
+							component={(props) => (
+								<FairyProfile {...props} continent={props.match.params.id} />
+							)}
+						/>
 						<PrivateRoute exact path="/booking/new" component={NewBooking} />
-						<Route exact path="/booking/edit/:id" component={EditBooking} />
+						<PrivateRoute exact path="/booking/edit/:id" component={EditBooking} />
 						<Route component={NotFound} />
 					</Switch>
 				</BrowserRouter>

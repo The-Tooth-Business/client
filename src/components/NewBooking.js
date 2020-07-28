@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { addBooking } from '../services/bookingsServices';
 import { useGlobalState } from '../config/globalState';
-// import CircularIntegration from './CircularIntegration';
+
 import Form from './Form';
 
 const NewBooking = ({ history }) => {
@@ -12,13 +12,14 @@ const NewBooking = ({ history }) => {
 	function handleSubmit(booking) {
 		addBooking(booking)
 			.then((response) => {
+				if (response.error) {
+					throw new Error(response.error);
+				}
 				dispatch({
 					type: 'addBooking',
 					data: response,
 				});
-				if (response.error) {
-					throw new Error(response.error);
-				}
+
 				history.push(`/bookings/${response._id}`);
 			})
 			.catch((error) => {
