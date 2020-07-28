@@ -25,7 +25,6 @@ export default function IncomingWish() {
 				data: response.length,
 			});
 			setIncomingWish(response.pop() || {});
-			console.log('setting wishes: ');
 		});
 
 		return () => {};
