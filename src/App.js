@@ -29,32 +29,33 @@ const App = () => {
 	};
 
 	const [store, dispatch] = useReducer(stateReducer, initialState);
-	const { bookings, loggedInUser, adminUser,  } = store;
+	const { bookings, loggedInUser, adminUser } = store;
 	useEffect(() => {
-		getBookings(loggedInUser, adminUser)
-			.then((bookings) => {
-				dispatch({
-					type: 'setBookings',
-					data: bookings,
+		dispatch({
+			type: 'setLoggedInUser',
+			data: getLoggedInUser(),
+		});
+		dispatch({
+			type: 'setAdminUser',
+			data: getAdminUser(),
+		});
+		loggedInUser &&
+			getBookings(loggedInUser, adminUser)
+				.then((bookings) => {
+					dispatch({
+						type: 'setBookings',
+						data: bookings,
+					});
+
+					dispatch({
+						type: 'setReviews',
+						data: bookings,
+					});
+				})
+				.catch((error) => {
+					setLoggedInUser(null);
+					console.log('An error occurred fetching bookings from the server:', error);
 				});
-				dispatch({
-					type: 'setLoggedInUser',
-					data: getLoggedInUser(),
-				});
-				dispatch({
-					type: 'setAdminUser',
-					data: getAdminUser(),
-				});
-				dispatch({
-					type: 'setReviews',
-					data: bookings,
-				});
-				
-			})
-			.catch((error) => {
-				setLoggedInUser(null);
-				console.log('An error occurred fetching bookings from the server:', error);
-			});
 	}, [loggedInUser, adminUser]);
 
 	function getBookingFromId(id) {
