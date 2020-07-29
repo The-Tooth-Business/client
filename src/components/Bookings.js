@@ -18,8 +18,9 @@ import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
-
+import DoneIcon from '@material-ui/icons/Done';
 import FaceIcon from '@material-ui/icons/Face';
+import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import StyledLink from './StyledLink';
 
 const useStyles1 = makeStyles((theme) => ({
@@ -95,8 +96,24 @@ TablePaginationActions.propTypes = {
 	rowsPerPage: PropTypes.number.isRequired,
 };
 
-function createData(_id, open_status, child_name, teeth, continent, rating) {
-	return { _id, open_status, child_name, teeth, continent, rating };
+function createData(
+	_id,
+	open_status,
+	child_name,
+	teeth,
+	continent,
+	rating,
+	modified_date
+) {
+	return {
+		_id,
+		open_status,
+		child_name,
+		teeth,
+		continent,
+		rating,
+		modified_date,
+	};
 }
 
 const useStyles2 = makeStyles({
@@ -120,7 +137,8 @@ export default function Bookings({ bookings }) {
 				booking.child_name,
 				booking.teeth,
 				booking.continent,
-				booking.rating || '-'
+				booking.rating || '-',
+				booking.modified_date
 			)
 		);
 
@@ -135,6 +153,13 @@ export default function Bookings({ bookings }) {
 		setRowsPerPage(parseInt(event.target.value, 10));
 		setPage(0);
 	};
+
+	function checkPending(booking) {
+		let date = new Date();
+		let day = date.getUTCDate();
+		const isPending = new Date(booking).getUTCDate() < day;
+		return isPending;
+	}
 
 	return (
 		<Paper data-cy="bookings" className={classes.paper}>
@@ -157,16 +182,25 @@ export default function Bookings({ bookings }) {
 						).map((row, index) => (
 							<TableRow data-cy="booking" key={`${index} - ${row.child_name}`}>
 								<TableCell style={{ width: '10%' }} align="left">
-									{row.open_status && (
+									{row.open_status && checkPending(row.modified_date) && (
+										<Chip
+											color="secondary"
+											label="Pending"
+											size="small"
+											icon={<ErrorOutlineIcon />}
+										/>
+									)}
+									{row.open_status && !checkPending(row.modified_date) && (
 										<Chip
 											color="secondary"
 											label="Open"
 											size="small"
+											variant="outlined"
 											icon={<FaceIcon />}
 										/>
 									)}
 									{!row.open_status && (
-										<Chip label="Closed" size="small" icon={<FaceIcon />} />
+										<Chip label="Closed" size="small" icon={<DoneIcon />} />
 									)}
 								</TableCell>
 								<TableCell style={{ width: '20%' }} component="th" scope="row">
