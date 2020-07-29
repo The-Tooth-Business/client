@@ -1,0 +1,22 @@
+[
+	{
+		"question": "What is love?",
+		"answers": ["Baby don't hurt me", "The best!", "Love is what parents do"],
+		"correct": "Baby don't hurt me"
+	},
+	{
+		"question": "Where did you come from?",
+		"answers": ["My parents", "The stork", "Cotton Eye Joe"],
+		"correct": "Cotton Eye Joe"
+	},
+	{
+		"question": "I'm blue",
+		"answers": ["Woah that's awesome", "How?", "Da ba de da ba di"],
+		"correct": "Da ba de da ba di"
+	},
+	{
+		"question": "I've got chills",
+		"answers": ["They're multiplying", "Put a jacket on?", "What's that?"],
+		"correct": "They're multiplying"
+	}
+]

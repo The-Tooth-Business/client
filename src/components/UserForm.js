@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useGlobalState } from '../config/globalState';
 import {
 	Avatar,
 	Button,
@@ -14,6 +15,7 @@ import {
 import { Link } from 'react-router-dom';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from '@material-ui/core/styles';
+import Captcha from './Captcha';
 
 function Copyright() {
 	return (
@@ -60,6 +62,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const UserForm = ({ label, handleSubmit, errorMessage }) => {
+	const { store } = useGlobalState();
+	const { captchaValue, captchaAnswer } = store;
 	const classes = useStyles();
 	const initialFormState = {
 		username: '',
@@ -76,6 +80,8 @@ const UserForm = ({ label, handleSubmit, errorMessage }) => {
 			[name]: value,
 		});
 	}
+
+	let error;
 	function handleFormSubmit(event) {
 		event.preventDefault();
 		const user = {
@@ -83,7 +89,9 @@ const UserForm = ({ label, handleSubmit, errorMessage }) => {
 			email: userDetails.email,
 			password: userDetails.password,
 		};
-		handleSubmit(user);
+		captchaAnswer === captchaValue
+			? handleSubmit(user)
+			: console.log('You are not an adult');
 	}
 
 	return (
@@ -103,6 +111,7 @@ const UserForm = ({ label, handleSubmit, errorMessage }) => {
 					{/* render error message  */}
 					<Typography component="h1" variant="h5">
 						{label}
+						{error}
 						{errorMessage && <p>{errorMessage}</p>}
 					</Typography>
 					<form data-cy="login-form" className={classes.form} noValidate>
@@ -148,10 +157,12 @@ const UserForm = ({ label, handleSubmit, errorMessage }) => {
 							autoComplete="current-password"
 							onChange={handleChange}
 						/>
-						<FormControlLabel
+						<Typography>Prove you are an adult</Typography>
+						<Captcha />
+						{/* <FormControlLabel
 							control={<Checkbox value="remember" color="primary" />}
 							label="Remember me"
-						/>
+						/> */}
 						<Button
 							data-cy="login-button"
 							type="submit"

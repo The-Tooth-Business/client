@@ -59,7 +59,16 @@ function stateReducer(state, action) {
 				...state,
 				pendingWishes: action.data,
 			};
-
+		case 'setAnswer':
+			return {
+				...state,
+				captchaAnswer: action.data,
+			};
+		case 'setCaptchaValue':
+			return {
+				...state,
+				captchaValue: action.data,
+			};
 		default:
 			return state;
 	}
