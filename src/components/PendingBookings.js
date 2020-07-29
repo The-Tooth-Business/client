@@ -61,10 +61,16 @@ export default function PendingBookings() {
 	}
 
 	return (
-		<Paper className={classes.paper}>
-			<h1 className={classes.title}>{pending.length}</h1>
+		<Paper data-cy="pending" className={classes.paper}>
+			<h1 data-cy="pending-number" className={classes.title}>
+				{pending.length}
+			</h1>
 			<p>bookings are waiting to be closed</p>
-			<Button onClick={handleClose} disabled={pending.length === 0}>
+			<Button
+				data-cy="pending-button"
+				onClick={handleClose}
+				disabled={pending.length === 0}
+			>
 				Close all pending Bookings
 			</Button>
 		</Paper>
