@@ -146,48 +146,52 @@ Cypress Dashboard logs:
 
 In phase one of this project we undertook extensive market research and planning from briefs given to us by the client. We finished what would be the first sprint with the green-light to run with the project. A sprint review at the end of sprint one had most of the documentation completed
 
-We had done our preliminary sprint planning where we had added the most obvious tasks to the Trello, but at our agile ceremony we got out the user stories to effectively project manage. As we read through each user story we discussed which tasks the story entailed. When we reached a consensus we would add the cards to the Trello. We also discussed which tasks were the most important to complete first and stared planning our sprints accordingly. We are a very effective agile team and agreed immediately on an effort estimation of getting as much done in the first two sprints as we could as our experience suggested the client would add new features as the project progressed. This was the longest ceremony and it helped us build a plan, using the Trello board, with a comprehensive lists of tasks. The tasks were all given a due-date based on which sprint they were in, and a rating of easy, medium and hard. Tasks for the first sprint were given an agile estimate and then were allocated fairly. We were going to use planning poker, but it was quite hard in a team of two and we were pretty much in agreement of how long each task would take.
+We had done our preliminary sprint planning where we had added the most obvious tasks to the Trello, but at our agile ceremony we got out the user stories to effectively project manage. As we read through each user story we discussed which tasks the story gave us. When we reached a consensus we would add the cards to the Trello. We also discussed which tasks were the most important to complete first and started planning our sprints accordingly. We are a very effective agile team and agreed immediately on an effort estimation of getting as much done in the first two sprints as we could as our experience suggested the client would add new features as the project progressed. 
+
+This was the longest ceremony and it helped us build a plan, using the Trello board, with a comprehensive lists of tasks. The tasks were all given a due-date based on which sprint they were in, and a rating of easy, medium and hard. Tasks for the first sprint were given an agile estimate and then were allocated fairly. We were going to use planning poker, but it was quite hard in a team of two and we were pretty much in agreement about how long each task would take.
 
 We decided on 5 day sprints and started each day at 9am with a stand-up on Discord. At the stand-up we discussed how we went the day previously and talked through any blockers. We planned more difficult tasks to fall on the days that we could pair-programme. At the end of each sprint we checked that we had completed all the tasks assigned on the Trello for the sprint and marked them as done or pushed them into sprint backlog. This really only happened between Sprint 4 and 5 when the FIC(Fairy in Charge) added new features and they were more complex than expected.
 
  As previously stated, all tasks were colour coded for difficulty - green tag for easy, blue tag for medium, red tag for hard. Most jobs fell into the medium category but we tried to equally share the hard jobs or pair-programmed them. We really wanted to solidify our skills, so neither of us were trying to avoid the tough jobs! We split the server and React set-up into front and back-end to quickly get to a point of deploying and connecting the two. Therefore for the first sprint Louise was mostly only working in the server and Catherine was working in React. However, as soon as we had deployed we took on tasks in both back and front-end. 
 
-### Sprint 1
+#### Sprint 1
 
 We worked extra hard in the first two sprints and set up Front and Backend Frameworks with CRUD functionality and Mongo. All functions were manually tested until they were operating as expected. During this time we had some issues with finding our 'Git Flow', but by the end of sprint 1 we were confidently using forking flow. No other blockers during this sprint.
 
-#### User Stories addressed
+##### User Stories addressed
 
 3. As the parent in a chaotic family, we have been known to lose the occasional tooth before the tooth fairy can collect it. In these cases it is reassuring to know that I can login to my personal portal and cancel a tooth collection.
 
 4. As a parent of twins my boys do everything together, sometimes even lose teeth. I need to be able to update my pick-up order from one to two or more teeth.
 
-![Trello-second agile ceremony](trelloImages/TrelloJuly1.png)
+##### Trello at the start of Sprint 1
+![Trello-beginning sprint 1](trelloImages/TrelloJuly1.png)
 
 The-Tooth-Business/client pull requests #1-#18 
 The-Tooth-Business/server pull request #1-10
 
 ### Sprint 2
-Sprint 2 was all about Login Functionality (authorisation) on both the front and back end and deployment. We believe in deployiong early and often. We set up a CI/CD pipeline so that each time we did a Pull Request in Github our site was deployed in a development environment. At the end of each sprint we merged our development branch to master which deployed to our production branch. This was tricky, but very worthwile as we always know our production code is working even if we temporarily break our development app. We also ran working Mocha and unit tests on the booking component and started Cypress testing. Cypress testing slowed us down somewhat because we didn't have any experience, but we got there in the end and find it so useful.
+Sprint 2 was all about Login Functionality (authorisation) on both the front and back end and deployment. We believe in deployiong early and often. We set up a CI/CD pipeline so that each time we did a Pull Request in Github our site was deployed in a development environment. At the end of each sprint we merged our development branch to master which deployed to our production branch. This was tricky, but very worthwile as we always know our production code is working even if we temporarily break our development app. We also ran working Mocha and unit tests on the booking component and started Cypress testing. Cypress testing slowed us down somewhat because we didn't have any experience, but we got there in the end and now find it so useful.
 
 We also addressed the FIC's concerns about site security. She keeps a lot of sensitive data and was worried about being hacked, so we outsourced the site security to Santa's elves who are 'red hat' hackers.
 
-#### User Stories addressed
+##### User Stories addressed
 
 1. As a busy parent I need to organise a Tooth Fairy pick up quickly and easily. Being able to login to a portal where all my details are saved saves me a lot of time.
 
 7. As the Fairy In Charge, the most important thing for me is that my online portal is secure to protect the Top Secret Secret about what I do with all of the teeth.
 
-![Trello-sprint2-standup1](trelloImages/TrelloJuly6.png)
+##### Trello at the start of Sprint 2
+![Trello beginning of sprint 2](trelloImages/TrelloJuly6.png)
 
 The-Tooth-Business/client pull requests #18-#29 
 The-Tooth-Business/server pull request #11-15
 
-### Sprint 3 
+#### Sprint 3 
 
-We started adding some basic Material-ui components to design the front-end of the app and success component. Built the framework for a dashboard for the FIC. After UI testing we decided to improve the booking form by adding a currency and continent drop down, and redesigned it. Created a 'success' capability so that parent can easily see if their booking has been accepted. Started working on our very important side-nav component, added Fairy $ exchange and added more Cypress tests. Finally we bought a custom domain and deployed to it. Catherine had some trouble setting up pagination in the server but as the team are using Material-ui they found a way of using it for pagination in React. 
+We started adding some basic Material-ui components to design the front-end of the app. Built the framework for a dashboard for the FIC. After UI testing we decided to improve the booking form by adding a currency and continent drop down, and redesigned it. Created a 'success' capability so that parents can easily see if their booking has been accepted. Started working on our very important side-nav component, added Fairy $ exchange and added more Cypress tests. Finally we bought a custom domain and deployed to it. Catherine had some trouble setting up pagination in the server but as the team are using Material-ui they found an easier way of using it for pagination in React. 
 
-#### User Stories addressed
+##### User Stories addressed
 
 2. As a parent of an anxious child I need the peace of mind that when I book the Tooth Fairy there will definitely be a pick-up that same night. My child would be so disappointed to find the tooth still under her pillow in the morning, so I need to receive confirmation that my booking has been successful.
 
@@ -197,16 +201,17 @@ We started adding some basic Material-ui components to design the front-end of t
 
 Second Consult 2. As the FIC I operate in all the major currencies and need my dashboard to give me the daily Fairy $ exchange rate which is based on an amalgamation of the biggest currencies.
 
-![Trello-sprint4-standup1](trelloImages/TrelloJuly11.png)
+##### Trello at the start of Sprint 3
+![Trello at beginning of sprint 3](trelloImages/TrelloJuly11.png)
 
 The-Tooth-Business/client pull requests #29-#38 
 The-Tooth-Business/server pull request #16-19
 
-### Sprint 4
+#### Sprint 4
 
 After another consultation with the FIC, she has decided that she wants to view each Continent Manager in a Fairy profile. This will render the managers' rating; work ID photo; short bio and all their bookings. We made her Fairyness understand that at this late stage of the project resources would have to be pulled from elsewhere, so she decided that she could live without email confirmation and we added this new component to sprint 4. She also mentioned that she was becoming overwhelmed with the number of wishes she recieved so we agred to build a wish component into the app. This turned out harder than expected and caused a short blocker. We also finished the rating component which had been planned for this sprint.
 
-#### User Stories addressed
+##### User Stories addressed
 
 5. As a parent that wants only the best for my child I need to be able to rate and review the service I have received from the Tooth Fairy.
 
@@ -222,29 +227,31 @@ Third Consult - 1 As the FIC I would like to see each continent manager, remembe
 
 Third Consult - 2 As the FIC I would love to recieve wishes one by one with a button I can click to grant them or not (and not have to explain my reasoning!)
 
-![Trello-sprint5-standup1](trelloImages/TrelloJuly17.png)
+##### Trello at the start of Sprint 4
+![Trello start sprint 4](trelloImages/TrelloJuly17.png)
 
 The-Tooth-Business/client pull requests #38-#48 
 The-Tooth-Business/server pull request #20-26
 
-### Sprint 5
+#### Sprint 5
 
- At our Sprint 4 review we discussed our sprint backlog because we hadn't finished the wish and continent components. desing elements, wishes, continents sprint backlog. We agreed to do some pair programming to push these tasks out quickly and then focused on some 'sprinkle' design elements.
+ At our Sprint 4 review we discussed our sprint backlog because we hadn't finished the wish and continent components. We agreed to do some pair programming to push these tasks out quickly and then focused on some 'sprinkle' design elements.
 
-#### User Stories addressed
+##### User Stories addressed
 
 Still working on third consult user stories from Sprint 4. 
 
-![Trello-sprint5-standup1](trelloImages/TrelloJuly23.png)
+##### Trello at the start of Sprint 5
+![Trello start sprint 5](trelloImages/TrelloJuly23.png)
 
 The-Tooth-Business/client pull requests #49-#63
 The-Tooth-Business/server pull request #27-32
 
-### Final Sprint
+#### Final Sprint
 
-By the final sprint most coding was complete so we had 4 days to refactor code to make it drier, add some design sprinkles and work on docs. 
+By the final sprint most coding was complete so we had 4 days to refactor code to make it drier, add some design sprinkles and work on docs. Two of the sprinkles were a Captcha to check if the person logging on is actually an adult, and an image on the login page.
 
-#### User Stories addressed
+##### User Stories addressed
 
 Refactoring to make code dry. Docs. Sprinkles - Image component on login page, auth check for age, more design elements. seed file for db and runfile
 
@@ -254,6 +261,8 @@ The-Tooth-Business/client pull requests #63-#
 The-Tooth-Business/server pull request #33-35
 
 ### Retrospective
+
+Louise and Catherine are so proud of this project. They have not only worked very hard to get it done to the quality they expect of themselves, but they made the FIC happy. They have at at all times worked as a team and pulled the other through on the odd occassion that things got tough. The only thing they are dissapointed about not getting done is the email functionality, but it was a decision of the client to let it go in favour of some other components that the team is very happy with.
 
 ![Trello-retro](trelloImages/TrelloJuly29.png)
 
