@@ -21,3 +21,8 @@ cypress/integration/parentFlow.spec.js
 21/07/2020/
 PASSED
 Link: https://dashboard.cypress.io/projects/qhaq5w/runs/48/specs/a0a3485c-2164-4a50-95c2-35af6f28fbfa/stdout?utm_source=Dashboard&utm_medium=Share+URL&utm_campaign=Output
+
+cypress/integration/parentFlow.spec.js
+29/07/2020/
+PASSED
+Link: https://dashboard.cypress.io/projects/qhaq5w/runs/61/specs/261ff89b-79a2-424d-8004-ee569a8662be/stdout?utm_source=Dashboard&utm_medium=Share+URL&utm_campaign=Output
