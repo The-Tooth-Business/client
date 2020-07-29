@@ -60,7 +60,6 @@ export default function IncomingWish() {
 					className={classes.button}
 					disabled={!pendingWishes > 0}
 					onClick={handleSubmit}
-					color="success"
 					label="Approve"
 					size="small"
 					name="approve"
