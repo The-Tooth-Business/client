@@ -145,8 +145,120 @@ Cypress Dashboard logs:
 ### Project management
 
 In phase one of this project we undertook extensive market research and planning from briefs given to us by the client. We finished what would be the first sprint with the green-light to run with the project. A sprint review at the end of sprint one had most of the documentation completed:
-![Trello at first sprint review](TrelloDay4.jpg)
 
-We had done our preliminary sprint planning where we had added the most obvious tasks to the Trello, but at our agile ceremony we got out the user stories to effectively project manage. As we read through each user story we each discussed which tasks the story entailed. When we reached a consensus we would add the cards to the Trello. We also discussed which tasks were the most important to complete first and stared planning our sprints accordingly. We are a very effective agile team and agreed immediately on an effort estimation of getting as much done in the first two sprints as we could as our experience suggested the client would add new features as the project progressed. This was the longest ceremony and it helped us build a plan, using the Trello, with a comprehensive lists of tasks. The tasks were all given a due-date based on which sprint they were in, and a rating of easy, medium and hard. Tasks for the first sprint were given an estimated turnaround and then were allocated fairly. We were going to use planning poker, but it was quite hard in a team of two and we were pretty much in agreement of how long each task would take.
 
-![Trello at first agile ceremony](TrelloDay5.jpg)
+We had done our preliminary sprint planning where we had added the most obvious tasks to the Trello, but at our agile ceremony we got out the user stories to effectively project manage. As we read through each user story we discussed which tasks the story entailed. When we reached a consensus we would add the cards to the Trello. We also discussed which tasks were the most important to complete first and stared planning our sprints accordingly. We are a very effective agile team and agreed immediately on an effort estimation of getting as much done in the first two sprints as we could as our experience suggested the client would add new features as the project progressed. This was the longest ceremony and it helped us build a plan, using the Trello, with a comprehensive lists of tasks. The tasks were all given a due-date based on which sprint they were in, and a rating of easy, medium and hard. Tasks for the first sprint were given an estimated turnaround and then were allocated fairly. We were going to use planning poker, but it was quite hard in a team of two and we were pretty much in agreement of how long each task would take.
+
+----------
+
+
+As well as dividing jobs by time frame we also made a key for level of difficulty. Green tag for easy, blue tag for medium, red tag for hard. Most jobs fell in the medium category but we tried to equally share the hard jobs or pair-programmed them. We really wanted to solidify our skills, so neither of us were trying to avoid the tough jobs! We split the server and React set-up into front and back-end to get quickly to a point of deploying and connecting the two. Therefore for the second sprint Louise was mostly only working in the server and Catherine was working in React. However, as soon as we had deployed we took on tasks in both back and front-end. 
+
+### Sprint 1
+
+Set up Front and Backend Frameworks with CRUD functionality and Mongo. Manually tested that all functions were operating as expected. During this time we had some issues with finding our 'Git Flow', but by the end of sprint 1 we were confidently using forking flow. No other blockers during this sprint.
+
+#### User Stories addressed
+
+3. As the parent in a chaotic family, we have been known to lose the occasional tooth before the tooth fairy can collect it. In these cases it is reassuring to know that I can login to my personal portal and cancel a tooth collection.
+
+4. As a parent of twins my boys do everything together, sometimes even lose teeth. I need to be able to update my pick-up order from one to two or more teeth.
+
+![Trello-second agile ceremony](./TrelloJuly1.png)
+
+The-Tooth-Business/client pull requests #1-#18 
+The-Tooth-Business/server pull request #1-10
+
+### Sprint 2
+Login Functionality (authorisation) front and back end. Deployed with a CI/CD pipeline. Ran working Mocha and unit tests on the booking component and started Cypress testing. Cypress testing slowed us down somewhat because we didn't have any experience, but we got there in the end.
+
+#### User Stories addressed
+
+1. As a busy parent I need to organise a Tooth Fairy pick up quickly and easily. Being able to login to a portal where all my details are saved saves me a lot of time.
+
+7. As the Fairy In Charge, the most important thing for me is that my online portal is secure to protect the Top Secret Secret about what I do with all of the teeth.
+
+![Trello-sprint2-standup1](TrelloDayJuly6.jpg)
+
+The-Tooth-Business/client pull requests #18-#29 
+The-Tooth-Business/server pull request #11-15
+
+### Sprint 3 
+
+Started adding some basic Material-ui components to design the front-end of the app and success component. Build the framework for a dashboard for the FIC. Added currency drop down, side-nav, more Cypress testing, domain
+fairy exchange rate, refactored code to be more dry.
+
+#### User Stories addressed
+
+2. As a parent of an anxious child I need the peace of mind that when I book the Tooth Fairy there will definitely be a pick-up that same night. My child would be so disappointed to find the tooth still under her pillow in the morning, so I need to receive confirmation that my booking has been successful.
+
+6. As the Fairy in Charge (FIC) of Tooth Inc, an online dashboard is imperative to the successful running of one of the biggest organizations in Fairyland.
+
+10. As the Fairy In Charge at Tooth Inc, fiscal responsibility is a huge part of my job. Having a place where I can see with a glance how the organisation is positioned makes it easier for me to focus on what is really important.
+
+Second Consult 2. As the FIC I operate in all the major currencies and need my dashboard to give me the daily Fairy $ exchange rate which is based on an amalgamation of the biggest currencies.
+
+![Trello-sprint4-standup1](TrelloJuly11.jpg)
+
+The-Tooth-Business/client pull requests #29-#38 
+The-Tooth-Business/server pull request #16-19
+
+### Sprint 4
+
+After another consultation with the FIC, she has decided that she wants to view each Continent Manager in a Fairy profile. This will render the managers' rating; work ID photo; short bio and all their bookings. We made her Fairyness understand that at this late stage of the project resources would have to be pulled from elsewhere, so she decided that she could live without email confirmation and we added this component to this sprint. She also mentioned that she was becoming overwhelmed with the number of wishes she recieved so we agred to build a wish component into the app. This turned out harder than expected and caused a short blocker. We also finished the rating component which had been planned for this sprint.
+
+#### User Stories addressed
+
+5. As a parent that wants only the best for my child I need to be able to rate and review the service I have received from the Tooth Fairy.
+
+8. As the Fairy In Charge I am personally responsible for collecting and 'taking care of' the lost baby teeth of every single child on Earth and I need a responsive environment to manage all of the bookings.
+
+9. As the Fairy In Charge I need all of the daily tooth pick-ups to be automatically collated into an order summary report for the manager of each continent.
+
+11. As the Fairy in Charge I need to easily see how each continents' manager is rating so I can quickly take steps to maintain my good reputation.
+
+Second Consult - 3. As the FIC I am a very visual person so I would like charts on my dashboard so I can easily understand the displayed data.
+
+Third Consult - 1 As the FIC I would like to see each continent manager, remember who they are (I am 3562 years old!) and see their bookings and ratings.
+
+Third Consult - 2 As the FIC I would love to recieve wishes one by one with a button I can click to grant them or not (and not have to explain my reasoning!)
+
+![Trello-sprint5-standup1](TrelloDay17.jpg)
+
+The-Tooth-Business/client pull requests #38-#48 
+The-Tooth-Business/server pull request #20-26
+
+### Sprint 5
+
+ desing elements, wishes, continents sprint backlog
+
+#### User Stories addressed
+
+Sprint backlog on wishes and continent user stories.
+
+![Trello-sprint5-standup1](TrelloDay22.jpg)
+
+The-Tooth-Business/client pull requests #49-#63
+The-Tooth-Business/server pull request #27-32
+
+### Final Sprint
+
+#### User Stories addressed
+
+Refactoring to make code dry. Docs. Sprinkles - Image component on login page, auth check for age, more design elements. seed file for db and runfile
+
+![Trello-sprint5-standup1](TrelloDay27.jpg)
+
+The-Tooth-Business/client pull requests #63-#
+The-Tooth-Business/server pull request #33-35
+
+### Retrospective
+
+![Trello-retro](TrelloDay31.jpg)
+
+
+
+
+
+
+
