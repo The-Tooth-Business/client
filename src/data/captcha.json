@@ -10,13 +10,22 @@
 		"correct": "Cotton Eye Joe"
 	},
 	{
-		"question": "I'm blue",
+		"question": "I'm blue...",
 		"answers": ["Woah that's awesome", "How?", "Da ba de da ba di"],
 		"correct": "Da ba de da ba di"
 	},
 	{
-		"question": "I've got chills",
+		"question": "I've got chills...",
 		"answers": ["They're multiplying", "Put a jacket on?", "What's that?"],
 		"correct": "They're multiplying"
+	},
+	{
+		"question": "I want to know...",
+		"answers": [
+			"What love is",
+			"What I'm getting for Christmas",
+			"How to get into this site"
+		],
+		"correct": "What love is"
 	}
 ]

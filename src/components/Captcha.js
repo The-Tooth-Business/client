@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Captcha() {
 	const { store, dispatch } = useGlobalState();
+	const { captchaAttempt } = store;
 	const classes = useStyles();
 	const initialState = {
 		question: 'What is love?',
@@ -34,15 +35,13 @@ export default function Captcha() {
 
 	useEffect(() => {
 		let questions = captcha.map((q) => q);
-		setQuestion(questions[Math.floor(Math.random() * questions.length)]);
+		let q = questions[Math.floor(Math.random() * questions.length)];
+		setQuestion(q);
 		dispatch({
 			type: 'setAnswer',
-			data: question.correct,
+			data: q.correct,
 		});
-		console.log(question);
-	}, [question]);
-
-	console.log(value);
+	}, [captchaAttempt, dispatch]);
 
 	const handleRadioChange = (event) => {
 		setValue(event.target.value);
@@ -53,21 +52,6 @@ export default function Captcha() {
 			data: event.target.value,
 		});
 	};
-
-	// const handleSubmit = (event) => {
-	// 	event.preventDefault();
-
-	// 	if (value === question.correct) {
-	// 		setHelperText('You got it!');
-	// 		setError(false);
-	// 	} else if (value !== question.correct) {
-	// 		setHelperText('Sorry, wrong answer!');
-	// 		setError(true);
-	// 	} else {
-	// 		setHelperText('Please select an option.');
-	// 		setError(true);
-	// 	}
-	// };
 
 	return (
 		<FormControl

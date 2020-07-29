@@ -4,8 +4,6 @@ import {
 	Avatar,
 	Button,
 	TextField,
-	FormControlLabel,
-	Checkbox,
 	Snackbar,
 	Paper,
 	Box,
@@ -67,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const UserForm = ({ label, handleSubmit, errorMessage }) => {
-	const { store } = useGlobalState();
+	const { store, dispatch } = useGlobalState();
 	const { captchaValue, captchaAnswer } = store;
 	const classes = useStyles();
 	const initialFormState = {
@@ -94,10 +92,22 @@ const UserForm = ({ label, handleSubmit, errorMessage }) => {
 			email: userDetails.email,
 			password: userDetails.password,
 		};
-		return captchaAnswer === captchaValue ? handleSubmit(user) : setAlert(true);
+		captchaAnswer === captchaValue ? handleSubmit(user) : setAlert(true);
+		if (!captchaAnswer === !captchaValue) {
+			dispatch({
+				type: 'setCaptchaAttempt',
+				data: 1,
+			});
+		}
 	}
 
-	console.log(showAlert);
+	const handleClose = (event, reason) => {
+		if (reason === 'clickaway') {
+			return;
+		}
+
+		setAlert(false);
+	};
 
 	return (
 		<Grid
@@ -161,12 +171,10 @@ const UserForm = ({ label, handleSubmit, errorMessage }) => {
 							autoComplete="current-password"
 							onChange={handleChange}
 						/>
-						<Typography>Prove you are an adult</Typography>
-						<Captcha />
-						{/* <FormControlLabel
-							control={<Checkbox value="remember" color="primary" />}
-							label="Remember me"
-						/> */}
+						<div className={classes.form}>
+							<Typography>Prove you are an adult</Typography>
+							<Captcha />
+						</div>
 						<Button
 							data-cy="login-button"
 							type="submit"
@@ -196,7 +204,7 @@ const UserForm = ({ label, handleSubmit, errorMessage }) => {
 							<Copyright />
 						</Box>
 						<Snackbar open={showAlert} autoHideDuration={6000}>
-							<Alert severity="error">
+							<Alert onClose={handleClose} severity="error">
 								You are not a parent! Leave now or you will be on Santa's naughty list
 							</Alert>
 						</Snackbar>

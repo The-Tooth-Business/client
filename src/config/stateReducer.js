@@ -69,6 +69,11 @@ function stateReducer(state, action) {
 				...state,
 				captchaValue: action.data,
 			};
+		case 'setCaptchaAttempt':
+			return {
+				...state,
+				captchaAttempt: [action.data, ...state.captchaValue],
+			};
 		default:
 			return state;
 	}
