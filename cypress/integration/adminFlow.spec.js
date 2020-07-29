@@ -1,6 +1,6 @@
 beforeEach(() => {
 	cy.viewport(1024, 768);
-	cy.visit(Cypress.env('development')); //! change to 'development', 'staging' or 'production' here
+	cy.visit(Cypress.env('production')); //! change to 'development', 'staging' or 'production' here
 	cy.get('#root').then((root) => {
 		if (root.find('[data-cy=side-navbar]').length > 0) {
 			cy.get('[data-cy=logout]').click();
@@ -77,7 +77,7 @@ describe('Pending bookings', () => {
 	});
 });
 
-describe.only('Should have the option to close bookings', () => {
+describe('Should have the option to close bookings', () => {
 	it('Should show a button to close a specific booking', () => {
 		cy.viewport(1024, 768);
 		cy.get('[data-cy=login-form]').should('be.visible');
