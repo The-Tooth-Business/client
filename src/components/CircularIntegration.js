@@ -4,8 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { CircularProgress, Button, Fab } from '@material-ui/core';
 import { green } from '@material-ui/core/colors';
 import CheckIcon from '@material-ui/icons/Check';
-import SaveIcon from '@material-ui/icons/Save';
-
+import ArrowUpwardOutlinedIcon from '@material-ui/icons/ArrowUpwardOutlined';
 const useStyles = makeStyles((theme) => ({
 	root: {
 		display: 'flex',
@@ -77,7 +76,7 @@ export default function CircularIntegration({ handleSubmit, booking }) {
 					className={buttonClassname}
 					onClick={handleButtonClick}
 				>
-					{success ? <CheckIcon /> : <SaveIcon />}
+					{success ? <CheckIcon /> : <ArrowUpwardOutlinedIcon />}
 				</Fab>
 				{loading && <CircularProgress size={68} className={classes.fabProgress} />}
 			</div>

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { addWish } from '../services/wishServices';
-import TextField from '@material-ui/core/TextField';
+import { TextField, Paper, Chip } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import CircularIntegration from './CircularIntegration';
 
 const useStyles = makeStyles((theme) => ({
@@ -26,46 +25,56 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
+const MakeAWish = ({ history }) => {
+	const classes = useStyles();
+	const [wishState, setWishState] = useState('');
 
-	const MakeAWish = ({ history }) => {
-		const classes = useStyles();
-		const [wishState, setWishState] = useState('');
+	function handleChange(event) {
+		const value = event.target.value;
+		setWishState(value);
+	}
 
-		function handleChange(event) {
-			const value = event.target.value;
-			setWishState(value);
-		}
-
-		function handleWishSubmit() {
-			
-			const newWish = {
-				wish: wishState
-			}
-			addWish(newWish).then((response) => {
-				console.log('Wish recieved from server', response)
-				setWishState('')
-			}).catch((error) => {
-				console.log('error', error)
+	function handleWishSubmit() {
+		const newWish = {
+			wish: wishState,
+		};
+		addWish(newWish)
+			.then((response) => {
+				setWishState('');
 			})
-			history.push('/dashboard')
-		}
-		
+			.catch((error) => {
+				console.log('error', error);
+			});
+		history.push('/dashboard');
+	}
+
 	return (
 		<Paper className={classes.paper}>
-			<h3 className={classes.title}>Make a wish BETA</h3>
-			<TextField onChange={handleChange} name='wish' value={wishState}>
-				
-			</TextField>
+			<div>
+				<Chip
+					className={classes.button}
+					label="BETA"
+					size="large"
+					color="secondary"
+					variant="outlined"
+				/>
+				<h1 className={classes.title}>Need a quick fix? Make a wish.</h1>
+			</div>
+
+			<TextField
+				fullWidth
+				onChange={handleChange}
+				name="wish"
+				value={wishState}
+			></TextField>
 			<p className={classes.disc}>
-				Granted wishes subject to availability. The Tooth Fairy in Charge makes
-				no guarantee that your wish will be granted. Wishes will not be granted
-				to those on Santa's naughty list.
+				Granted wishes subject to availability. The Tooth Fairy in Charge makes no
+				guarantee that your wish will be granted. Wishes will not be granted to
+				those on Santa's naughty list.
 			</p>
-			<CircularIntegration 
-			booking={wishState} handleSubmit={handleWishSubmit}/> 
+			<CircularIntegration booking={wishState} handleSubmit={handleWishSubmit} />
 		</Paper>
 	);
-}
+};
 
-	
-export default withRouter(MakeAWish)
+export default withRouter(MakeAWish);

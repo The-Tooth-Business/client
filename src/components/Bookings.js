@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import {
 	Table,
@@ -18,9 +19,10 @@ import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
-
+import DoneIcon from '@material-ui/icons/Done';
+import StarIcon from '@material-ui/icons/Star';
 import FaceIcon from '@material-ui/icons/Face';
-import StyledLink from './StyledLink';
+import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 
 const useStyles1 = makeStyles((theme) => ({
 	root: {
@@ -95,17 +97,37 @@ TablePaginationActions.propTypes = {
 	rowsPerPage: PropTypes.number.isRequired,
 };
 
-function createData(_id, open_status, child_name, teeth, continent, rating) {
-	return { _id, open_status, child_name, teeth, continent, rating };
+function createData(
+	_id,
+	open_status,
+	child_name,
+	teeth,
+	continent,
+	rating,
+	modified_date
+) {
+	return {
+		_id,
+		open_status,
+		child_name,
+		teeth,
+		continent,
+		rating,
+		modified_date,
+	};
 }
 
 const useStyles2 = makeStyles({
 	table: {
 		minWidth: '100%',
 	},
+	icon: {
+		fill: 'gold',
+	},
 });
 
 export default function Bookings({ bookings }) {
+	const history = useHistory();
 	const classes = useStyles2();
 	const [page, setPage] = React.useState(0);
 	const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -120,7 +142,8 @@ export default function Bookings({ bookings }) {
 				booking.child_name,
 				booking.teeth,
 				booking.continent,
-				booking.rating || '-'
+				booking.rating || '-',
+				booking.modified_date
 			)
 		);
 
@@ -136,18 +159,38 @@ export default function Bookings({ bookings }) {
 		setPage(0);
 	};
 
+	function checkPending(booking) {
+		let date = new Date();
+		let day = date.getUTCDate();
+		const isPending = new Date(booking).getUTCDate() < day;
+		return isPending;
+	}
+
+	function renderStars(rating) {
+		let stars = [];
+		for (let i = 0; i < rating.rating; i++) {
+			stars.push(
+				<StarIcon
+					fontSize="small"
+					className={classes.icon}
+					key={`${rating._id} - ${i}`}
+				/>
+			);
+		}
+		return stars;
+	}
+
 	return (
 		<Paper data-cy="bookings" className={classes.paper}>
 			<TableContainer>
 				<Table className={classes.table} aria-label="custom pagination table">
 					<TableHead>
 						<TableRow>
-							<TableCell>Status</TableCell>
+							<TableCell>Details</TableCell>
 							<TableCell align="left">Name</TableCell>
-							<TableCell align="left">Teeth</TableCell>
-							<TableCell align="left">Continent</TableCell>
-							<TableCell align="left">Rating</TableCell>
-							<TableCell align="right"></TableCell>
+							<TableCell align="center">Teeth</TableCell>
+							<TableCell align="right">Continent</TableCell>
+							<TableCell align="right">Rating</TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
@@ -156,38 +199,50 @@ export default function Bookings({ bookings }) {
 							: rows
 						).map((row, index) => (
 							<TableRow data-cy="booking" key={`${index} - ${row.child_name}`}>
-								<TableCell style={{ width: '10%' }} align="left">
-									{row.open_status && (
+								<TableCell style={{ width: '25%' }} align="left">
+									{row.open_status && checkPending(row.modified_date) && (
+										<Chip
+											color="secondary"
+											label="Pending"
+											size="small"
+											icon={<ErrorOutlineIcon />}
+											onClick={(event) => history.push(`/bookings/${row._id}`)}
+										/>
+									)}
+									{row.open_status && !checkPending(row.modified_date) && (
 										<Chip
 											color="secondary"
 											label="Open"
 											size="small"
+											variant="outlined"
 											icon={<FaceIcon />}
+											onClick={(event) => history.push(`/bookings/${row._id}`)}
 										/>
 									)}
 									{!row.open_status && (
-										<Chip label="Closed" size="small" icon={<FaceIcon />} />
+										<Chip
+											label="Closed"
+											size="small"
+											icon={<DoneIcon />}
+											onClick={(event) => history.push(`/bookings/${row._id}`)}
+										/>
 									)}
 								</TableCell>
-								<TableCell style={{ width: '20%' }} component="th" scope="row">
+								<TableCell style={{ width: '15%' }} component="th" scope="row">
 									{row.child_name}
 								</TableCell>
-								<TableCell style={{ width: '10%' }} align="left">
+								<TableCell style={{ width: '10%' }} align="center">
 									{row.teeth}
 								</TableCell>
-								<TableCell style={{ width: '20%' }} align="left">
+								<TableCell style={{ width: '20%' }} align="right">
 									{row.continent}
 								</TableCell>
-								<TableCell style={{ width: '10%' }} align="left">
-									{row.rating}
-								</TableCell>
-								<TableCell style={{ width: '10%' }} align="left">
-									<StyledLink
-										link={`/bookings/${row._id}`}
-										text={'View'}
-										color={'hotpink'}
-										data-cy="view-link"
-									/>
+								<TableCell
+									style={{ width: '30%' }}
+									align="right"
+									key={`${row._id} - ${row.rating}`}
+								>
+									{renderStars(row)}
 								</TableCell>
 							</TableRow>
 						))}
