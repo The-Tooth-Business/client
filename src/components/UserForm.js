@@ -6,12 +6,14 @@ import {
 	TextField,
 	FormControlLabel,
 	Checkbox,
+	Snackbar,
 	Paper,
 	Box,
 	Grid,
 	Typography,
 	CssBaseline,
 } from '@material-ui/core/';
+import MuiAlert from '@material-ui/lab/Alert';
 import { Link } from 'react-router-dom';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from '@material-ui/core/styles';
@@ -27,6 +29,9 @@ function Copyright() {
 	);
 }
 
+function Alert(props) {
+	return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 // Styling for the form
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -71,6 +76,7 @@ const UserForm = ({ label, handleSubmit, errorMessage }) => {
 		password: '',
 	};
 	const [userDetails, setUserDetails] = useState(initialFormState);
+	const [showAlert, setAlert] = useState(false);
 
 	function handleChange(event) {
 		const name = event.target.name;
@@ -81,7 +87,6 @@ const UserForm = ({ label, handleSubmit, errorMessage }) => {
 		});
 	}
 
-	let error;
 	function handleFormSubmit(event) {
 		event.preventDefault();
 		const user = {
@@ -89,10 +94,10 @@ const UserForm = ({ label, handleSubmit, errorMessage }) => {
 			email: userDetails.email,
 			password: userDetails.password,
 		};
-		captchaAnswer === captchaValue
-			? handleSubmit(user)
-			: console.log('You are not an adult');
+		return captchaAnswer === captchaValue ? handleSubmit(user) : setAlert(true);
 	}
+
+	console.log(showAlert);
 
 	return (
 		<Grid
@@ -111,7 +116,6 @@ const UserForm = ({ label, handleSubmit, errorMessage }) => {
 					{/* render error message  */}
 					<Typography component="h1" variant="h5">
 						{label}
-						{error}
 						{errorMessage && <p>{errorMessage}</p>}
 					</Typography>
 					<form data-cy="login-form" className={classes.form} noValidate>
@@ -191,6 +195,11 @@ const UserForm = ({ label, handleSubmit, errorMessage }) => {
 						<Box mt={5}>
 							<Copyright />
 						</Box>
+						<Snackbar open={showAlert} autoHideDuration={6000}>
+							<Alert severity="error">
+								You are not a parent! Leave now or you will be on Santa's naughty list
+							</Alert>
+						</Snackbar>
 					</form>
 				</div>
 			</Grid>
