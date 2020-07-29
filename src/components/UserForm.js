@@ -16,6 +16,7 @@ import { Link } from 'react-router-dom';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 import Captcha from './Captcha';
+import background from '../images/warning.png';
 
 function Copyright() {
 	return (
@@ -36,7 +37,8 @@ const useStyles = makeStyles((theme) => ({
 		height: '100vh',
 	},
 	image: {
-		backgroundImage: 'url(https://source.unsplash.com/random)',
+		// backgroundImage: 'url(https://source.unsplash.com/random)',
+		backgroundImage: `url(${background})`,
 		backgroundRepeat: 'no-repeat',
 		backgroundColor:
 			theme.palette.type === 'light'
