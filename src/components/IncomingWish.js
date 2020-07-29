@@ -43,7 +43,7 @@ export default function IncomingWish() {
 	}
 
 	return (
-		<Paper className={classes.paper}>
+		<Paper data-cy="incoming-wish" className={classes.paper}>
 			{pendingWishes > 0
 				? `Incoming wish from ${incomingWish.username} - ${incomingWish.wish}`
 				: 'No incoming wishes'}
