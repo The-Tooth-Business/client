@@ -164,7 +164,7 @@ Set up Front and Backend Frameworks with CRUD functionality and Mongo. Manually 
 
 4. As a parent of twins my boys do everything together, sometimes even lose teeth. I need to be able to update my pick-up order from one to two or more teeth.
 
-![Trello-second agile ceremony](./TrelloJuly1.png)
+![Trello-second agile ceremony](trelloImages/TrelloJuly1.png)
 
 The-Tooth-Business/client pull requests #1-#18 
 The-Tooth-Business/server pull request #1-10
@@ -178,7 +178,7 @@ Login Functionality (authorisation) front and back end. Deployed with a CI/CD pi
 
 7. As the Fairy In Charge, the most important thing for me is that my online portal is secure to protect the Top Secret Secret about what I do with all of the teeth.
 
-![Trello-sprint2-standup1](TrelloDayJuly6.jpg)
+![Trello-sprint2-standup1](trelloImages/TrelloJuly6.png)
 
 The-Tooth-Business/client pull requests #18-#29 
 The-Tooth-Business/server pull request #11-15
@@ -198,7 +198,7 @@ fairy exchange rate, refactored code to be more dry.
 
 Second Consult 2. As the FIC I operate in all the major currencies and need my dashboard to give me the daily Fairy $ exchange rate which is based on an amalgamation of the biggest currencies.
 
-![Trello-sprint4-standup1](TrelloJuly11.jpg)
+![Trello-sprint4-standup1](trelloImages/TrelloJuly11.png)
 
 The-Tooth-Business/client pull requests #29-#38 
 The-Tooth-Business/server pull request #16-19
@@ -223,7 +223,7 @@ Third Consult - 1 As the FIC I would like to see each continent manager, remembe
 
 Third Consult - 2 As the FIC I would love to recieve wishes one by one with a button I can click to grant them or not (and not have to explain my reasoning!)
 
-![Trello-sprint5-standup1](TrelloDay17.jpg)
+![Trello-sprint5-standup1](trelloImages/TrelloJuly17.png)
 
 The-Tooth-Business/client pull requests #38-#48 
 The-Tooth-Business/server pull request #20-26
@@ -236,7 +236,7 @@ The-Tooth-Business/server pull request #20-26
 
 Sprint backlog on wishes and continent user stories.
 
-![Trello-sprint5-standup1](TrelloDay22.jpg)
+![Trello-sprint5-standup1](trelloImages/TrelloJuly22.png)
 
 The-Tooth-Business/client pull requests #49-#63
 The-Tooth-Business/server pull request #27-32
@@ -247,14 +247,14 @@ The-Tooth-Business/server pull request #27-32
 
 Refactoring to make code dry. Docs. Sprinkles - Image component on login page, auth check for age, more design elements. seed file for db and runfile
 
-![Trello-sprint5-standup1](TrelloDay27.jpg)
+![Trello-sprint5-standup1](trelloImages/TrelloJuly28.png)
 
 The-Tooth-Business/client pull requests #63-#
 The-Tooth-Business/server pull request #33-35
 
 ### Retrospective
 
-![Trello-retro](TrelloDay31.jpg)
+![Trello-retro](trelloImages/TrelloJuly31.png)
 
 
 
