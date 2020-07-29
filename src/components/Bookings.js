@@ -137,7 +137,7 @@ export default function Bookings({ bookings }) {
 	};
 
 	return (
-		<Paper className={classes.paper}>
+		<Paper data-cy="bookings" className={classes.paper}>
 			<TableContainer>
 				<Table className={classes.table} aria-label="custom pagination table">
 					<TableHead>
@@ -155,7 +155,7 @@ export default function Bookings({ bookings }) {
 							? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 							: rows
 						).map((row, index) => (
-							<TableRow key={`${index} - ${row.child_name}`}>
+							<TableRow data-cy="booking" key={`${index} - ${row.child_name}`}>
 								<TableCell style={{ width: '10%' }} align="left">
 									{row.open_status && (
 										<Chip
@@ -186,6 +186,7 @@ export default function Bookings({ bookings }) {
 										link={`/bookings/${row._id}`}
 										text={'View'}
 										color={'hotpink'}
+										data-cy="view-link"
 									/>
 								</TableCell>
 							</TableRow>

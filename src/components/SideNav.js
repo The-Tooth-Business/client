@@ -137,6 +137,7 @@ export default function SideNav(props) {
 					icon={ExitToAppIcon}
 					text={'Logout'}
 					onClick={handleLogout}
+					data-cy="logout"
 				/>
 			</List>
 		</div>

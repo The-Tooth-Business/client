@@ -48,7 +48,7 @@ const Continent = () => {
 	};
 
 	return (
-		<Paper className={classes.paper}>
+		<Paper data-cy="continents" className={classes.paper}>
 			<h1 className={classes.title}>Bookings by continent</h1>
 			<Doughnut data={data} />
 		</Paper>

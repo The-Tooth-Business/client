@@ -52,6 +52,7 @@ export default function Alert() {
 				<StyledBadge
 					badgeContent={adminUser ? wishes || null : pendingReview.length || null}
 					color="secondary"
+					data-cy="alerts"
 				>
 					<NotificationsIcon />
 				</StyledBadge>
@@ -61,6 +62,7 @@ export default function Alert() {
 				onClose={handleClose}
 				aria-labelledby="alert-dialog-title"
 				aria-describedby="alert-dialog-description"
+				data-cy="alert-box"
 			>
 				{adminUser && (
 					<DialogTitle id="alert-dialog-title">
