@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { getWishes, updateWish } from '../services/wishServices';
-import { Paper, Button } from '@material-ui/core/';
+import { Paper, Chip } from '@material-ui/core/';
+import DoneIcon from '@material-ui/icons/Done';
+import ClearIcon from '@material-ui/icons/Clear';
 import { makeStyles } from '@material-ui/core/styles';
 import { useGlobalState } from '../config/globalState';
 
@@ -13,6 +15,12 @@ export default function IncomingWish() {
 			height: '100%',
 			width: '100%',
 			textAlign: 'center',
+		},
+		group: {
+			marginTop: theme.spacing(2),
+		},
+		button: {
+			margin: theme.spacing(2),
 		},
 	}));
 	const classes = useStyles();
@@ -47,12 +55,30 @@ export default function IncomingWish() {
 			{pendingWishes > 0
 				? `Incoming wish from ${incomingWish.username} - ${incomingWish.wish}`
 				: 'No incoming wishes'}
-			<Button disabled={!pendingWishes > 0} onClick={handleSubmit} name="approve">
-				approve
-			</Button>
-			<Button disabled={!pendingWishes > 0} onClick={handleSubmit} name="deny">
-				deny
-			</Button>
+			<div className={classes.group}>
+				<Chip
+					className={classes.button}
+					disabled={!pendingWishes > 0}
+					onClick={handleSubmit}
+					color="success"
+					label="Approve"
+					size="small"
+					name="approve"
+					variant="outlined"
+					icon={<DoneIcon />}
+				/>
+				<Chip
+					className={classes.button}
+					disabled={!pendingWishes > 0}
+					onClick={handleSubmit}
+					color="secondary"
+					label="Deny"
+					size="small"
+					name="deny"
+					variant="outlined"
+					icon={<ClearIcon />}
+				/>
+			</div>
 		</Paper>
 	);
 }
