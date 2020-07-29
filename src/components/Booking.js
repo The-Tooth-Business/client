@@ -141,7 +141,9 @@ const Booking = ({ history, booking, showControls }) => {
 									aria-label="large outlined primary button group"
 								>
 									{adminUser && open_status && (
-										<Button onClick={handleClose}>Close</Button>
+										<Button data-cy="close-button" onClick={handleClose}>
+											Close
+										</Button>
 									)}
 									{open_status && <Button onClick={handleEdit}>Edit</Button>}
 									<Button onClick={handleDelete}>Delete</Button>

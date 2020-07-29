@@ -19,3 +19,9 @@ cypress/integration/adminFlow.spec.js
 FAILED
 Link: https://dashboard.cypress.io/projects/qhaq5w/runs/50/specs/5b289b85-1f85-43f2-9663-683435e15025/stdout?utm_source=Dashboard&utm_medium=Share+URL&utm_campaign=Output
 Notes: PAssing previous test but staging needs to be updated to use new data-cy labels
+
+29/07/2020
+Passed
+Link: https://dashboard.cypress.io/projects/qhaq5w/runs/60/specs/f8a0d0c1-9dc4-47ef-9cf8-eb56b8375a06/stdout?utm_source=Dashboard&utm_medium=Share+URL&utm_campaign=Output
+
+Notes: All tests in the admin user flow passed 
