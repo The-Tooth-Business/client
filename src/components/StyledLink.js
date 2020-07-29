@@ -16,6 +16,7 @@ export default function StyledLink({ icon: Icon, text, link, ...options }) {
 		},
 		link: {
 			textDecoration: 'none',
+			height: 'auto',
 		},
 	}));
 	const classes = useStyles();

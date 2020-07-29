@@ -15,3 +15,38 @@ cypress/integration/adminFlow.spec.js
 23/07/2020
 Passed
 Link: https://dashboard.cypress.io/projects/qhaq5w/runs/49/specs/bc77328b-4cf5-423c-a7af-27f96ab91aa2/stdout?utm_source=Dashboard&utm_medium=Share+URL&utm_campaign=Output
+
+cypress/integration/adminFlow.spec.js
+29/07/2020
+FAILED
+https://dashboard.cypress.io/projects/qhaq5w/runs/51/specs/54717a7f-c5b6-4df1-9359-1b8c464f77fc/stdout?utm_source=Dashboard&utm_medium=Share+URL&utm_campaign=Output
+
+Notes: Not picking up logout lin k in nav bar
+
+cypress/integration/adminFlow.spec.js
+29/07/2020
+PASSED
+https://dashboard.cypress.io/projects/qhaq5w/runs/56/specs/2545ca56-63c2-417e-afdd-a539d770212b/stdout?utm_source=Dashboard&utm_medium=Share+URL&utm_campaign=Output
+
+Notes: Fixed issue with cypress not picking up logout link
+
+cypress/integration/adminFlow.spec.js
+29/07/2020
+PASSED
+https://dashboard.cypress.io/projects/qhaq5w/runs/57/specs/b419ca2d-3932-42ea-b65a-9d94b6c9c1ed/stdout?utm_source=Dashboard&utm_medium=Share+URL&utm_campaign=Output
+
+Notes: testing that the number of pending bookings are displayed and buttons are disabled if there are none
+
+cypress/integration/adminFlow.spec.js
+29/07/2020
+FAILED
+https://dashboard.cypress.io/projects/qhaq5w/runs/58/specs/67e48bd5-734c-462b-9c54-9aee76321891/stdout?utm_source=Dashboard&utm_medium=Share+URL&utm_campaign=Output
+
+Notes: Need to use force: true on cypress click
+
+cypress/integration/adminFlow.spec.js
+29/07/2020
+PASSED
+https://dashboard.cypress.io/projects/qhaq5w/runs/59/specs/f862fa6b-82cd-4faa-8fe7-f619e88afb53/stdout?utm_source=Dashboard&utm_medium=Share+URL&utm_campaign=Output
+
+Notes: Fixes previous failed test
