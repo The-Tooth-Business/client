@@ -174,7 +174,6 @@ function UserDashboard() {
 					
 						{ !adminUser && bookings.length === 0 && (
 							<Paper className={classes.paper}>
-							<fragment>
 							<h1 className={classes.title}>Welcome! </h1>		
 								
 									<h3>This seems to be your first visit to Tooth Inc. If you are here to book a tooth pick up for your little darling this is the right place. 
@@ -186,7 +185,6 @@ function UserDashboard() {
 									<li>If you need to make any changes, come back and edit your booking any time before 9pm.</li>
 									</ul>
 									</h3>
-									</fragment>	
 									</Paper>
 							)}
 							
