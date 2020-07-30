@@ -54,7 +54,7 @@ const MakeAWish = ({ history }) => {
 				<Chip
 					className={classes.button}
 					label="BETA"
-					size="large"
+					size="medium"
 					color="secondary"
 					variant="outlined"
 				/>
