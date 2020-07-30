@@ -106,7 +106,7 @@ const Booking = ({ history, booking, showControls }) => {
 							)}
 							{!open_status && !review_status && (
 								<p>
-									{child_name}'s tooth has now been collected. Please let us know how the{' '}
+									{child_name}'s tooth has now been collected. Please let us know how the
 									{continent} fairy did.
 								</p>
 							)}
