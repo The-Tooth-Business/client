@@ -162,7 +162,7 @@ export default function SideNav(props) {
 						<MenuIcon />
 					</IconButton>
 					<Typography data-cy="user" variant="h6" noWrap>
-						Hello, {loggedInUser}
+						Oh Helloooo, {loggedInUser}
 					</Typography>
 					<div className={classes.alert}>
 						<Alert />
