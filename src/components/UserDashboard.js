@@ -32,11 +32,15 @@ const useStyles = makeStyles((theme) => ({
 	paper: {
 		padding: theme.spacing(5),
 		textAlign: 'left',
+		color: 'white',
 		width: '100%',
-		background: 'linear-gradient(180deg, rgba(255,205,241,1) 50%, rgba(235,173,237,1) 100%)',
+		background: 'linear-gradient(45deg, rgba(41,223,189,1) 62%, rgba(101,255,213,1) 96%)',
 	},
 	title: {
-		color: 'gray',
+		color: 'white',
+	},
+	h3: {
+		color: 'white',
 	},
 	root: {
 		flexGrow: 1,
@@ -170,15 +174,13 @@ function UserDashboard() {
 					</Grid>
 					{/* render for both admin and parent */}
 					<Grid item xs={12}>
-						<Paper className={classes.paper}
-						background={
-									'linear-gradient(180deg, rgba(255,205,241,1) 50%, rgba(235,173,237,1) 100%)'} >
+						<Paper className={classes.paper}>
 
 						<h1 className={classes.title}>Welcome! </h1>
 						{ !adminUser && bookings.length === 0 && (
 								
-									<h3> 
-									It looks like this is your first visit to Tooth Inc. If you are here to book a tooth pick up for your little darling this is the right place. 
+									
+									<h3>It looks like this is your first visit to Tooth Inc. If you are here to book a tooth pick up for your little darling this is the right place. 
 									<ul>
 									<li>Click on the 'Make a booking' button on the side there. Yes, that one...but not yet!</li>
 									<li>WHEN you get there, fill in the form. Don't forget anything - we aren't psychic (well we are but make it easy for us)...</li>
