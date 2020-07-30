@@ -7,9 +7,13 @@
 ---
 
 💎 Deployed App: https://www.toothinc.online/
+
 🛠 Staging Environment App: https://www.development.toothinc.online/
+
 🖥 Client Repo: https://github.com/The-Tooth-Business/client
+
 🖥 Server Repo: https://github.com/The-Tooth-Business/server
+
 📖 Part A Documentation Repo: https://github.com/The-Tooth-Business/TheToothFairyDocs
 
 ToothInc.online is a comprehensive booking management system for the Tooth Fairy and a place for parents to book tooth collections. The application has been built with the MERN stack and deployed with Netlify and Heroku.
@@ -32,23 +36,23 @@ Requirements:
 Server:
 
 - Create a directory on your machine named ToothInc and CD into it.
-- Whilst in the ToothInc directory, from bash CLI, clone the server repo `$ git clone https://github.com/The-Tooth-Business/server.git`
-- CD into the server folder `$ CD server`
-- Install npm packages with `$ npm install`
+- Whilst in the ToothInc directory, from bash CLI, clone the server repo `$ git clone https://github.com/The-Tooth-Business/server.git`.
+- CD into the server folder `$ CD server`.
+- Install npm packages with `$ npm install`.
 - Make sure that Mongo is running.
-- Seed the Mongo database with the following command `$ npm run seed` to view dummy data in your local application
-- From bash, `npm start` to start the local server
-- The server will run on local host 3030
+- Seed the Mongo database with the following command `$ npm run seed` to view dummy data in your local application.
+- From bash, `npm start` to start the local server.
+- The server will run on local host 3030.
 
 Client:
 
-- From bash, cd into the ToothInc directory and clone the client repo `$ git clone https://github.com/The-Tooth-Business/client.git`
-- Move into the client folder `$ CD client`
-- Install npm packages with `$ npm install` or `$ yarn install`
+- From bash, cd into the ToothInc directory and clone the client repo `$ git clone https://github.com/The-Tooth-Business/client.git`.
+- Move into the client folder `$ CD client`.
+- Install npm packages with `$ npm install` or `$ yarn install`.
 - Make sure that your local server is running.
 - From bash, `$ npm start` or `$ yarn start` to start the local client
-- The server will allow requests from local host 3000
-- A browser window will open - this app has been developed and tested with Google Chrome.
+- The server will allow requests from local host 3000.
+- A browser window will open.
 - Enjoy :)
 
 To view as admin:
@@ -98,16 +102,21 @@ To view as a parent:
 - DELETE /wishes/:id
 - PATCH /wishes/:id
 
-### Testing
+---
 
-The application has been tested in Chrome on Mac OS Catalina 10.15.6.
+## Testing
+
+The application has been tested in Chrome and Firefox on Mac OS Catalina 10.15.6. Please be aware that Google Chrome 84 causes issues with cookies and so the experimental cookie flags listed above need to be disabled.
 
 The production and development applications have both gone through extensive automated and manual testing with Postman, Mocha and Cypress.
 
-Manual test logs:
-Cypress Dashboard logs:
+Manual test logs: https://docs.google.com/spreadsheets/d/1vF0NZVO7-_7I44PDLQ7BQGvNlHgzAunny0pJ-CATDYo/edit#gid=891834841
 
-### Server Libraries & Dependencies:
+Cypress Dashboard logs: https://dashboard.cypress.io/projects/qhaq5w/runs?branches=%5B%5D&committers=%5B%5D&page=1&status=%5B%5D&tags=%5B%5D&timeRange=%7B%22startDate%22%3A%221970-01-01%22%2C%22endDate%22%3A%222038-01-19%22%7D
+
+---
+
+## Server Libraries & Dependencies:
 
 - `express ^4.17.1` -
 - `mongoose ^5.9.22` - Mongoose is an Object Data Modelling (ODM) library for MongoDB and Node.js. It allows the creation of strongly-typed schemas for MongoDB documents to provide data validation. Several models have been defined within the server containing Mongoose schemas to better structure and validate database documents.
@@ -147,7 +156,33 @@ Cypress Dashboard logs:
 - `eslint-plugin-cypress ^2.11.1` - An additional linter specifically for Cypress testing. Without this linter, VS Code does not recognise some of the Cypress functions as declared.
 - `prettier ^2.0.5` - Used to declare a pre-defined code format to maintain consistency across different developer machines.
 
-### Project management
+---
+
+## Screenshots
+
+#### Login
+
+![Login](screenshots/login.png)
+
+#### Admin Dashboard
+
+![Fairy Dashboard](screenshots/fairy-dash.png)
+
+#### Fairy Profile in admin dashboard
+
+![Fairy Profile](screenshots/fairy-profile.png)
+
+#### New user dashboard
+
+![New User](screenshots/new-user.png)
+
+#### Parent Dashboard
+
+![Parent dashboard](screenshots/parent-dash.png)
+
+---
+
+## Project management
 
 In phase one of this project we undertook extensive market research and planning from briefs given to us by the client. We finished what would be the first sprint with the green-light to run with the project. A sprint review at the end of sprint one had most of the documentation completed
 
@@ -178,7 +213,7 @@ The-Tooth-Business/server pull request #1-10
 
 ### Sprint 2
 
-Sprint 2 was all about Login Functionality (authorisation) on both the front and back end and deployment. We believe in deployiong early and often. We set up a CI/CD pipeline so that each time we did a Pull Request in Github our site was deployed in a development environment. At the end of each sprint we merged our development branch to master which deployed to our production branch. This was tricky, but very worthwile as we always know our production code is working even if we temporarily break our development app. We also ran working Mocha and unit tests on the booking component and started Cypress testing. Cypress testing slowed us down somewhat because we didn't have any experience, but we got there in the end and now find it so useful.
+Sprint 2 was all about Login Functionality (authorisation) on both the front and back end and deployment. We believe in deploying early and often. We set up a CI/CD pipeline so that each time we did a Pull Request in Github our site was deployed in a development environment. At the end of each sprint we merged our development branch to master which deployed to our production branch. This was tricky, but very worthwhile as we always know our production code is working even if we temporarily break our development app. We also ran working Mocha and unit tests on the booking component and started Cypress testing. Cypress testing slowed us down somewhat because we didn't have any experience, but we got there in the end and now find it so useful.
 
 We also addressed the FIC's concerns about site security. She keeps a lot of sensitive data and was worried about being hacked, so we outsourced the site security to Santa's elves who are 'red hat' hackers.
 
@@ -218,7 +253,7 @@ The-Tooth-Business/server pull request #16-19
 
 #### Sprint 4
 
-After another consultation with the FIC, she has decided that she wants to view each Continent Manager in a Fairy profile. This will render the managers' rating; work ID photo; short bio and all their bookings. We made her Fairyness understand that at this late stage of the project resources would have to be pulled from elsewhere, so she decided that she could live without email confirmation and we added this new component to sprint 4. She also mentioned that she was becoming overwhelmed with the number of wishes she recieved so we agred to build a wish component into the app. This turned out harder than expected and caused a short blocker. We also finished the rating component which had been planned for this sprint.
+After another consultation with the FIC, she has decided that she wants to view each Continent Manager in a Fairy profile. This will render the managers' rating; work ID photo; short bio and all their bookings. We made her Fairyness understand that at this late stage of the project resources would have to be pulled from elsewhere, so she decided that she could live without email confirmation and we added this new component to sprint 4. She also mentioned that she was becoming overwhelmed with the number of wishes she received so we agreed to build a wish component into the app. This turned out harder than expected and caused a short blocker. We also finished the rating component which had been planned for this sprint.
 
 ##### User Stories addressed
 
@@ -234,7 +269,7 @@ Second Consult - 3. As the FIC I am a very visual person so I would like charts 
 
 Third Consult - 1 As the FIC I would like to see each continent manager, remember who they are (I am 3562 years old!) and see their bookings and ratings.
 
-Third Consult - 2 As the FIC I would love to recieve wishes one by one with a button I can click to grant them or not (and not have to explain my reasoning!)
+Third Consult - 2 As the FIC I would love to receive wishes one by one with a button I can click to grant them or not (and not have to explain my reasoning!)
 
 ##### Trello at the start of Sprint 4
 
@@ -264,7 +299,7 @@ By the final sprint most coding was complete so we had 4 days to refactor code t
 
 ##### User Stories addressed
 
-Refactoring to make code dry. Docs. Sprinkles - Image component on login page, auth check for age, more design elements. seed file for db and runfile
+Refactoring to make code dry. Docs. Sprinkles - Image component on login page, auth check for age, more design elements. Seed file for db and run file.
 
 ![Trello-sprint5-standup1](trelloImages/TrelloJuly28.png)
 
@@ -273,6 +308,6 @@ The-Tooth-Business/server pull request #33-35
 
 ### Retrospective
 
-Louise and Catherine are so proud of this project. They have not only worked very hard to get it done to the quality they expect of themselves, but they made the FIC happy. They have at at all times worked as a team and pulled the other through on the odd occassion that things got tough. The only thing they are dissapointed about not getting done is the email functionality, but it was a decision of the client to let it go in favour of some other components that the team is very happy with.
+Louise and Catherine are so proud of this project. They have not only worked very hard to get it done to the quality they expect of themselves, but they made the FIC happy. They have at at all times worked as a team and pulled the other through on the odd occasion that things got tough. The only thing they are disappointed about not getting done is the email functionality, but it was a decision of the client to let it go in favour of some other components that the team is very happy with.
 
-![Trello-retro](trelloImages/TrelloJuly29.png)
+![Trello-retro](trelloImages/TrelloJuly30.png)
