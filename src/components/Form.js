@@ -136,7 +136,7 @@ const Form = ({ buttonLabel, handleSubmit, errorMessage, booking }) => {
 								id="child_name"
 								name="child_name"
 								value={formState.child_name}
-								label="name"
+								label="child name"
 								fullWidth
 								autoComplete="given-name"
 								onChange={handleChange}
@@ -268,9 +268,7 @@ const Form = ({ buttonLabel, handleSubmit, errorMessage, booking }) => {
 						booking={formState}
 						data-cy="booking-new-submit"
 						handleSubmit={handleFormSubmit}
-					>
-						Submit
-					</CircularIntegration>
+					/>
 				</Paper>
 			</main>
 		</React.Fragment>
