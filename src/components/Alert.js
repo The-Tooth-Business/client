@@ -54,7 +54,7 @@ export default function Alert() {
 					color="secondary"
 					data-cy="alerts"
 				>
-					<NotificationsIcon />
+					<NotificationsIcon fontSize="large" />
 				</StyledBadge>
 			</IconButton>
 			<Dialog

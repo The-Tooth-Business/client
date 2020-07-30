@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import { CircularProgress, Button, Fab } from '@material-ui/core';
-import { green } from '@material-ui/core/colors';
 import CheckIcon from '@material-ui/icons/Check';
 import ArrowUpwardOutlinedIcon from '@material-ui/icons/ArrowUpwardOutlined';
 const useStyles = makeStyles((theme) => ({
@@ -15,20 +14,20 @@ const useStyles = makeStyles((theme) => ({
 		position: 'relative',
 	},
 	buttonSuccess: {
-		backgroundColor: green[500],
+		backgroundColor: 'rgba(41,223,189,1)',
 		'&:hover': {
-			backgroundColor: green[700],
+			backgroundColor: 'rgba(41,223,189,1)',
 		},
 	},
 	fabProgress: {
-		color: green[500],
+		color: '#dc004e',
 		position: 'absolute',
 		top: -6,
 		left: -6,
 		zIndex: 1,
 	},
 	buttonProgress: {
-		color: green[500],
+		color: '#dc004e',
 		position: 'absolute',
 		top: '50%',
 		left: '50%',
@@ -39,8 +38,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CircularIntegration({ handleSubmit, booking }) {
 	const classes = useStyles();
-	const [loading, setLoading] = React.useState(false);
-	const [success, setSuccess] = React.useState(false);
+	const [loading, setLoading] = useState(false);
+	const [success, setSuccess] = useState(false);
 	const timer = React.useRef();
 
 	const buttonClassname = clsx({
@@ -62,6 +61,7 @@ export default function CircularIntegration({ handleSubmit, booking }) {
 				setLoading(false);
 				setTimeout(function () {
 					handleSubmit(booking);
+					setSuccess(false);
 				}, 2000);
 			}, 2000);
 		}
@@ -72,7 +72,7 @@ export default function CircularIntegration({ handleSubmit, booking }) {
 			<div className={classes.wrapper}>
 				<Fab
 					aria-label="save"
-					color="primary"
+					color="secondary"
 					className={buttonClassname}
 					onClick={handleButtonClick}
 				>
@@ -83,12 +83,12 @@ export default function CircularIntegration({ handleSubmit, booking }) {
 			<div className={classes.wrapper}>
 				<Button
 					variant="contained"
-					color="primary"
+					color="secondary"
 					className={buttonClassname}
 					disabled={loading}
 					onClick={handleButtonClick}
 				>
-					Submit
+					{success ? 'Success' : 'Submit'}
 				</Button>
 				{loading && (
 					<CircularProgress size={24} className={classes.buttonProgress} />

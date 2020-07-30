@@ -249,7 +249,7 @@ export default function Bookings({ bookings }) {
 
 						{emptyRows > 0 && (
 							<TableRow style={{ height: 53 * emptyRows }}>
-								<TableCell colSpan={6} />
+								<TableCell />
 							</TableRow>
 						)}
 					</TableBody>
@@ -257,7 +257,7 @@ export default function Bookings({ bookings }) {
 						<TableRow>
 							<TablePagination
 								rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-								colSpan={3}
+								colSpan={12}
 								count={rows.length}
 								rowsPerPage={rowsPerPage}
 								page={page}
