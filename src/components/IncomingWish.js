@@ -11,7 +11,7 @@ export default function IncomingWish() {
 	const { pendingWishes } = store;
 	const useStyles = makeStyles((theme) => ({
 		paper: {
-			padding: theme.spacing(2),
+			padding: theme.spacing(3),
 			height: '100%',
 			width: '100%',
 			textAlign: 'center',

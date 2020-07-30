@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useGlobalState } from '../config/globalState';
 import { updateBooking } from '../services/bookingsServices';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
+import { Paper, Chip } from '@material-ui/core';
 
 export default function PendingBookings() {
 	const [pending, setPending] = useState([]);
@@ -21,6 +20,7 @@ export default function PendingBookings() {
 		title: {
 			color: pending.length > 0 ? 'red' : 'green',
 			fontSize: 40,
+			marginTop: '-5px',
 		},
 		disc: {
 			fontSize: '10px',
@@ -66,13 +66,14 @@ export default function PendingBookings() {
 				{pending.length}
 			</h1>
 			<p>bookings are waiting to be closed</p>
-			<Button
+			<Chip
 				data-cy="pending-button"
 				onClick={handleClose}
 				disabled={pending.length === 0}
-			>
-				Close all pending Bookings
-			</Button>
+				color="secondary"
+				label="Close all pending Bookings"
+				size="small"
+			></Chip>
 		</Paper>
 	);
 }
