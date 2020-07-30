@@ -268,9 +268,7 @@ const Form = ({ buttonLabel, handleSubmit, errorMessage, booking }) => {
 						booking={formState}
 						data-cy="booking-new-submit"
 						handleSubmit={handleFormSubmit}
-					>
-						Submit
-					</CircularIntegration>
+					/>
 				</Paper>
 			</main>
 		</React.Fragment>
