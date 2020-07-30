@@ -106,7 +106,7 @@ const Booking = ({ history, booking, showControls }) => {
 							)}
 							{!open_status && !review_status && (
 								<p>
-									{child_name}'s tooth has now been collected. Please let us know how the{' '}
+									{child_name}'s tooth has now been collected. Please let us know how the
 									{continent} fairy did.
 								</p>
 							)}
@@ -114,7 +114,7 @@ const Booking = ({ history, booking, showControls }) => {
 						</Paper>
 					</Grid>
 					{!open_status && !review_status && (
-						<Grid item xs={12}>
+						<Grid item xs={12} lg={6}>
 							<Paper className={classes.paper}>
 								<Review booking={booking} />
 							</Paper>

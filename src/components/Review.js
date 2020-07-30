@@ -10,7 +10,8 @@ import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
-		width: 300,
+		flexShrink: 0,
+		margin: theme.spacing(3, 0),
 	},
 }));
 
@@ -83,6 +84,7 @@ const Review = ({ history, booking }) => {
 					name="rating"
 					valueLabelDisplay="auto"
 					onChange={handleSliderChange}
+					color="secondary"
 				/>
 				<TextField
 					name="comments"
@@ -93,7 +95,7 @@ const Review = ({ history, booking }) => {
 			</div>
 			<Button
 				variant="contained"
-				color="primary"
+				color="secondary"
 				onClick={handleReviewSubmit}
 				className={classes.button}
 			>

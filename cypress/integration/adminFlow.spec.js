@@ -1,6 +1,6 @@
 beforeEach(() => {
 	cy.viewport(1024, 768);
-	cy.visit(Cypress.env('staging')); //! change to 'development', 'staging' or 'production' here
+	cy.visit(Cypress.env('production')); //! change to 'development', 'staging' or 'production' here
 	cy.get('#root').then((root) => {
 		if (root.find('[data-cy=side-navbar]').length > 0) {
 			cy.get('[data-cy=logout]').click();

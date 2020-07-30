@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
+import { useGlobalState } from '../config/globalState';
 import {
 	Avatar,
 	Button,
 	TextField,
-	FormControlLabel,
-	Checkbox,
+	Snackbar,
 	Paper,
 	Box,
 	Grid,
 	Typography,
 	CssBaseline,
 } from '@material-ui/core/';
+import MuiAlert from '@material-ui/lab/Alert';
 import { Link } from 'react-router-dom';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from '@material-ui/core/styles';
+import Captcha from './Captcha';
+import background from '../images/warning.png';
 
 function Copyright() {
 	return (
@@ -25,13 +28,17 @@ function Copyright() {
 	);
 }
 
+function Alert(props) {
+	return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 // Styling for the form
 const useStyles = makeStyles((theme) => ({
 	root: {
 		height: '100vh',
 	},
 	image: {
-		backgroundImage: 'url(https://source.unsplash.com/random)',
+		// backgroundImage: 'url(https://source.unsplash.com/random)',
+		backgroundImage: `url(${background})`,
 		backgroundRepeat: 'no-repeat',
 		backgroundColor:
 			theme.palette.type === 'light'
@@ -60,6 +67,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const UserForm = ({ label, handleSubmit, errorMessage }) => {
+	const { store, dispatch } = useGlobalState();
+	const { captchaValue, captchaAnswer } = store;
 	const classes = useStyles();
 	const initialFormState = {
 		username: '',
@@ -67,6 +76,7 @@ const UserForm = ({ label, handleSubmit, errorMessage }) => {
 		password: '',
 	};
 	const [userDetails, setUserDetails] = useState(initialFormState);
+	const [showAlert, setAlert] = useState(false);
 
 	function handleChange(event) {
 		const name = event.target.name;
@@ -76,6 +86,7 @@ const UserForm = ({ label, handleSubmit, errorMessage }) => {
 			[name]: value,
 		});
 	}
+
 	function handleFormSubmit(event) {
 		event.preventDefault();
 		const user = {
@@ -83,8 +94,22 @@ const UserForm = ({ label, handleSubmit, errorMessage }) => {
 			email: userDetails.email,
 			password: userDetails.password,
 		};
-		handleSubmit(user);
+		captchaAnswer === captchaValue ? handleSubmit(user) : setAlert(true);
+		if (!captchaAnswer === !captchaValue) {
+			dispatch({
+				type: 'setCaptchaAttempt',
+				data: 1,
+			});
+		}
 	}
+
+	const handleClose = (event, reason) => {
+		if (reason === 'clickaway') {
+			return;
+		}
+
+		setAlert(false);
+	};
 
 	return (
 		<Grid
@@ -148,10 +173,10 @@ const UserForm = ({ label, handleSubmit, errorMessage }) => {
 							autoComplete="current-password"
 							onChange={handleChange}
 						/>
-						<FormControlLabel
-							control={<Checkbox value="remember" color="primary" />}
-							label="Remember me"
-						/>
+						<div className={classes.form}>
+							<Typography>Prove you are an adult</Typography>
+							<Captcha />
+						</div>
 						<Button
 							data-cy="login-button"
 							type="submit"
@@ -180,6 +205,11 @@ const UserForm = ({ label, handleSubmit, errorMessage }) => {
 						<Box mt={5}>
 							<Copyright />
 						</Box>
+						<Snackbar open={showAlert} autoHideDuration={6000}>
+							<Alert onClose={handleClose} severity="error">
+								You are not a parent! Leave now or you will be on Santa's naughty list
+							</Alert>
+						</Snackbar>
 					</form>
 				</div>
 			</Grid>
