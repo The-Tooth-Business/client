@@ -36,11 +36,8 @@ const useStyles = makeStyles((theme) => ({
 		width: '100%',
 		background: 'linear-gradient(45deg, rgba(41,223,189,1) 62%, rgba(101,255,213,1) 96%)',
 	},
-	title: {
-		color: 'white',
-	},
-	h3: {
-		color: 'white',
+	ul: {
+		textDecoration: 'none',
 	},
 	root: {
 		flexGrow: 1,
@@ -174,26 +171,29 @@ function UserDashboard() {
 					</Grid>
 					{/* render for both admin and parent */}
 					<Grid item xs={12}>
-						<Paper className={classes.paper}>
-
-						<h1 className={classes.title}>Welcome! </h1>
+					
 						{ !adminUser && bookings.length === 0 && (
+							<Paper className={classes.paper}>
+							<fragment>
+							<h1 className={classes.title}>Welcome! </h1>		
 								
-									
-									<h3>It looks like this is your first visit to Tooth Inc. If you are here to book a tooth pick up for your little darling this is the right place. 
+									<h3>This seems to be your first visit to Tooth Inc. If you are here to book a tooth pick up for your little darling this is the right place. 
 									<ul>
 									<li>Click on the 'Make a booking' button on the side there. Yes, that one...but not yet!</li>
 									<li>WHEN you get there, fill in the form. Don't forget anything - we aren't psychic (well we are but make it easy for us)...</li>
-									<li>Click submit. If the little whirly button goes green, that is it. We will send a fairy - at no cost to you.</li>
+									<li>Click submit. If the little whirly button goes green, that is it. We will send a fairy tonight- at no cost to you. They will take the tooth and leave the money.</li>
 									<li>Go back to your dashboard and make a wish. Go on, you deserve it. You have done some good parenting today.</li>
+									<li>If you need to make any changes, come back and edit your booking any time before 9pm.</li>
 									</ul>
 									</h3>
+									</fragment>	
+									</Paper>
 							)}
-								
-								{/* {bookings.length > 0 (
+							
+								{ bookings.length >= 1 && (
 									<Bookings bookings={bookings} />
-								)} */}
-						</Paper>
+								)}
+						
 					</Grid>
 				</Grid>
 			</div>
