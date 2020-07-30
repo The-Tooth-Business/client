@@ -36,7 +36,7 @@ export default function IncomingWish() {
 		});
 
 		return () => {};
-	}, [dispatch]);
+	}, [pendingWishes, dispatch]);
 
 	function handleSubmit(event) {
 		const updatedWish = incomingWish;
