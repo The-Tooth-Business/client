@@ -230,7 +230,7 @@ The-Tooth-Business/server pull request #16-19
 
 #### Sprint 4
 
-After another consultation with the FIC, she has decided that she wants to view each Continent Manager in a Fairy profile. This will render the managers' rating; work ID photo; short bio and all their bookings. We made her Fairyness understand that at this late stage of the project resources would have to be pulled from elsewhere, so she decided that she could live without email confirmation and we added this new component to sprint 4. She also mentioned that she was becoming overwhelmed with the number of wishes she received so we agreed to build a wish component into the app. This turned out harder than expected and caused a short blocker. We also finished the rating component which had been planned for this sprint.
+After another consultation, including user testing, with the FIC, she has decided that she wants to view each Continent Manager in a Fairy profile. This will render the managers' rating; work ID photo; short bio and all their bookings. We made her Fairyness understand that at this late stage of the project resources would have to be pulled from elsewhere, so she decided that she could live without email confirmation and we added this new component to sprint 4. She also mentioned that she was becoming overwhelmed with the number of wishes she received so we agreed to build a wish component into the app. This turned out harder than expected and caused a short blocker. We also finished the rating component which had been planned for this sprint.
 
 ##### User Stories addressed
 
@@ -274,17 +274,21 @@ The-Tooth-Business/server pull request #27-32
 
 By the final sprint most coding was complete so we had 4 days to refactor code to make it drier, add some design sprinkles and work on docs. Two of the sprinkles were a Captcha to check if the person logging on is actually an adult, and an image on the login page.
 
+On the day before handover we discovered a bug. Google Chrome had a major update that caused a problem with our cookies which meant that our production site was not receiving any data from the server that depended on the user being logged in. This is basically our entire site. Our plans to finish the code were put on hold while we spent hours fixing it. We finally found a solution to the bug and were very grateful that we had built extra time into the project to address unexpected issues. 
+
 ##### User Stories addressed
 
-Refactoring to make code dry. Docs. Sprinkles - Image component on login page, auth check for age, more design elements. Seed file for db and run file.
+Checked that all user stories were addressed. 
 
 ![Trello-sprint5-standup1](trelloImages/TrelloJuly28.png)
 
-The-Tooth-Business/client pull requests #63-#
-The-Tooth-Business/server pull request #33-35
+The-Tooth-Business/client pull requests #63-80
+The-Tooth-Business/server pull request #33-35 all other pull requests were attempting to fix bug.
 
 ### Retrospective
 
-Louise and Catherine are so proud of this project. They have not only worked very hard to get it done to the quality they expect of themselves, but they made the FIC happy. They have at at all times worked as a team and pulled the other through on the odd occasion that things got tough. The only thing they are disappointed about not getting done is the email functionality, but it was a decision of the client to let it go in favour of some other components that the team is very happy with.
+Louise and Catherine are so proud of this project. They have not only worked very hard to get it done to the quality they expect of themselves, but they made the FIC happy. They have at at all times worked as a team and pulled the other through on the odd occasion that things got tough. Even when the bug almost destroyed their project the day before handover they were laughing through the debugging session. The only thing they are disappointed about not getting done is the email functionality, but it was a decision of the client to let it go in favour of some other components that the team is very happy with.
+
+The Tooth Fairy was so satisfied with the final product that she is already discussing possible future projects - such as a blog for entrepreneurs and a dropshipping site.
 
 ![Trello-retro](trelloImages/TrelloJuly30.png)
